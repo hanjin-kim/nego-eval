@@ -1,4 +1,4 @@
-# carryover
+# nego-eval
 
 A negotiation environment where an agent **chooses** its counterparty and **meets it again**.
 
@@ -14,7 +14,7 @@ Here it is the variable, and it is one bit.
 | [Cattle Trade](https://arxiv.org/html/2605.14537v1) | yes | no |
 | [M3-Bench](https://arxiv.org/pdf/2601.08462) | fixed dyad | within game |
 | [RLVR negotiation](https://arxiv.org/abs/2604.09855) | one seller | no |
-| **carryover** | **yes** | **yes** |
+| **nego-eval** | **yes** | **yes** |
 
 ---
 
@@ -102,7 +102,7 @@ rather than a best-known score.
 ## The contract
 
 Three boards failed before one worked, and each failed differently. The
-conditions are therefore a module, `carryover.game.contract`, run against any
+conditions are therefore a module, `nego_eval.game.contract`, run against any
 candidate board — every one is a measurement, not a guideline.
 
 | Condition | Threshold | Why |
@@ -114,15 +114,11 @@ candidate board — every one is a measurement, not a guideline.
 | no answer-by-name | ≤ 0.42 | |
 | countering can gain something | = 1.00 | if the opening offer is already the ceiling, there is no negotiation to fail at |
 
-`game/table.py`, `table2.py` and `table3.py` are the boards that did not pass;
-they are kept because the contract's conditions only make sense next to the
-failures that produced them. `table4.py` is the current board.
-
-One caveat about running the contract on them today. Board three failed the last
-condition at 0.00, but the cause lived in `sim/agents.py`, which every board
-shares — so fixing it fixed board three too, and the condition now returns 1.00
-there. The failure is documented in that file rather than reproducible from it.
-Board three's *other* failure is still live, and is the one worth keeping.
+Three earlier boards are **not** in this repository. Each was withdrawn for a
+reason the corresponding condition now encodes, and shipping a package with four
+boards in it — three of them wrong — only invites someone to build on the wrong
+one. `table4.py` is the board. What the discarded ones were, and what each got
+wrong, is in `notes/`.
 
 ### The condition a checklist cannot hold
 
@@ -141,7 +137,7 @@ transcript.
 
 ## What is known so far
 
-Measured on this board unless noted. See `notes/carryover-note.html` for the full
+Measured on this board unless noted. See `notes/note.html` for the full
 write-up, including four figures that earlier revisions got wrong.
 
 **Carrying the record is worth the gap between how long a relationship takes to
@@ -172,9 +168,9 @@ generations and sizes scored 0.48 / 0.47 / 0.46 on the same probe.
 ## Layout
 
 ```
-src/carryover/
+src/nego_eval/
   sim/       world, bargaining, agents, the learned baseline, the LLM client
-  game/      the boards, the denomination grid, the match runner, the contract
+  game/      the board, the denomination grid, the match runner, the contract
 scripts/     every measurement in the write-up, one file each
 data/        the numbers those scripts produced
 tests/       34 invariants — 16 on the settlement rules, 18 on the game

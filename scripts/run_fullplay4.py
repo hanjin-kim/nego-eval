@@ -15,10 +15,10 @@ those seeds. The board cancels; what is left is the agent.
 import sys, json, time, threading, statistics as st
 sys.path.insert(0, 'src')
 from collections import Counter
-from carryover.game.match import Match
-from carryover.game.table4 import VALUE, cast_for
-from carryover.sim import llm
-from carryover.sim.agents import LLMBuyer
+from nego_eval.game.match import Match
+from nego_eval.game.table4 import VALUE, cast_for
+from nego_eval.sim import llm
+from nego_eval.sim.agents import LLMBuyer
 
 LOSS, ROUNDS, GAMES, STEP = 110, 12, 4, 10
 START = 910000

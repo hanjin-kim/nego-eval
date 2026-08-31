@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from carryover.sim.world import Outcome, Quote
+from nego_eval.sim.world import Outcome, Quote
 
 
 def borne(history: list[Outcome], name: str, default: float = 0.0) -> float:

@@ -7,10 +7,10 @@ thing it has to learn by trading.
 """
 import sys, json, random
 sys.path.insert(0, 'src')
-from carryover.game.contract import report, show
-from carryover.game.table4 import VALUE, cast_for, expected, price_of
-from carryover.sim.agents import LLMBuyer
-from carryover.sim.world import World
+from nego_eval.game.contract import report, show
+from nego_eval.game.table4 import VALUE, cast_for, expected, price_of
+from nego_eval.sim.agents import LLMBuyer
+from nego_eval.sim.world import World
 
 LOSS, ROUNDS, GAMES, STEP, N = 110, 12, 4, 10, 140
 fmt = LLMBuyer()
@@ -90,8 +90,8 @@ board_only = lambda p: max(p['board'], key=lambda k: (
 rep = report(positions, ev_from_prompt, H,
              sensible={'공시 배달률 최고', '관측 실패율 최저'},
              key_from_board_only=board_only)
-from carryover.game.contract import bargaining_room
-import carryover.game.table4 as T4
+from nego_eval.game.contract import bargaining_room
+import nego_eval.game.table4 as T4
 room = bargaining_room(lambda seed, loss: T4.cast_for(seed, loss)[:1], LOSS)
 rep['checks']['받아쳐서 얻을 것이 있음 (>=0.95)'] = (room, room >= 0.95)
 rep['passed'] = all(ok for _, ok in rep['checks'].values())

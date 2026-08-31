@@ -16,8 +16,8 @@ gets 0.75 of the way; reading the record alone gets 0.64; neither is enough.
 """
 import sys, json, time, threading
 sys.path.insert(0, 'src')
-from carryover.sim import llm
-from carryover.sim.agents import LLMBuyer
+from nego_eval.sim import llm
+from nego_eval.sim.agents import LLMBuyer
 
 P = json.load(open('data_probe4_positions.json'))[:120]
 SYSTEM = LLMBuyer.SYSTEM
@@ -55,7 +55,7 @@ def best_borne(p):
 
 
 def run(model):
-    from carryover.sim.llm import ask_json
+    from nego_eval.sim.llm import ask_json
     t0 = time.time(); rows = []; errs = 0
     for p in P:
         try:

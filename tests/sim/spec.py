@@ -1,32 +1,18 @@
-"""The environment as something another trainer can load.
+"""A synthetic cast, used only to exercise the settlement rules.
 
-Two things travel with it that a benchmark usually leaves out.
-
-**A learned ceiling.** In code or maths the reference answer is the grader, so a
-score interprets itself. Here there is no reference policy, and a model scoring
-badly could mean the model is weak or the environment is broken — in the course
-of building this one it was the environment six times out of six. So the ceiling
-is trained on shuffled seller types and shipped alongside: it picks the generous
-seller in round one at chance rate, which is the evidence that it learned a
-policy rather than the answer key.
-
-**The trivial policies.** Cheapest-each-round and squeeze-everything bracket the
-score from below. A submission that cannot beat "take the lowest quote" has not
-demonstrated anything, and without that line on the page it is easy to mistake a
-number for a result.
-
-Two regimes, because which way the relational rent flows is an empirical question
-rather than a settled one: sellers charge a premium for reliability where supply
-is scarce, and discount for loyalty where the buyer holds the power.
+This is not one of the boards. It is the parameterisation the first board
+used, kept here because the sixteen invariants below are about `world.py` —
+that a loss is exhausted, that nobody pays for goods that never arrived —
+and those hold whatever the sellers are. Shipping it as part of the library
+would invite someone to build on a board that was withdrawn.
 """
-
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass, field
 
-from carryover.sim.agents import ScriptedSeller
-from carryover.sim.world import World
+from nego_eval.sim.agents import ScriptedSeller
+from nego_eval.sim.world import World
 
 #: Enough names for the wider markets. Three sellers put a floor under the
 #: concentration measures — even random play returns to the same counterparty a

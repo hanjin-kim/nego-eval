@@ -22,7 +22,7 @@ traits and the price sequence — which is what makes it a bound.
 import sys, json, statistics as st
 from functools import lru_cache
 sys.path.insert(0, 'src')
-from carryover.game.table4 import VALUE, cast_for
+from nego_eval.game.table4 import VALUE, cast_for
 
 LOSS, ROUNDS, GAMES, STEP, WINDOW, COOLOFF = 110, 12, 4, 10, 8, 3
 N = 120

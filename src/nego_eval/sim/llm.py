@@ -19,7 +19,7 @@ import os
 
 import httpx
 
-from carryover.config import load_env
+from nego_eval.config import load_env
 
 load_env()
 BASE = os.environ.get("DASHSCOPE_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1")

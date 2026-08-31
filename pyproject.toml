@@ -1,5 +1,5 @@
 [project]
-name = "carryover"
+name = "nego-eval"
 version = "0.1.0"
 description = "A negotiation board game where the counterparty is chosen and remembered"
 requires-python = ">=3.10"
@@ -17,4 +17,4 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "tests/sim"]

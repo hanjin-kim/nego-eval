@@ -21,8 +21,8 @@ import random
 from dataclasses import dataclass, field
 from typing import Protocol
 
-from carryover.game.denom import snap
-from carryover.sim.bargain import Bargain, negotiate
+from nego_eval.game.denom import snap
+from nego_eval.sim.bargain import Bargain, negotiate
 
 
 class SettlementError(RuntimeError):

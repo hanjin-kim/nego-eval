@@ -6,9 +6,9 @@ or the two conditions differing in something other than memory.
 """
 import pytest
 
-from carryover.game.denom import shares, snap
-from carryover.game.match import Match, tally
-from carryover.sim.agents import CheapestBuyer, GrudgeBuyer, ScriptedSeller
+from nego_eval.game.denom import shares, snap
+from nego_eval.game.match import Match, tally
+from nego_eval.sim.agents import CheapestBuyer, GrudgeBuyer, ScriptedSeller
 
 LOSS, STEP = 120, 10
 
@@ -103,7 +103,7 @@ def test_seller_loyalty_does_not_depend_on_how_far_back_it_can_see():
     # not older rounds are attached. Otherwise carry-over changes the seller's
     # concession by changing the length of history, and the two conditions stop
     # differing only in information.
-    from carryover.sim.world import Outcome
+    from nego_eval.sim.world import Outcome
     s = ScriptedSeller('A', 100, cost=70, share=0.50, floor=0.60, seed=0)
 
     def rounds(names):
@@ -121,7 +121,7 @@ def test_seller_loyalty_does_not_depend_on_how_far_back_it_can_see():
 def test_one_round_is_not_a_relationship():
     # A seller picked once, at the start, must not read as a loyal partner just
     # because there is nothing else in the window to divide by.
-    from carryover.sim.world import Outcome
+    from nego_eval.sim.world import Outcome
     s = ScriptedSeller('A', 100, cost=70, share=0.50, floor=0.60, seed=0)
     one = [Outcome(t=0, seller='A', price=100, failed=False, loss=0, buyer_share=0,
                    seller_share=0, buyer_profit=50, seller_profit=30)]
@@ -129,22 +129,19 @@ def test_one_round_is_not_a_relationship():
     assert s.loyalty_of(one * s.loyalty_window) == 1.0
 
 
-def test_price_says_nothing_about_type():
-    # The generous seller must not be identifiable from the quote board. When it
-    # was systematically the priciest, "pick the most expensive" found it 55% of
-    # the time against a chance of 33 — so every claim that the ledger was the
-    # only available signal was inheriting a leak.
-    from carryover.game.table import cast_for
-    priciest = cheapest = n = 0
+def test_the_cheapest_quote_is_not_the_answer():
+    # An earlier board gave every seller the same list price, and the invariant
+    # here was that the quote sheet said nothing at all. This board prices the
+    # published delivery rate on purpose, so the sheet is informative — what must
+    # not happen is that it settles the question, and buying the cheapest is the
+    # rule it would settle it with.
+    from nego_eval.game.table4 import cast_for
+    hits = n = 0
     for seed in range(400):
-        make, generous = cast_for(seed)
-        sellers = make()
-        quotes = sorted(((s.name, s.quote(0, 12)) for s in sellers), key=lambda q: q[1])
+        make, key, ev, board, hidden = cast_for(seed, loss=LOSS)
         n += 1
-        cheapest += quotes[0][0] == generous
-        priciest += quotes[-1][0] == generous
-    for hits in (priciest, cheapest):
-        assert abs(hits / n - 1 / 3) < 0.08, (priciest / n, cheapest / n)
+        hits += min(board, key=lambda k: board[k]['price']) == key
+    assert hits / n < 0.25, hits / n
 
 
 def test_the_board_is_the_same_board_in_the_next_process():
@@ -155,9 +152,9 @@ def test_the_board_is_the_same_board_in_the_next_process():
     import subprocess, sys as _s, json as _j, pathlib as _p
     src = str(_p.Path(__file__).resolve().parents[2] / 'src')
     prog = ("import sys; sys.path.insert(0, %r)\n"
-            "from carryover.game.table import cast_for\n"
+            "from nego_eval.game.table4 import cast_for\n"
             "import json\n"
-            "m, g = cast_for(3)\n"
+            "m = cast_for(3)[0]\n"
             "print(json.dumps(sorted((s.name, s.quote(0, 12)) for s in m())))\n") % src
     runs = [subprocess.run([_s.executable, '-c', prog], capture_output=True,
                            text=True, check=True).stdout for _ in range(2)]
@@ -168,8 +165,8 @@ def test_scrambling_keeps_the_record_and_cuts_only_its_owner():
     # The control has to leave the prompt the same size and shape, or a drop in
     # score is explained by having less to read rather than by the record being
     # useless. Same rounds, same numbers, different names.
-    from carryover.sim.world import World
-    from carryover.sim.agents import CheapestBuyer
+    from nego_eval.sim.world import World
+    from nego_eval.sim.agents import CheapestBuyer
     prior = World(buyer=CheapestBuyer(), sellers=cast(None), loss=LOSS,
                   rounds=12, seed=1, step=STEP).run()
     perm = {'coop': 'sharp', 'sharp': 'coop', 'mid': 'mid'}
@@ -191,15 +188,15 @@ def test_countering_can_gain_something():
     # is to accept, and an agent that pushes back is only losing exchanges. That
     # was true here for a while, and a whole match of an agent apparently unable
     # to bargain was the board, not the agent.
-    from carryover.game.contract import bargaining_room
-    from carryover.game.table3 import cast_for as cast3
-    assert bargaining_room(cast3, LOSS) == 1.0
+    from nego_eval.game.contract import bargaining_room
+    from nego_eval.game.table4 import cast_for as cast4
+    assert bargaining_room(lambda seed, loss: cast4(seed, loss)[:1], LOSS) == 1.0
 
 
 def test_a_stranger_can_still_concede():
     # The ceiling scales with the relationship, but must not be zero without one.
-    from carryover.game.table3 import cast_for as cast3
+    from nego_eval.game.table4 import cast_for as cast4
     for seed in range(20):
-        for x in cast3(seed, loss=LOSS)[0]():
+        for x in cast4(seed, loss=LOSS)[0]():
             if x.floor > 0:
                 assert x.respond(LOSS, LOSS, 1, [], remaining=12, cooloff=3) > 0

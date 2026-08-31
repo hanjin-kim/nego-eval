@@ -12,9 +12,9 @@ that the value of remembering rises as the observable stops being a bargain.
 """
 import sys, json, statistics as st
 sys.path.insert(0, 'src')
-import carryover.game.table3 as T
-from carryover.game.buyers3 import BoardOnlyBuyer, EVBuyer
-from carryover.game.match import Match
+import nego_eval.game.table4 as T
+from nego_eval.game.buyers import BoardOnlyBuyer, EVBuyer
+from nego_eval.game.match import Match
 
 LOSS, ROUNDS, GAMES, STEP, N = 110, 12, 4, 10, 400
 
@@ -22,7 +22,7 @@ LOSS, ROUNDS, GAMES, STEP, N = 110, 12, 4, 10, 400
 def cell(buyer, carry, smem):
     prof, gk = [], []
     for s in range(N):
-        make, key, ev, board = T.cast_for(s, loss=LOSS)
+        make, key, ev, board, hidden = T.cast_for(s, loss=LOSS)
         r = Match(buyer_factory=buyer, seller_factory=make, games=GAMES,
                   rounds=ROUNDS, loss=LOSS, value=T.VALUE, seed=s,
                   carry_over=carry, seller_memory=smem, step=STEP).run()

@@ -1,9 +1,9 @@
 """Model against reference on the same board, not on the same average."""
 import sys, json, glob, statistics as st
 sys.path.insert(0, 'src')
-from carryover.game.buyers3 import BoardOnlyBuyer, EVBuyer
-from carryover.game.match import Match
-from carryover.game.table4 import VALUE, cast_for
+from nego_eval.game.buyers import BoardOnlyBuyer, EVBuyer
+from nego_eval.game.match import Match
+from nego_eval.game.table4 import VALUE, cast_for
 
 LOSS, ROUNDS, GAMES, STEP = 110, 12, 4, 10
 REFS = [('호가판만', lambda: BoardOnlyBuyer(), True),

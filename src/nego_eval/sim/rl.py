@@ -25,7 +25,7 @@ import random
 from collections import defaultdict
 from dataclasses import dataclass, field
 
-from carryover.sim.world import Outcome, Quote
+from nego_eval.sim.world import Outcome, Quote
 
 
 def _band(x: float, edges: tuple[float, ...]) -> int:

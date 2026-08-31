@@ -19,9 +19,9 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from carryover.sim.agents import CheapestBuyer, ScriptedSeller  # noqa: E402
-from carryover.sim.env_spec import Config, make  # noqa: E402
-from carryover.sim.world import World  # noqa: E402
+from nego_eval.sim.agents import CheapestBuyer, ScriptedSeller  # noqa: E402
+from spec import Config, make  # noqa: E402
+from nego_eval.sim.world import World  # noqa: E402
 
 SEEDS = range(120)
 

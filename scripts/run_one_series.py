@@ -6,15 +6,15 @@ doing. No statistics here — a single series, seed fixed, every move shown.
 """
 import sys, json
 sys.path.insert(0, 'src')
-from carryover.game.table3 import VALUE, cast_for
-from carryover.sim.agents import LLMBuyer
-from carryover.sim.world import World
+from nego_eval.game.table4 import VALUE, cast_for
+from nego_eval.sim.agents import LLMBuyer
+from nego_eval.sim.world import World
 
 MODEL = sys.argv[1] if len(sys.argv) > 1 else 'qwen/qwen3.8-max'
 SEED = int(sys.argv[2]) if len(sys.argv) > 2 else 900001
 LOSS, ROUNDS, GAMES, STEP = 110, 12, 4, 10
 
-make, key, ev, board = cast_for(SEED, loss=LOSS)
+make, key, ev, board, hidden = cast_for(SEED, loss=LOSS)
 print(f"모델 {MODEL} · 시드 {SEED} · {GAMES}게임 x {ROUNDS}라운드 · 손실 {LOSS}\n")
 print("호가판 (매 라운드 가격은 ±12 흔들림)")
 for n in sorted(board):

@@ -2,8 +2,8 @@
 
 `denom` is a leaf and `world` depends on it, so nothing heavier may be re-exported
 here — importing `Match` at package level would make `world` import `match` import
-`world`. Take it from `carryover.game.match` directly.
+`world`. Take it from `nego_eval.game.match` directly.
 """
-from carryover.game.denom import STEP, shares, snap
+from nego_eval.game.denom import STEP, shares, snap
 
 __all__ = ["STEP", "shares", "snap"]

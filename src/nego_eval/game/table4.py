@@ -27,7 +27,7 @@ from __future__ import annotations
 
 import random
 
-from carryover.sim.agents import ScriptedSeller
+from nego_eval.sim.agents import ScriptedSeller
 
 NAMES = ("A", "B", "C")
 VALUE = 150

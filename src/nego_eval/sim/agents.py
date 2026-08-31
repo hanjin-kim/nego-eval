@@ -17,7 +17,7 @@ import random
 import zlib
 from dataclasses import dataclass, field
 
-from carryover.sim.world import Outcome, Quote
+from nego_eval.sim.world import Outcome, Quote
 
 
 @dataclass
@@ -310,7 +310,7 @@ class LLMBuyer:
         semaphore of one for exactly that reason. Two concurrent calls on the
         same model would charge each other's tokens to whichever finished last.
         """
-        from carryover.sim import llm as _llm
+        from nego_eval.sim import llm as _llm
         before = dict(_llm.per_model.get(self.model, {}))
         try:
             return _llm.ask_json(self.SYSTEM, user, model=self.model)
@@ -345,7 +345,7 @@ class LLMBuyer:
 
     def choose(self, quotes: list[Quote], t: int, remaining: int,
                history: list[Outcome]) -> str:
-        from carryover.sim.llm import ask_json
+        from nego_eval.sim.llm import ask_json
         q = ", ".join(
             f"{x.seller}={x.price}"
             + (f" (published delivery rate {x.rate:.2f})" if x.rate is not None else "")
@@ -367,7 +367,7 @@ class LLMBuyer:
         return pick if pick in names else min(quotes, key=lambda x: x.price).seller
 
     def bargain(self, loss, offer, r, max_rounds, seller_name, history, terms):
-        from carryover.sim.llm import ask_json
+        from nego_eval.sim.llm import ask_json
         user = (f"Delivery from {seller_name} failed. The loss is {loss}.\n"
                 f"Exchange {r} of {max_rounds}. {seller_name} currently offers to pay {offer}; "
                 f"the remaining {loss - offer} would fall on you.\n\n"

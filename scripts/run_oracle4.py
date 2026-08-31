@@ -15,9 +15,9 @@ an environment worth training in and a leaderboard.
 """
 import sys, json, statistics as st
 sys.path.insert(0, 'src')
-from carryover.game.buyers3 import BoardOnlyBuyer, EVBuyer, borne
-from carryover.game.match import Match
-from carryover.game.table4 import VALUE, cast_for
+from nego_eval.game.buyers import BoardOnlyBuyer, EVBuyer, borne
+from nego_eval.game.match import Match
+from nego_eval.game.table4 import VALUE, cast_for
 
 LOSS, ROUNDS, GAMES, STEP, N = 110, 12, 4, 10, 400
 

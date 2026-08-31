@@ -24,7 +24,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from carryover.game.denom import snap
+from nego_eval.game.denom import snap
 
 
 @dataclass(frozen=True)

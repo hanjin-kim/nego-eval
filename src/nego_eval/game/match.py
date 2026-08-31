@@ -25,8 +25,8 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass, field
 
-from carryover.game.denom import STEP
-from carryover.sim.world import Outcome, World
+from nego_eval.game.denom import STEP
+from nego_eval.sim.world import Outcome, World
 
 
 @dataclass

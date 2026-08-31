@@ -8,9 +8,9 @@ record help a policy that was allowed to learn about it" is asked directly.
 """
 import sys, json, statistics as st
 sys.path.insert(0, 'src')
-from carryover.game.table4 import VALUE, cast_for
-from carryover.sim.rl import QPolicy
-from carryover.sim.world import World
+from nego_eval.game.table4 import VALUE, cast_for
+from nego_eval.sim.rl import QPolicy
+from nego_eval.sim.world import World
 
 LOSS, ROUNDS, GAMES, STEP = 110, 12, 4, 10
 TRAIN, EVAL = 20000, 500

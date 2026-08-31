@@ -9,9 +9,9 @@ period, and that is exactly this parameter.
 """
 import sys, json, statistics as st
 sys.path.insert(0, 'src')
-import carryover.game.table4 as T
-from carryover.game.buyers3 import BoardOnlyBuyer, EVBuyer
-from carryover.game.match import Match
+import nego_eval.game.table4 as T
+from nego_eval.game.buyers import BoardOnlyBuyer, EVBuyer
+from nego_eval.game.match import Match
 
 LOSS, STEP, N = 110, 10, 400
 SHAPES = [(12, 4), (8, 6), (6, 8), (4, 12), (3, 16), (2, 24)]
