@@ -180,3 +180,9 @@ notes/       the write-up
 Each module's docstring says what went wrong before it looked like that. That is
 deliberate: most of the design here is scar tissue, and the scars are the part
 worth reading.
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
