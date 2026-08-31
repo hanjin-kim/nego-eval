@@ -1,0 +1,853 @@
+{
+ "model": "deepseek/deepseek-chat",
+ "n": 120,
+ "errors": 0,
+ "correct": 0.5583333333333333,
+ "chose_best_rate": 0.7583333333333333,
+ "chose_best_borne": 0.475,
+ "consult": 0.0,
+ "acc_when_consults": null,
+ "secs": 196,
+ "rows": [
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and past performance"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering past performance and published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest potential profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "higher expected profit considering past performance and price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering past performance and published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lower price and moderate failure rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price with acceptable delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit based on delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lower price with acceptable risk based on historical performance"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest potential profit considering past performance and price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest potential profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and past performance"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest potential profit despite higher risk"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price with acceptable risk"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "higher expected profit considering past performance and price"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "higher expected profit considering past performance"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering past performance and price"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price with acceptable delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit based on delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit based on published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lower price despite higher failure rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lower price and acceptable delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and past behavior"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price despite higher risk"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit based on published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price maximizes potential profit despite higher failure rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price despite higher failure rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit based on published delivery rate and historical performance"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price despite higher failure rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering delivery rate and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected profit considering historical seller loss payments"
+  }
+ ]
+}

@@ -1,0 +1,674 @@
+<title>The Residual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root {
+  --ground: #F1F4F6;
+  --surface: #FFFFFF;
+  --sunk: #E7ECEF;
+  --ink: #131A20;
+  --dim: #57646F;
+  --faint: #8A97A2;
+  --rule: #D4DCE1;
+  --live: #0E6E6B;
+  --live-soft: #E2F0EF;
+  --dead: #97A5AF;
+  --loss: #A8322A;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0E1317;
+    --surface: #161D23;
+    --sunk: #1C252C;
+    --ink: #E4EAEF;
+    --dim: #97A5AF;
+    --faint: #6C7A85;
+    --rule: #2A353D;
+    --live: #46B8B0;
+    --live-soft: #123330;
+    --dead: #5E6C77;
+    --loss: #E08074;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0E1317;
+  --surface: #161D23;
+  --sunk: #1C252C;
+  --ink: #E4EAEF;
+  --dim: #97A5AF;
+  --faint: #6C7A85;
+  --rule: #2A353D;
+  --live: #46B8B0;
+  --live-soft: #123330;
+  --dead: #5E6C77;
+  --loss: #E08074;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0;
+  padding: 0 20px 120px;
+}
+
+.wrap { max-width: 47rem; margin: 0 auto; }
+
+/* ── masthead ─────────────────────────────────────────── */
+
+header { padding: 88px 0 0; }
+
+.kicker {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0 0 22px;
+}
+
+h1 {
+  font-family: Archivo, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 6vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin: 0 0 20px;
+}
+
+.standfirst {
+  font-size: 1.18rem;
+  line-height: 1.55;
+  color: var(--dim);
+  margin: 0 0 40px;
+  max-width: 34rem;
+}
+.standfirst strong { color: var(--ink); font-weight: 600; }
+
+/* the finite action set, as the page's opening device */
+.grid-strip {
+  display: flex;
+  gap: 3px;
+  margin: 0 0 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.cell {
+  flex: 1 0 auto;
+  min-width: 42px;
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  padding: 9px 4px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--dim);
+}
+.cell.edge { background: var(--sunk); color: var(--faint); }
+.strip-note {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--faint);
+  margin: 0 0 56px;
+}
+
+/* ── flow ─────────────────────────────────────────────── */
+
+h2 {
+  font-family: Archivo, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  margin: 68px 0 4px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+h2 .num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72em;
+  font-weight: 500;
+  color: var(--live);
+  margin-right: 0.7em;
+}
+
+h3 {
+  font-family: Archivo, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: 0;
+  margin: 38px 0 -8px;
+}
+
+p { margin: 18px 0; }
+p.lead-in { color: var(--dim); margin-top: 8px; }
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+.pull {
+  font-family: Archivo, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.32rem;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  color: var(--ink);
+  border-left: 3px solid var(--live);
+  padding: 2px 0 2px 22px;
+  margin: 34px 0;
+}
+
+/* ── tables ───────────────────────────────────────────── */
+
+.scroll { overflow-x: auto; margin: 26px 0; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+}
+caption {
+  caption-side: top;
+  text-align: left;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding-bottom: 9px;
+}
+th, td {
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--rule);
+  text-align: right;
+  white-space: nowrap;
+}
+th {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border-bottom: 1px solid var(--ink);
+}
+th:first-child, td:first-child { text-align: left; }
+tbody tr:last-child td { border-bottom: none; }
+tr.mark td { background: var(--live-soft); }
+tr.mark td:first-child { box-shadow: inset 3px 0 0 var(--live); }
+.neg { color: var(--loss); }
+.pos { font-weight: 600; }
+.sub { color: var(--faint); font-size: 11px; }
+
+/* ── gap table ────────────────────────────────────────── */
+
+.yes { color: var(--live); font-weight: 600; }
+.no { color: var(--faint); }
+
+/* ── caveats ──────────────────────────────────────────── */
+
+.caveat {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--dead);
+  padding: 4px 24px 8px;
+  margin: 30px 0;
+}
+.caveat h3 { margin-top: 22px; font-size: 0.95rem; }
+.caveat p { font-size: 0.95rem; }
+
+footer {
+  margin-top: 76px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  line-height: 1.85;
+  color: var(--faint);
+}
+footer a { color: var(--dim); }
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="kicker">Research note 05 · rev 6 · 2026-08-31</p>
+  <h1>The Residual</h1>
+  <p class="standfirst">
+    Four boards. The third passed every condition on a written checklist and
+    measured almost nothing — because satisfying the checklist had quietly removed
+    the thing being measured. What the fourth shows:
+    <strong>remembering a counterparty is worth the gap between how long a
+    relationship takes to build and how soon it is interrupted.</strong>
+  </p>
+
+  <div class="grid-strip">
+    <div class="cell edge">0</div><div class="cell">10</div><div class="cell">20</div>
+    <div class="cell">30</div><div class="cell">40</div><div class="cell">50</div>
+    <div class="cell">60</div><div class="cell">70</div><div class="cell">80</div>
+    <div class="cell">90</div><div class="cell">100</div><div class="cell edge">110</div>
+  </div>
+  <p class="strip-note">
+    The complete action set. Twelve ways to divide a loss of 110, and the buyer's
+    share is whatever the seller's is not.
+  </p>
+</header>
+
+<h2><span class="num">01</span>The question nobody has posed</h2>
+
+<p>
+  A relationship is made of what happened last time. Every negotiation benchmark
+  that lets an agent choose its counterparty throws that away when the session
+  ends, and every one that keeps a history assigns the counterparty. So the
+  variable has always been fixed at zero.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>Nearest prior work</caption>
+  <thead>
+    <tr><th>Work</th><th>Picks its partner</th><th>Memory across games</th><th>Trains on it</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cattle Trade</td><td class="yes">yes</td><td class="no">no</td><td class="no">no</td></tr>
+    <tr><td>M3-Bench</td><td class="no">fixed dyad</td><td class="no">within game</td><td class="no">no</td></tr>
+    <tr><td>RLVR negotiation (2604.09855)</td><td class="no">one seller</td><td class="no">no</td><td class="yes">yes</td></tr>
+    <tr class="mark"><td>This board</td><td class="yes">yes</td><td class="yes">yes</td><td class="no">not yet</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  The last row of prior work matters most. A 30B model trained with RLVR on
+  bilateral price negotiation beats frontier models an order of magnitude larger —
+  0.77 against 0.40 for the best of them. "Negotiation is trainable against a
+  verifiable reward" is settled, and settled by someone else. Its environment is
+  one buyer against one seller, with no partner choice and no history between
+  episodes, and it discusses relationships nowhere. That is the room left.
+</p>
+
+<h2><span class="num">02</span>Three boards that did not work</h2>
+
+<p>
+  The rules never changed: three sellers quote openly, the buyer takes one unit a
+  round, delivery sometimes fails, and a failure creates a loss the two sides must
+  split into integers that add to it or stop trading for three rounds. What changed
+  three times is what makes one seller different from another — and therefore what
+  the right answer is.
+</p>
+
+<h3>The first was rigged</h3>
+
+<p>
+  Every seller had the same reliability, differing only in how much of a loss they
+  absorbed, and reliability rose with how often you returned — so failure counts
+  recorded the buyer's habits, not the seller's type. Buying from whoever failed
+  least scored <strong>0.31</strong>: chance.
+</p>
+
+<p class="pull">
+  A model applying a rule that is correct in the world was marked wrong here. What
+  that measures is compliance with my parameterisation.
+</p>
+
+<h3>The second was unanswerable</h3>
+
+<p>
+  So reliability was drawn per seller too. On the true parameters it became a
+  proper weighting problem. From the ledger it was noise: a Bernoulli rate
+  estimated from five or six trades does not recover the trait, and recomputing
+  the answer from what the agent is shown scored <strong>0.47</strong>. A question
+  whose answer is not recoverable from the prompt has no ceiling to fall short of.
+</p>
+
+<h3>The third passed every test and measured nothing</h3>
+
+<p>
+  The third board published the delivery rate on the quote sheet — exact, priced,
+  nothing to estimate — and hid only what a seller does once a delivery is ruined.
+  It passed all nine conditions. Carry-over came out at <strong>+28</strong> on a
+  score near 900, and the shape of the match barely mattered.
+</p>
+
+<p>
+  The reason was in what it had cost to pass. Making the published rate exact meant
+  switching off the channel by which loyalty improved delivery. Restoring room to
+  bargain left the loyalty term in the concession ceiling no longer binding. The
+  solvency spiral had gone earlier, for the same reason. Each removal had a local
+  justification and all of them were measurement, and together
+  <strong>they left no way for returning to a seller to make that seller
+  better</strong>.
+</p>
+
+<p class="pull">
+  What remained was a fixed hidden attribute and a buyer discovering it. Carrying
+  the ledger saved time and nothing else — which is exactly what it measured.
+</p>
+
+<p>
+  That is not the phenomenon. The empirical literature is explicit that a
+  relational buyer pays a premium and the rent buys effort no contract can
+  specify: the relationship is productive, not merely informative. Three boards in,
+  the failure mode had shifted from <em>rigging the answer</em> to
+  <em>sterilising the question</em>.
+</p>
+
+<h2><span class="num">03</span>The conditions, in code</h2>
+
+<p>
+  Each failure was visible only after building, so the conditions are a module —
+  <code>bazaar.game.contract</code> — run against any candidate board. Every one is
+  a measurement, and the last was added by the third board's failure.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>The contract · chance is 0.33</caption>
+  <thead><tr><th>Condition</th><th>Threshold</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
+  <tbody>
+    <tr><td>answer recoverable from the prompt</td><td>≥ 0.95</td><td>1.00</td><td class="neg">0.47</td><td>1.00</td><td class="pos">1.00</td></tr>
+    <tr><td>quote sheet alone does not settle it</td><td>≤ 0.75</td><td>—</td><td>—</td><td>0.67</td><td class="pos">0.61</td></tr>
+    <tr><td>"fewest failures" is not a trap</td><td>≥ 0.45</td><td class="neg">0.31</td><td class="neg">0.44</td><td>0.53</td><td class="pos">0.53</td></tr>
+    <tr><td>no single heuristic suffices</td><td>≤ 0.80</td><td class="neg">1.00</td><td>0.53</td><td>0.77</td><td class="pos">0.79</td></tr>
+    <tr><td>no answer-by-name</td><td>≤ 0.42</td><td>0.35</td><td>0.40</td><td>0.38</td><td class="pos">0.38</td></tr>
+    <tr><td>countering can gain something</td><td>= 1.00</td><td>—</td><td>—</td><td class="neg">0.00</td><td class="pos">1.00</td></tr>
+    <tr class="mark"><td>verdict</td><td></td><td class="neg">fail</td><td class="neg">fail</td><td class="neg">pass, but sterile</td><td class="pos">pass</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  The last row is the one a checklist cannot hold. Board three satisfies every
+  measurable condition and is still the wrong environment, and no condition
+  expressible as a number on frozen positions catches that. It took looking at a
+  transcript.
+</p>
+
+<p>
+  That transcript is worth recording. Played through board three, a frontier model
+  appeared unable to bargain: sellers never moved off their opening offers, and it
+  pushed three rounds and then accepted, or once pushed to impasse and lost the
+  whole loss instead of part of it. The board was the reason. A seller's opening
+  offer was already the most it would ever concede, so countering could only lose
+  exchanges — and, for a counterparty not yet traded with, could move it
+  <em>down</em>. The environment had no negotiation in it, and a whole match of
+  apparent incompetence was that.
+</p>
+
+<h2><span class="num">04</span>The fourth board</h2>
+
+<p>
+  It splits what a supplier tells you from what you find out, and gives the second
+  part somewhere to go.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>What an agent can see</caption>
+  <thead><tr><th></th><th>Where it lives</th><th>Priced?</th></tr></thead>
+  <tbody>
+    <tr><td>delivery rate for a buyer with no history</td><td>published on the quote sheet, exact</td><td class="yes">yes</td></tr>
+    <tr><td>share of a loss it absorbs at arm's length</td><td>learned by failing with it</td><td class="no">no</td></tr>
+    <tr class="mark"><td>how much further it goes for a regular</td><td class="no">learned by staying</td><td class="no">no</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  The third row is what board three lost. A seller with a base floor of 0.35 and a
+  care trait of 0.40 concedes 38 of a 110 loss to a stranger and
+  <strong>82</strong> to a buyer who has been coming back — and another concedes
+  nothing at any depth, because that is its type. All of it is countable in whole
+  units of ten, so nothing has to be judged and the reward stays verifiable.
+</p>
+
+<h2><span class="num">05</span>Result</h2>
+
+<div class="scroll">
+<table>
+  <caption>500 matches per cell · four games of twelve rounds · L = 110</caption>
+  <thead><tr><th>Buyer</th><th>Who remembers</th><th>Score</th><th>±</th><th>Opening pick, game 1</th><th>Opening pick, games 2+</th></tr></thead>
+  <tbody>
+    <tr><td>quote sheet only</td><td>no one</td><td>904</td><td>16</td><td>0.59</td><td>0.59</td></tr>
+    <tr><td>quote sheet only</td><td>buyer</td><td>904</td><td>16</td><td>0.59</td><td>0.59</td></tr>
+    <tr><td>quote sheet only</td><td>both</td><td>927</td><td>16</td><td>0.59</td><td>0.59</td></tr>
+    <tr><td>+ the record</td><td>no one</td><td>929</td><td>17</td><td>0.52</td><td>0.52</td></tr>
+    <tr><td>+ the record</td><td>buyer</td><td>966</td><td>16</td><td>0.52</td><td>0.71</td></tr>
+    <tr class="mark"><td>+ the record</td><td>both</td><td class="pos">993</td><td>16</td><td>0.52</td><td>0.71</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  Handing the carried ledger to a buyer that never consults it moves the score by
+  <strong>exactly zero</strong> — 904 against 904, to the last digit. That null is
+  produced by the design rather than estimated. Carry-over is worth
+  <strong>+65</strong>: +37 from the buyer choosing on the record and +28 from the
+  seller remembering, the second channel having been absent from board three
+  entirely.
+</p>
+
+<h3>And what it is worth is set by how soon the relationship is interrupted</h3>
+
+<p>
+  Total rounds held at 48; only where the boundaries fall changes. Procurement
+  relationships differ enormously in how many transactions fall inside a contract
+  period, so this is the parameter, not a knob.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>400 matches per point · board 4, with board 3 for contrast</caption>
+  <thead><tr><th>Rounds × games</th><th>Boundaries</th><th>record, no memory</th><th>record + memory</th><th>memory is worth</th><th>on board 3</th></tr></thead>
+  <tbody>
+    <tr><td>12 × 4</td><td>3</td><td>936</td><td>996</td><td>+61</td><td>+35</td></tr>
+    <tr><td>8 × 6</td><td>5</td><td>913</td><td>1008</td><td>+95</td><td>+42</td></tr>
+    <tr><td>6 × 8</td><td>7</td><td>904</td><td>1004</td><td>+100</td><td>+33</td></tr>
+    <tr><td>4 × 12</td><td>11</td><td>880</td><td>1014</td><td>+134</td><td>+44</td></tr>
+    <tr><td>3 × 16</td><td>15</td><td>827</td><td>977</td><td>+150</td><td>+46</td></tr>
+    <tr class="mark"><td>2 × 24</td><td>23</td><td class="neg">827</td><td>1008</td><td class="pos">+181</td><td>+70</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  The mechanism is in the two middle columns. With memory the score is flat —
+  996 to 1014, whatever the bell does. Without it the score falls from 936 to 827,
+  because each game restarts a relationship that never gets far enough to pay. On
+  board three, where there was nothing to build, the same sweep moved from +35 to
+  +70 and mostly within noise.
+</p>
+
+<p class="pull">
+  What memory is worth is the difference between how long a relationship takes to
+  build and how soon it is cut off.
+</p>
+
+<h3>The same shape, in the price of the observable</h3>
+
+<p>
+  The premium is what a buyer pays for a point of published delivery rate. Priced
+  cheaply, buying the best number on the sheet is most of the job; priced fairly,
+  what remains has to come from somewhere the sheet does not reach.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>400 matches per point · board 3, before the relationship was restored</caption>
+  <thead><tr><th>Reliability premium</th><th>quote sheet only</th><th>record + memory</th><th>the record is worth</th></tr></thead>
+  <tbody>
+    <tr><td>90 — underpriced</td><td>1195</td><td>1217</td><td>+22</td></tr>
+    <tr><td>120</td><td>860</td><td>934</td><td>+74</td></tr>
+    <tr><td>150</td><td>630</td><td>748</td><td>+118</td></tr>
+    <tr class="mark"><td>165 — fully priced</td><td>532</td><td>667</td><td class="pos">+135</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  Both sweeps are the same statement. What a relationship is worth is a residual:
+  what the market has not already priced, and what the current game has not already
+  delivered. It predicts that relational contracting matters least where disclosure
+  is rich and fairly priced and interactions are long, and most where it is neither.
+</p>
+
+<h2><span class="num">06</span>The learned policy, and what it does with a record it never trained on</h2>
+
+<div class="scroll">
+<table>
+  <caption>20,000 training matches · 500 evaluation · board 4</caption>
+  <thead><tr><th>Trained</th><th>Evaluated</th><th>Score</th><th>Opening pick, game 1</th><th>Opening pick, games 2+</th></tr></thead>
+  <tbody>
+    <tr class="mark"><td>with carry-over</td><td>with carry-over</td><td>849</td><td class="pos">0.69</td><td>0.76</td></tr>
+    <tr><td>with carry-over</td><td>without</td><td class="neg">632</td><td>0.69</td><td>0.69</td></tr>
+    <tr><td>without</td><td>with carry-over</td><td>791</td><td>0.70</td><td class="neg">0.14</td></tr>
+    <tr><td>without</td><td>without</td><td>821</td><td>0.70</td><td>0.70</td></tr>
+    <tr><td colspan="2">hand-written, reads the record</td><td class="pos">993</td><td>0.52</td><td>0.71</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  The table loses to the rule I wrote, on this board as on the last: the payoff is
+  continuous arithmetic across a published rate, a price and an observed share, and
+  four coarse bands per term cannot hold it. The ceiling here is still unknown. It
+  does beat the rule at the opening move of game one, where no relationship exists
+  and the quote sheet is all there is.
+</p>
+
+<p>
+  And the 0.14 replicates board three's 0.13 on a board with a different answer
+  structure. Counting where the lookups land: a third are states training never
+  visited, and the rest carry a median of 178 visits against 55,161 for the states
+  it does know — three hundred times thinner. An argmax over estimates that thin is
+  pulled toward whichever cell noise favoured.
+</p>
+
+<p class="pull">
+  Attaching a history to an agent that was not trained with one does not merely
+  fail to help. It is worse than withholding it.
+</p>
+
+<h2><span class="num">07</span>The models read the column that is published</h2>
+
+<p>
+  Three boards, three different answer structures, seven models. On board one the
+  answer was entirely in what a seller had absorbed; on board three the quote sheet
+  carried most of it; on board four the absorbed column is again the stronger
+  single signal, at 0.79 against the sheet's 0.61.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>120 frozen positions per board · one move each · chance 0.33 · ceiling 1.00</caption>
+  <thead><tr><th>Model</th><th>Board 1<br>(absorbed = 1.00)</th><th>Board 3<br>(sheet = 0.75)</th><th>Board 4<br>(absorbed = 0.79)</th><th>Picks the best published rate, board 4</th></tr></thead>
+  <tbody>
+    <tr><td>gemini-3.7-flash</td><td>0.40</td><td>0.50</td><td>0.57</td><td>0.64</td></tr>
+    <tr><td>deepseek-chat</td><td>0.35</td><td>0.53</td><td>0.56</td><td class="neg">0.76</td></tr>
+    <tr><td>claude-haiku-4.5</td><td>0.48</td><td>0.65</td><td>0.55</td><td>0.68</td></tr>
+    <tr><td>gpt-5.6-terra</td><td>0.46</td><td>0.62</td><td>—</td><td>—</td></tr>
+    <tr><td>claude-opus-5</td><td>0.47</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>claude-fable-5</td><td>0.46</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>grok-4.6</td><td>0.43</td><td>—</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  On board four, where the earned column is worth 0.79 and the published one 0.61,
+  deepseek-chat picks the highest published rate <strong>76%</strong> of the time —
+  more often than that heuristic is even right — and mentions what a seller
+  absorbed in none of its stated reasons. All three models land at 0.55–0.57, below
+  what reading the sheet alone would give them.
+</p>
+
+<p class="pull">
+  The board was rebuilt twice and the answer moved between columns. Which column
+  the models read did not.
+</p>
+
+<p>
+  Scale is not the axis. Three Anthropic models spanning generations and sizes —
+  haiku-4.5, opus-5, fable-5 — scored 0.48, 0.47 and 0.46 on board one, and a
+  <em>flash</em>-tier model is the best of the three on board four. Naming the
+  column in the prompt moved nothing, not even how often it was mentioned. Nor did
+  computing it for them: appended to the raw counts, the ready-made ratio left
+  deepseek and gemini unchanged and cost haiku 0.15, whose use of the published
+  rate collapsed from 0.69 to 0.31 as the new number displaced the one it had been
+  reading.
+</p>
+
+<h2><span class="num">08</span>What this does not show</h2>
+
+<div class="caveat">
+  <h3>Four numbers in this note have already been wrong</h3>
+  <p>
+    Revision 1 reported the channel split backwards. Revision 2 put carry-over at
+    +399 on a board where one column was the whole answer. Revision 4 corrected
+    that to +72 and then +28 on a board that had had the phenomenon removed. This
+    is revision 6. Treat any single figure here as the weakest thing on the page;
+    the monotone shapes are what have survived every rebuild.
+  </p>
+
+  <h3>The models have not played this board, only answered questions about it</h3>
+  <p>
+    Section 07 is one move per position, which measures reading and not playing. On
+    board one four models played whole matches and two finished level with a policy
+    that consults the record on every move — so a low score on frozen positions is
+    not proof of money left on the table. One full match was played on board four
+    by a frontier model: it moved from 67% of its business with the best seller in
+    game one to 92% by game four, and its stated reasons acquired the absorbed
+    column only once the ledger carried across. That is one match.
+  </p>
+
+  <h3>Solvency is still switched off</h3>
+  <p>
+    A squeezed supplier cutting corners, and eventually failing, is real and was in
+    board one. It is off here because coupling delivery to running margin makes the
+    published rate a lie and reintroduces the estimation noise that sank board two.
+  </p>
+
+  <h3>Nothing about real procurement</h3>
+  <p>
+    An attempt to validate a continuous version of this environment against
+    wholesale auction data failed identifiably: the observed data cannot say which
+    traders are relational, so neither the response function nor the population
+    mixture is recoverable. A board game removes that question rather than
+    answering it.
+  </p>
+</div>
+
+<h2><span class="num">09</span>What it is for</h2>
+
+<p>
+  A verifiable reward with no judge in it, a finite action set of twelve, a
+  manipulation with a null the design produces exactly, and a horizon longer than
+  one episode. Someone has already shown that a mid-sized model trained on a
+  negotiation environment beats frontier models many times its size. What their
+  environment does not contain — and what nothing published contains — is a
+  counterparty you chose, who remembers you, and who behaves differently because of
+  it.
+</p>
+
+<footer>
+  34 invariant tests · 16 on the settlement rules, 18 on the game · contract in code<br>
+  Sources —
+  <a href="https://arxiv.org/abs/2604.09855">RLVR negotiation, arXiv 2604.09855</a> ·
+  <a href="https://arxiv.org/html/2605.14537v1">Cattle Trade, arXiv 2605.14537</a> ·
+  <a href="https://arxiv.org/pdf/2601.08462">M3-Bench, arXiv 2601.08462</a> ·
+  <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-0262.2004.00511.x">Brown, Falk &amp; Fehr, Econometrica 2004</a>
+</footer>
+
+</div>

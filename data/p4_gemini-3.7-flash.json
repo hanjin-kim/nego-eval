@@ -1,0 +1,853 @@
+{
+ "model": "google/gemini-3.7-flash",
+ "n": 120,
+ "errors": 0,
+ "correct": 0.5666666666666667,
+ "chose_best_rate": 0.6416666666666667,
+ "chose_best_borne": 0.49166666666666664,
+ "consult": 0.25,
+ "acc_when_consults": 0.8,
+ "secs": 849,
+ "rows": [
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery rate and profit margin"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery rate and best expected profit despite high price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has by far the highest empirical success rate"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical expected profit based on recent high delivery performance"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest reliability and positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has the highest reliability and positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest empirical expected profit and best seller loss sharing"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery success rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest historical success rate yields the best expected return"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "higher net margin on successful delivery and solid historical reliability"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value based on empirical delivery rate and margin"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery rate gives best expected return"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest reliability yielding positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price offers highest upside with solid past delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest expected value given historical delivery reliability and loss coverage"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest expected value given historical delivery reliability and loss coverage"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected profit driven by high empirical delivery success"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "b has the highest observed success rate and shares a significant portion of failure losses"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "lowest price, empirical 67% success rate, and seller covers majority of loss"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price and strong loss-sharing give the highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability and only positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability gives positive expected profit despite higher price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest reliability and seller covers most loss, yielding positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest delivery rate yields positive expected profit despite zero loss compensation"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest delivery reliability yields best expected profit despite zero loss compensation"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability and best expected value"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price and highest empirical success rate so far"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability minimizes exposure to heavy failure losses"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "lowest price, lowest historical failure rate, and highest loss compensation"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability yielding positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability and highest seller loss absorption maximize expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest delivery reliability and best loss compensation"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "b has the highest empirical delivery rate and the highest expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest reliability and seller loss compensation"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest reliability and positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "c has the highest empirical success rate and covers more loss, yielding positive expected "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published reliability and best seller loss absorption"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest delivery rate and highest seller loss compensation"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest reliability and covers most failure losses yielding positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery success rate and consistent positive returns when successful"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "c offers the best expected value due to absorbing over half of failure losses"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest historical delivery rate and substantial loss absorption"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest historical delivery rate and only positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price offering significantly higher profit margin on successful delivery"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "c absorbs most failure loss giving the highest net expected return"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest empirical success rate and positive expected payoff"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "highest expected value given strong empirical delivery rate and loss coverage"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value given zero loss reimbursement"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability yields positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price and solid 75% empirical delivery rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability provides positive expected value despite higher price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "c has the highest historical delivery rate and strongest empirical expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability results in positive expected profit despite higher price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest historical success rate yields the highest expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery success rate and expected value"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest empirical reliability yielding the best expected payoff despite zero loss compensa"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery rate gives the best expected return"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest historical failure rate provides the best expected return despite higher price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest empirical delivery rate yielding positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value given strong reliability and substantial loss sharing"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest reliability and substantial loss compensation"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has the highest reliability and positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price offering highest profit margin with strong empirical success"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price and highest empirical expected profit despite failure risk"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery success rate gives the highest expected payoff"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "c has the highest reliability and positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest reliability and positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical success rate and strong profit margin"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest expected value given low failure rate and seller loss compensation"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "highest empirical reliability and strong seller loss coverage yield the best expected retu"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value combining reliable delivery and generous loss sharing"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability and positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest empirical delivery rate and positive expected value"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "highest empirical delivery rate and covers more than half of failure losses"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "highest empirical success rate and best loss coverage"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b offers the highest expected value due to a significantly higher delivery success rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has the highest historical reliability yielding positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery rate yielding positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery rate and highest expected return"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value given superior delivery reliability"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest reliability and positive expected profit"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest delivery reliability results in positive expected profit despite low loss compensa"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery reliability provides the only positive expected return"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery rate gives best expected value despite high price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price yields highest expected return"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value given high delivery reliability despite higher price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "highest expected profit given historical delivery rates and loss coverage"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value given high delivery rate"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value due to high reliability"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "a has the best combination of price and loss absorption"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical success rate and best expected payoff"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest reliability and seller covers most loss"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability and highest loss absorption yield positive expected return"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest published reliability and partially compensates losses"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest delivery rate gives best expected return despite absorbing failure losses"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery rate minimizes costly failure penalties"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability yielding positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest empirical reliability yielding positive expected value"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price and highest empirical delivery rate and expected value"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has the highest empirical delivery rate and pays the largest share of failure losses"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has the highest historical success rate and absorbs over half the failure loss, yielding"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price and highest historical success rate with favorable loss-sharing"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest delivery success rate"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "lowest price, generous loss compensation, and best empirical expected return"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "b has the highest observed delivery rate and a strong margin on success"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical delivery rate and expected return despite zero loss sharing"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price provides highest expected net return given historical reliability"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "c has the highest empirical expected return despite low loss coverage"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability yielding positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value given low failure rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest reliability and positive expected profit"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest reliability and positive expected payoff"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has by far the lowest failure rate and the only positive expected value"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value given strong delivery track record and better loss absorption"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery rate and positive expected value despite higher price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "c offers the highest empirical expected profit with a strong 6/7 success rate."
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery reliability gives the best expected return"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price and highest empirical expected return based on past performance"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest delivery rate and highest seller loss absorption minimize downside"
+  }
+ ]
+}

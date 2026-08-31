@@ -1,0 +1,853 @@
+{
+ "model": "anthropic/claude-haiku-4.5",
+ "n": 120,
+ "errors": 0,
+ "correct": 0.55,
+ "chose_best_rate": 0.6833333333333333,
+ "chose_best_borne": 0.5333333333333333,
+ "consult": 0.25833333333333336,
+ "acc_when_consults": 0.45161290322580644,
+ "secs": 314,
+ "rows": [
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has lowest price (98) and acceptable expected value despite past failures; seller shares"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has demonstrated willingness to share losses (80/440 paid), lowest price at 98, and expe"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has best empirical reliability (1/13 failure rate) and lowest expected loss despite high"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best expected value (0.80\u00d7150 - 0.20\u00d7110 = 98) and shares losses fairly (190/330 \u2248 5"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has best reliability (1/9 failure rate) and favorable loss-sharing history (60/110), max"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "b has best reliability (90% published, 90% actual: 9/10 succeeded) and favorable loss-shar"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best expected value (0.80 * 40 - 0.20 * 30 = 26) and most favorable loss-sharing his"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest failure rate (1/6\u224817%) and best expected value despite higher price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "a has lowest price (86) and historical data shows a shares losses fairly (120/440 \u2248 27%), "
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "a has paid 270/880 \u2248 31% of losses historically, suggesting they absorb significant failur"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: b's 0.90 rate yields 90-22=68 expected profit vs a's 80-40=40 and "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has lowest expected loss (0.10 \u00d7 110 = 11) and historical data shows seller pays ~55% of"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) - 0.10\u00d7(110\u00d750/110) = 25.2 - 5 = 20.2"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) - 0.10\u00d7(60/110)\u00d7110 = 25.2 - 6 = 19.2"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) - 0.10\u00d7(60) = 20.4 - 6 = 14.4"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "lowest expected loss given historical reliability (90% success rate, seller covers ~45% of"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest expected loss given reliable history and reasonable price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d740 - 22 = 14, versus a at 0.80\u00d750 - 0 = 40 but a's 45% actual"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "expected value positive (0.80\u00d7150 - 0.20\u00d7110 - 110 = -12) but a has paid 0% of losses hist"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: c's actual reliability (10/15=67%) with fair loss-sharing (320/550"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest empirical success rate (5/6=83%) with reasonable price, best risk-adjusted expecte"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest reliability (89% actual success rate) with acceptable price-to-value ratio"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: a gives 0.90\u00d728 - 0.10\u00d7(110-70) = 25.2, b gives 0.70\u00d752 - 0.30\u00d7(11"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) - 0.10\u00d7(70/110)\u00d7110 = 25.2 - 7 = 18.2"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has best expected value (0.60 \u00d7 150 - 0.40 \u00d7 110 - 86 = 90 - 44 - 86 = -40) and historic"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "b has lowest price (86) and historical loss-sharing shows willingness to pay (130/330), ma"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "a has lowest price (98) and historical loss-sharing shows seller bears ~18% of failures; e"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) + 0.10\u00d7(-122-33.33) = 25.2 - 15.5 = 9.7"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest expected value: 0.90\u00d7(150-122) + 0.10\u00d7(-122-20) = 23.2, where 20 is b's historical"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "b has the lowest price (98) and best actual reliability (1 failure in 13 purchases), maxim"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "a has lowest price (86) and historical failure share (180/330=0.545) suggests reasonable r"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best expected value (0.80 \u00d7 40 - 0.20 \u00d7 50 = 22) and most favorable loss-sharing his"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has lowest expected loss share (60/110\u22480.55) and best historical reliability (1/7 failur"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: a gives 0.80\u00d740 - 0.20\u00d7(110-120/220\u00d7110) = 32 - 18.09 = 13.91, whi"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest success rate (90%) and best loss-sharing history (seller paid 60/110), maximizing "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest success rate (87.5%) and lowest expected loss share (54.5%), maximizing expected p"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest success rate (91.7%) and lowest failure share (54.5%), maximizing expected profit "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest expected loss given reliable failure pattern and favorable loss-sharing history"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest expected loss given historical reliability and price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest success rate (92.3% empirical), best loss-sharing history (72.7% seller paid), and"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "b has best expected value: 0.80\u00d7(150-110) + 0.20\u00d7(-110) = 32 - 22 = 10, and demonstrated f"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk; a's failure rate (2/6=33%) is better than b's (4/11=36%"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest expected loss share (20% failure rate with history of paying 100/550), making"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest success rate (90%) and best historical loss-sharing ratio (40/110\u224836%), maximizing"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest expected loss share (30/110\u224827%) despite higher price, maximizing expected pr"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable failure rate; a's historical loss-sharing (80/330\u224824%) sugges"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "b has best historical reliability (1 fail in 6 purchases) and favorable loss-sharing (sell"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has the best empirical reliability (1/8 = 12.5% failure rate) and lowest expected loss d"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest published reliability (0.90) and consistent performance; expected value 150*0.90 -"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published delivery rate (0.90) and only seller sharing losses (20/220), indicating"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest published rate (0.90) and only seller sharing losses (20/220); expected value of 1"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "b's actual failure rate (40%) is better than published (40%), and at price 86 with expecte"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "a has lowest expected loss share (3/16 failure rate, paid 130/330 of past losses) despite "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "a has lowest failure rate (1/11 = 9%) and best expected value despite higher price"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "despite last round failure, a has best expected value: 0.80\u00d740 - 0.20\u00d7110 = 10, versus b a"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "despite last round failure, a has best expected value: 0.80\u00d740 - 0.20\u00d7110 = 32 - 22 = +10,"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "lowest expected loss despite higher price; a has paid 0/220 losses but has better publishe"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "a has lowest price (110) with acceptable published rate (0.80); historical data shows a pa"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest observed failure rate (1/10=10%) and best expected value despite higher price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has lowest failure rate (2/15=13.3%), best expected value of 64.3, and most reliable his"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best track record (90% success rate observed, pays 60/110 of losses), making expecte"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest expected loss given historical reliability and reasonable loss-sharing"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value despite recent failure; seller has best historical success rate (8/"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable failure rate; historical data shows a pays 50/110 of losses, "
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "lowest price with acceptable risk; a's actual failure rate (3/13=23%) better than b's (3/1"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk; b failed last round and has poor loss-sharing history; "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest success rate (91.7% empirical), best loss-sharing history (45.5% seller paid), low"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest success rate (93%) with best loss-sharing history (45% seller liability), maximize"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest expected loss given reliable failure history and good published rate"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest expected loss given reliable history of paying 60/110 of failures"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "a has lowest expected loss (0.20 \u00d7 110 = 22) and historically pays 64% of failures; b pays"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "a has lowest price (110), highest observed reliability (2/15 fail rate), and consistently "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: b's 0.90 rate and low failure share (50/110) outweigh higher price"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest success rate (0.93 empirical), best loss-sharing history (64% seller paid), maximi"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: a gives 0.80*40 + 0.20*(-110) = 10, b gives 0.70*52 + 0.30*(-110) "
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best track record with 1 failure in 13 buys and favorable loss-sharing (60/110), plu"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest failure rate (20% empirical) and best price-to-reliability ratio despite high"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "best expected value: 0.80\u00d764 + 0.20\u00d7(-110) = 51.2 - 22 = 29.2, and most reliable historica"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest expected loss given strong historical reliability (1 failure in 9 purchases)"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest expected loss share (60/110\u22480.55) and reliable recent performance; expected p"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) - 0.10\u00d7(20/110)\u00d7110 = 25.2 - 1.82 = 23.38"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest expected loss given reliable history: 0.90\u00d728 + 0.10\u00d7(110-20/110) \u2248 26.2 vs b\u224832, c"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest expected loss given historical reliability and price"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk; b's recent failure and high price make it unattractive"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) + 0.10\u00d7(-122-55) = 25.2 - 17.7 = 7.5"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "lowest price with reasonable reliability; b has poor loss-sharing history (paid 0/110); a'"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price with acceptable risk; historical loss-sharing shows a bears significant failu"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "lowest price with acceptable historical failure rate and favorable loss-sharing pattern"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "b has best expected value: 0.90\u00d740 + 0.10\u00d7(-92) = 27, and historically paid 20/110 of loss"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has best expected value: 0.90\u00d7(150-122) + 0.10\u00d7(-122-22) = 20.8, and historically pays ~"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "a has best track record: 2/11 failures with seller covering 120/220 of losses; b worse at "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has demonstrated reliable performance (1 failure in 4 purchases) and favorable loss-shar"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best expected value (0.80 * 40 = 32) and most favorable loss-sharing history (60/110"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: 0.82*40 + 0.18*(-110) = 15.8, vs b at 9.2 and c at 3.0"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "lowest price with acceptable reliability; a has paid 0 losses but only 1 failure vs b's 3 "
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has paid 120/330 of losses (36%), highest share; expected value 0.70*64 + 0.30*(-98) = 4"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "a has lowest price (86) and historically pays ~9% of losses; expected value is 150*0.60 - "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has best expected value: 0.90\u00d7(150-122) + 0.10\u00d7(-122-27.27) = 22.03, and historically pa"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has best track record (2 failures in 16 purchases, pays 80/220 of losses) and published "
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "lowest price with acceptable failure history; a paid 130/440 of losses showing accountabil"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "b has best reliability (83% success rate) and lowest expected loss share (55% paid by sell"
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": false,
+   "why": "b has best track record (80% success rate observed) and lowest expected loss share (54.5% "
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "b has the best track record with only 1 failure in 3 purchases and paid 30/110 of losses ("
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "b has lowest observed failure rate (3/11\u224827%) and best historical loss-sharing (100/330\u224830"
+  },
+  {
+   "correct": false,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "b has lowest historical loss share (100/330\u22480.30) and best published rate; expected value "
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk; a shares losses fairly (120/220) unlike b (0/110)"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": true,
+   "why": "highest expected value: 0.90\u00d7150 - 122 = 13, plus c shares losses fairly (120/220\u22480.55) vs"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "best expected value: a gives 0.90\u00d728 + 0.10\u00d7(-122-50) = 20.2, vs b: 0.60\u00d764 + 0.40\u00d7(-86-88"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "expected value positive despite low published rate; historical loss-sharing shows b pays 3"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": true,
+   "why": "highest success rate (0.80 actual) with favorable loss-sharing history (54.5% seller paid)"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest success rate (0.90) and best historical loss-sharing ratio (120/220\u22480.55) minimize"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "highest expected value: 0.90\u00d7(150-122) - 0.10\u00d7(60/110)\u00d7110 = 25.2 - 6 = 19.2, better than "
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has best expected value (0.90\u00d728 - 0.10\u00d7110 = 14.2) and most favorable loss-sharing hist"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "a has lowest expected loss (0.10 \u00d7 110 = 11) and historically shares losses fairly (100/22"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": false,
+   "mentions": false,
+   "why": "best expected value: 0.90\u00d728 + 0.10\u00d7(-122-60) = 25.2 + (-18.2) = 7.0, superior to b (\u221228.3"
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": true,
+   "why": "a has the lowest price (86) and historical data shows a pays 40/220\u224818% of losses, meaning"
+  },
+  {
+   "correct": true,
+   "rate": true,
+   "borne": true,
+   "mentions": false,
+   "why": "b has lowest observed failure rate (2/8=0.25) and best loss-sharing ratio (80/220=0.364), "
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with acceptable risk; historical data shows a pays 18.2% of losses (60/330), "
+  },
+  {
+   "correct": true,
+   "rate": false,
+   "borne": true,
+   "mentions": true,
+   "why": "a has best expected value: 0.83 success rate (10/12) with favorable loss-sharing history ("
+  },
+  {
+   "correct": false,
+   "rate": false,
+   "borne": false,
+   "mentions": false,
+   "why": "lowest price with reasonable reliability; b and c have poor loss-sharing history"
+  }
+ ]
+}
