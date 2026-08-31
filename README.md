@@ -185,4 +185,14 @@ worth reading.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[Business Source License 1.1](LICENSE) — source-available, not OSI open source.
+
+**Evaluating any model or agent with it is free**, including your own models,
+including internally at a company, including publishing what you find. So is
+research and teaching. What the licence withholds is using it as a training
+environment in a pipeline that ships commercial weights, or reselling it as a
+product.
+
+It converts to Apache 2.0 on 2030-09-01, or four years after any given version
+is published, whichever comes first. For anything the grant does not cover,
+contact the licensor.
