@@ -27,6 +27,19 @@ from __future__ import annotations
 import random
 
 from carryover.sim.agents import ScriptedSeller
+#: Historical note. This board also failed the contract's last condition — a
+#: seller's opening offer was already the most it would ever concede, so
+#: countering could only lose exchanges and, against a counterparty not yet
+#: traded with, moved it *down*. A whole match of a frontier model apparently
+#: unable to bargain was that, and not the model.
+#:
+#: The cause was in `sim/agents.py`, which every board shares, so fixing it fixed
+#: this one too: run `contract.bargaining_room` here now and it returns 1.00.
+#: What this board still demonstrates, and cannot be fixed out of, is the other
+#: failure — nothing here makes a seller *better* for being returned to, so a
+#: relationship is informative and never productive, and carrying the ledger is
+#: worth about a twentieth of what it is worth on table4.
+
 
 NAMES = ("A", "B", "C")
 VALUE = 150

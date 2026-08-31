@@ -118,6 +118,12 @@ candidate board — every one is a measurement, not a guideline.
 they are kept because the contract's conditions only make sense next to the
 failures that produced them. `table4.py` is the current board.
 
+One caveat about running the contract on them today. Board three failed the last
+condition at 0.00, but the cause lived in `sim/agents.py`, which every board
+shares — so fixing it fixed board three too, and the condition now returns 1.00
+there. The failure is documented in that file rather than reproducible from it.
+Board three's *other* failure is still live, and is the one worth keeping.
+
 ### The condition a checklist cannot hold
 
 Board three satisfied every measurable condition and still measured the wrong
