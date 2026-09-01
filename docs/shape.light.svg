@@ -1,41 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
-<rect width="720" height="300" fill="#FFFFFF"/>
-<text x="8" y="20" font-size="12" fill="#57646F">Total rounds held at 48; only where the boundaries fall changes.</text>
-<line x1="64" y1="246" x2="690" y2="246" stroke="#D4DCE1" stroke-width="0.8"/>
-<text x="56" y="250" font-size="10" fill="#8A97A2" text-anchor="end">0</text>
-<line x1="64" y1="196" x2="690" y2="196" stroke="#D4DCE1" stroke-width="0.8"/>
-<text x="56" y="200" font-size="10" fill="#8A97A2" text-anchor="end">50</text>
-<line x1="64" y1="145" x2="690" y2="145" stroke="#D4DCE1" stroke-width="0.8"/>
-<text x="56" y="149" font-size="10" fill="#8A97A2" text-anchor="end">100</text>
-<line x1="64" y1="94" x2="690" y2="94" stroke="#D4DCE1" stroke-width="0.8"/>
-<text x="56" y="98" font-size="10" fill="#8A97A2" text-anchor="end">150</text>
-<line x1="64" y1="44" x2="690" y2="44" stroke="#D4DCE1" stroke-width="0.8"/>
-<text x="56" y="48" font-size="10" fill="#8A97A2" text-anchor="end">200</text>
-<polyline points="64,185 127,150 189,145 314,110 440,95 690,64" fill="none" stroke="#0E6E6B" stroke-width="2.2"/>
-<circle cx="64" cy="185" r="4" fill="#0E6E6B"/>
-<text x="64" y="174" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+61</text>
-<text x="64" y="264" font-size="10.5" fill="#57646F" text-anchor="middle">12×4</text>
-<text x="64" y="278" font-size="9.5" fill="#8A97A2" text-anchor="middle">3</text>
-<circle cx="127" cy="150" r="4" fill="#0E6E6B"/>
-<text x="127" y="139" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+95</text>
-<text x="127" y="264" font-size="10.5" fill="#57646F" text-anchor="middle">8×6</text>
-<text x="127" y="278" font-size="9.5" fill="#8A97A2" text-anchor="middle">5</text>
-<circle cx="189" cy="145" r="4" fill="#0E6E6B"/>
-<text x="189" y="134" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+100</text>
-<text x="189" y="264" font-size="10.5" fill="#57646F" text-anchor="middle">6×8</text>
-<text x="189" y="278" font-size="9.5" fill="#8A97A2" text-anchor="middle">7</text>
-<circle cx="314" cy="110" r="4" fill="#0E6E6B"/>
-<text x="314" y="99" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+134</text>
-<text x="314" y="264" font-size="10.5" fill="#57646F" text-anchor="middle">4×12</text>
-<text x="314" y="278" font-size="9.5" fill="#8A97A2" text-anchor="middle">11</text>
-<circle cx="440" cy="95" r="4" fill="#0E6E6B"/>
-<text x="440" y="84" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+150</text>
-<text x="440" y="264" font-size="10.5" fill="#57646F" text-anchor="middle">3×16</text>
-<text x="440" y="278" font-size="9.5" fill="#8A97A2" text-anchor="middle">15</text>
-<circle cx="690" cy="64" r="4" fill="#0E6E6B"/>
-<text x="690" y="53" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+181</text>
-<text x="690" y="264" font-size="10.5" fill="#57646F" text-anchor="middle">2×24</text>
-<text x="690" y="278" font-size="9.5" fill="#8A97A2" text-anchor="middle">23</text>
-<text x="64" y="294" font-size="10.5" fill="#8A97A2">rounds x games, and the number of boundaries below it</text>
-<text x="8" y="36" font-size="11" fill="#131A20">what carrying the ledger is worth</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="760" height="320" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+<rect width="760" height="320" fill="#FFFFFF"/>
+<text x="8" y="18" font-size="12" fill="#131A20">What carrying the ledger is worth</text>
+<text x="8" y="34" font-size="11" fill="#57646F">Total rounds held at 48; only where the boundaries fall changes.</text>
+<line x1="74" y1="236" x2="720" y2="236" stroke="#D4DCE1" stroke-width="0.8"/>
+<text x="64" y="240" font-size="10" fill="#8A97A2" text-anchor="end">0</text>
+<line x1="74" y1="192" x2="720" y2="192" stroke="#D4DCE1" stroke-width="0.8"/>
+<text x="64" y="196" font-size="10" fill="#8A97A2" text-anchor="end">50</text>
+<line x1="74" y1="149" x2="720" y2="149" stroke="#D4DCE1" stroke-width="0.8"/>
+<text x="64" y="153" font-size="10" fill="#8A97A2" text-anchor="end">100</text>
+<line x1="74" y1="106" x2="720" y2="106" stroke="#D4DCE1" stroke-width="0.8"/>
+<text x="64" y="110" font-size="10" fill="#8A97A2" text-anchor="end">150</text>
+<line x1="74" y1="62" x2="720" y2="62" stroke="#D4DCE1" stroke-width="0.8"/>
+<text x="64" y="66" font-size="10" fill="#8A97A2" text-anchor="end">200</text>
+<polyline points="74,183 139,153 203,149 332,119 462,106 720,79" fill="none" stroke="#0E6E6B" stroke-width="2.2"/>
+<circle cx="74" cy="183" r="4" fill="#0E6E6B"/>
+<text x="74" y="171" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+61</text>
+<text x="74" y="258" font-size="10.5" fill="#57646F" text-anchor="middle">12×4</text>
+<text x="74" y="274" font-size="9.5" fill="#8A97A2" text-anchor="middle">3</text>
+<circle cx="139" cy="153" r="4" fill="#0E6E6B"/>
+<text x="139" y="141" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+95</text>
+<text x="139" y="258" font-size="10.5" fill="#57646F" text-anchor="middle">8×6</text>
+<text x="139" y="274" font-size="9.5" fill="#8A97A2" text-anchor="middle">5</text>
+<circle cx="203" cy="149" r="4" fill="#0E6E6B"/>
+<text x="203" y="137" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+100</text>
+<text x="203" y="258" font-size="10.5" fill="#57646F" text-anchor="middle">6×8</text>
+<text x="203" y="274" font-size="9.5" fill="#8A97A2" text-anchor="middle">7</text>
+<circle cx="332" cy="119" r="4" fill="#0E6E6B"/>
+<text x="332" y="107" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+134</text>
+<text x="332" y="258" font-size="10.5" fill="#57646F" text-anchor="middle">4×12</text>
+<text x="332" y="274" font-size="9.5" fill="#8A97A2" text-anchor="middle">11</text>
+<circle cx="462" cy="106" r="4" fill="#0E6E6B"/>
+<text x="462" y="94" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+150</text>
+<text x="462" y="258" font-size="10.5" fill="#57646F" text-anchor="middle">3×16</text>
+<text x="462" y="274" font-size="9.5" fill="#8A97A2" text-anchor="middle">15</text>
+<circle cx="720" cy="79" r="4" fill="#0E6E6B"/>
+<text x="720" y="67" font-size="10.5" fill="#0E6E6B" text-anchor="middle">+181</text>
+<text x="720" y="258" font-size="10.5" fill="#57646F" text-anchor="middle">2×24</text>
+<text x="720" y="274" font-size="9.5" fill="#8A97A2" text-anchor="middle">23</text>
+<text x="64" y="258" font-size="9.5" fill="#8A97A2" text-anchor="end">rounds×games</text>
+<text x="64" y="274" font-size="9.5" fill="#8A97A2" text-anchor="end">boundaries</text>
 </svg>

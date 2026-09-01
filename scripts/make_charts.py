@@ -63,27 +63,35 @@ def esc(s):
 
 
 def chart_models(rows, p):
-    """Dot-and-whisker against the two references. Zero is the reference itself."""
-    W, H, ML, MT, RH = 720, 60 + 34 * len(rows) + 46, 168, 44, 34
-    lo, hi = -560, 90
-    x = lambda v: ML + (v - lo) / (hi - lo) * (W - ML - 24)
+    """Dot-and-whisker against the two references. Zero is the reference itself.
+
+    The two reference labels sit at different heights, and on opposite sides of
+    their own lines. Centred under each at the same height they collided: the
+    lines are fifty pixels apart and the words are three times that.
+    """
+    W, ML, MT, RH = 760, 168, 62, 34
+    H = MT + RH * len(rows) + 30
+    lo, hi = -580, 120
+    x = lambda v: ML + (v - lo) / (hi - lo) * (W - ML - 28)
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">',
          f'<rect width="{W}" height="{H}" fill="{p["bg"]}"/>',
-         f'<text x="8" y="20" font-size="12" fill="{p["dim"]}">'
+         f'<text x="8" y="18" font-size="12" fill="{p["dim"]}">'
          f'Whole matches, paired on the same seeds. Bars are one standard error.</text>']
-    for v, lab, col in ((0, 'the hand-written rule  0', p['live']),
-                        (-62, 'quote sheet only  −62', p['faint'])):
-        o.append(f'<line x1="{x(v):.0f}" y1="{MT-10}" x2="{x(v):.0f}" y2="{H-30}" '
+    top = MT - 26
+    for v, lab, col, anchor, dx, dy in (
+            (0, 'the hand-written rule', p['live'], 'start', 7, 0),
+            (-62, 'quote sheet only', p['faint'], 'end', -7, 14)):
+        o.append(f'<line x1="{x(v):.0f}" y1="{top+dy}" x2="{x(v):.0f}" y2="{H-16}" '
                  f'stroke="{col}" stroke-width="1" stroke-dasharray="3 3"/>')
-        o.append(f'<text x="{x(v):.0f}" y="{H-14}" font-size="10.5" fill="{col}" '
-                 f'text-anchor="middle">{lab}</text>')
+        o.append(f'<text x="{x(v)+dx:.0f}" y="{top+dy+4}" font-size="10.5" fill="{col}" '
+                 f'text-anchor="{anchor}">{lab}</text>')
     for i, r in enumerate(rows):
-        y = MT + i * RH
+        y = MT + i * RH + 12
         col = p['loss'] if r['rule'] + r['rule_se'] < 0 else p['ink']
-        o.append(f'<text x="{ML-12}" y="{y+4}" font-size="12" fill="{p["ink"]}" '
+        o.append(f'<text x="{ML-14}" y="{y+4}" font-size="12" fill="{p["ink"]}" '
                  f'text-anchor="end">{esc(r["name"])}</text>')
-        o.append(f'<text x="{ML-12}" y="{y+16}" font-size="9.5" fill="{p["faint"]}" '
+        o.append(f'<text x="{ML-14}" y="{y+16}" font-size="9.5" fill="{p["faint"]}" '
                  f'text-anchor="end">n={r["n"]}</text>')
         a, b = x(r['rule'] - r['rule_se']), x(r['rule'] + r['rule_se'])
         o.append(f'<line x1="{a:.0f}" y1="{y}" x2="{b:.0f}" y2="{y}" '
@@ -92,8 +100,9 @@ def chart_models(rows, p):
             o.append(f'<line x1="{e:.0f}" y1="{y-4}" x2="{e:.0f}" y2="{y+4}" '
                      f'stroke="{col}" stroke-width="1.6"/>')
         o.append(f'<circle cx="{x(r["rule"]):.0f}" cy="{y}" r="4" fill="{col}"/>')
-        o.append(f'<text x="{x(r["rule"]):.0f}" y="{y-9}" font-size="10.5" fill="{col}" '
-                 f'text-anchor="middle">{r["rule"]:+.0f}</text>')
+        # the value sits past the right whisker, never above the bar
+        o.append(f'<text x="{b+9:.0f}" y="{y+4}" font-size="10.5" fill="{col}">'
+                 f'{r["rule"]:+.0f}</text>')
     o.append('</svg>')
     return '\n'.join(o)
 
@@ -134,38 +143,45 @@ def chart_slope(rows, p):
 
 
 def chart_shape(p):
-    """What memory is worth as the bell rings more often."""
+    """What memory is worth as the bell rings more often.
+
+    The title moved off the plot's top-left corner, where it ran into the
+    highest gridline label, and the axis caption moved out from under the tick
+    labels it was sitting on.
+    """
     b4 = json.load(open('data/shape4.json'))
-    W, H, ML, MB, TOP = 720, 300, 64, 54, 44
+    W, H, ML, TOP, BOT = 760, 320, 74, 62, 236
     xs = [r['games'] - 1 for r in b4]
     vals4 = [r['on'] - r['off'] for r in b4]
     hi = 200
-    x = lambda g: ML + (g - min(xs)) / (max(xs) - min(xs)) * (W - ML - 30)
-    y = lambda v: (H - MB) - v / hi * (H - MB - TOP)
+    x = lambda g: ML + (g - min(xs)) / (max(xs) - min(xs)) * (W - ML - 40)
+    y = lambda v: BOT - v / hi * (BOT - TOP)
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">',
          f'<rect width="{W}" height="{H}" fill="{p["bg"]}"/>',
-         f'<text x="8" y="20" font-size="12" fill="{p["dim"]}">'
+         f'<text x="8" y="18" font-size="12" fill="{p["ink"]}">'
+         f'What carrying the ledger is worth</text>',
+         f'<text x="8" y="34" font-size="11" fill="{p["dim"]}">'
          f'Total rounds held at 48; only where the boundaries fall changes.</text>']
     for v in (0, 50, 100, 150, 200):
-        o.append(f'<line x1="{ML}" y1="{y(v):.0f}" x2="{W-30}" y2="{y(v):.0f}" '
+        o.append(f'<line x1="{ML}" y1="{y(v):.0f}" x2="{W-40}" y2="{y(v):.0f}" '
                  f'stroke="{p["rule"]}" stroke-width="0.8"/>')
-        o.append(f'<text x="{ML-8}" y="{y(v)+4:.0f}" font-size="10" fill="{p["faint"]}" '
+        o.append(f'<text x="{ML-10}" y="{y(v)+4:.0f}" font-size="10" fill="{p["faint"]}" '
                  f'text-anchor="end">{v}</text>')
     pts = ' '.join(f'{x(g):.0f},{y(v):.0f}' for g, v in zip(xs, vals4))
     o.append(f'<polyline points="{pts}" fill="none" stroke="{p["live"]}" stroke-width="2.2"/>')
     for g, v, r in zip(xs, vals4, b4):
         o.append(f'<circle cx="{x(g):.0f}" cy="{y(v):.0f}" r="4" fill="{p["live"]}"/>')
-        o.append(f'<text x="{x(g):.0f}" y="{y(v)-11:.0f}" font-size="10.5" '
+        o.append(f'<text x="{x(g):.0f}" y="{y(v)-12:.0f}" font-size="10.5" '
                  f'fill="{p["live"]}" text-anchor="middle">+{v:.0f}</text>')
-        o.append(f'<text x="{x(g):.0f}" y="{H-MB+18:.0f}" font-size="10.5" '
-                 f'fill="{p["dim"]}" text-anchor="middle">{r["rounds"]}×{r["games"]}</text>')
-        o.append(f'<text x="{x(g):.0f}" y="{H-MB+32:.0f}" font-size="9.5" '
+        o.append(f'<text x="{x(g):.0f}" y="{BOT+22:.0f}" font-size="10.5" '
+                 f'fill="{p["dim"]}" text-anchor="middle">{r["rounds"]}\u00d7{r["games"]}</text>')
+        o.append(f'<text x="{x(g):.0f}" y="{BOT+38:.0f}" font-size="9.5" '
                  f'fill="{p["faint"]}" text-anchor="middle">{g}</text>')
-    o.append(f'<text x="{ML}" y="{H-6}" font-size="10.5" fill="{p["faint"]}">'
-             f'rounds x games, and the number of boundaries below it</text>')
-    o.append(f'<text x="8" y="{TOP-8}" font-size="11" fill="{p["ink"]}">'
-             f'what carrying the ledger is worth</text>')
+    o.append(f'<text x="{ML-10}" y="{BOT+22:.0f}" font-size="9.5" fill="{p["faint"]}" '
+             f'text-anchor="end">rounds\u00d7games</text>')
+    o.append(f'<text x="{ML-10}" y="{BOT+38:.0f}" font-size="9.5" fill="{p["faint"]}" '
+             f'text-anchor="end">boundaries</text>')
     o.append('</svg>')
     return '\n'.join(o)
 
