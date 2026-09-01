@@ -1,42 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="760" height="320" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
-<rect width="760" height="320" fill="#0E1317"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="760" height="330" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+<rect width="760" height="330" fill="#0E1317"/>
 <text x="8" y="18" font-size="12" fill="#E4EAEF">What carrying the ledger is worth</text>
 <text x="8" y="34" font-size="11" fill="#97A5AF">Total rounds held at 48; only where the boundaries fall changes.</text>
-<line x1="74" y1="236" x2="720" y2="236" stroke="#2A353D" stroke-width="0.8"/>
-<text x="64" y="240" font-size="10" fill="#6C7A85" text-anchor="end">0</text>
-<line x1="74" y1="192" x2="720" y2="192" stroke="#2A353D" stroke-width="0.8"/>
-<text x="64" y="196" font-size="10" fill="#6C7A85" text-anchor="end">50</text>
-<line x1="74" y1="149" x2="720" y2="149" stroke="#2A353D" stroke-width="0.8"/>
-<text x="64" y="153" font-size="10" fill="#6C7A85" text-anchor="end">100</text>
-<line x1="74" y1="106" x2="720" y2="106" stroke="#2A353D" stroke-width="0.8"/>
-<text x="64" y="110" font-size="10" fill="#6C7A85" text-anchor="end">150</text>
-<line x1="74" y1="62" x2="720" y2="62" stroke="#2A353D" stroke-width="0.8"/>
-<text x="64" y="66" font-size="10" fill="#6C7A85" text-anchor="end">200</text>
-<polyline points="74,183 139,153 203,149 332,119 462,106 720,79" fill="none" stroke="#46B8B0" stroke-width="2.2"/>
-<circle cx="74" cy="183" r="4" fill="#46B8B0"/>
-<text x="74" y="171" font-size="10.5" fill="#46B8B0" text-anchor="middle">+61</text>
-<text x="74" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">12×4</text>
-<text x="74" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">3</text>
-<circle cx="139" cy="153" r="4" fill="#46B8B0"/>
-<text x="139" y="141" font-size="10.5" fill="#46B8B0" text-anchor="middle">+95</text>
-<text x="139" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">8×6</text>
-<text x="139" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">5</text>
-<circle cx="203" cy="149" r="4" fill="#46B8B0"/>
-<text x="203" y="137" font-size="10.5" fill="#46B8B0" text-anchor="middle">+100</text>
-<text x="203" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">6×8</text>
-<text x="203" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">7</text>
-<circle cx="332" cy="119" r="4" fill="#46B8B0"/>
-<text x="332" y="107" font-size="10.5" fill="#46B8B0" text-anchor="middle">+134</text>
-<text x="332" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">4×12</text>
-<text x="332" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">11</text>
-<circle cx="462" cy="106" r="4" fill="#46B8B0"/>
-<text x="462" y="94" font-size="10.5" fill="#46B8B0" text-anchor="middle">+150</text>
-<text x="462" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">3×16</text>
-<text x="462" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">15</text>
+<line x1="132" y1="236" x2="720" y2="236" stroke="#2A353D" stroke-width="0.8"/>
+<text x="122" y="240" font-size="10" fill="#6C7A85" text-anchor="end">0</text>
+<line x1="132" y1="192" x2="720" y2="192" stroke="#2A353D" stroke-width="0.8"/>
+<text x="122" y="196" font-size="10" fill="#6C7A85" text-anchor="end">50</text>
+<line x1="132" y1="149" x2="720" y2="149" stroke="#2A353D" stroke-width="0.8"/>
+<text x="122" y="153" font-size="10" fill="#6C7A85" text-anchor="end">100</text>
+<line x1="132" y1="106" x2="720" y2="106" stroke="#2A353D" stroke-width="0.8"/>
+<text x="122" y="110" font-size="10" fill="#6C7A85" text-anchor="end">150</text>
+<line x1="132" y1="62" x2="720" y2="62" stroke="#2A353D" stroke-width="0.8"/>
+<text x="122" y="66" font-size="10" fill="#6C7A85" text-anchor="end">200</text>
+<polyline points="132,183 191,153 250,149 367,119 485,106 720,79" fill="none" stroke="#46B8B0" stroke-width="2.2"/>
+<circle cx="132" cy="183" r="4" fill="#46B8B0"/>
+<text x="132" y="171" font-size="10.5" fill="#46B8B0" text-anchor="middle">+61</text>
+<text x="132" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">12×4</text>
+<text x="132" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">3</text>
+<circle cx="191" cy="153" r="4" fill="#46B8B0"/>
+<text x="191" y="141" font-size="10.5" fill="#46B8B0" text-anchor="middle">+95</text>
+<text x="191" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">8×6</text>
+<text x="191" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">5</text>
+<circle cx="250" cy="149" r="4" fill="#46B8B0"/>
+<text x="250" y="137" font-size="10.5" fill="#46B8B0" text-anchor="middle">+100</text>
+<text x="250" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">6×8</text>
+<text x="250" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">7</text>
+<circle cx="367" cy="119" r="4" fill="#46B8B0"/>
+<text x="367" y="107" font-size="10.5" fill="#46B8B0" text-anchor="middle">+134</text>
+<text x="367" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">4×12</text>
+<text x="367" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">11</text>
+<circle cx="485" cy="106" r="4" fill="#46B8B0"/>
+<text x="485" y="94" font-size="10.5" fill="#46B8B0" text-anchor="middle">+150</text>
+<text x="485" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">3×16</text>
+<text x="485" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">15</text>
 <circle cx="720" cy="79" r="4" fill="#46B8B0"/>
 <text x="720" y="67" font-size="10.5" fill="#46B8B0" text-anchor="middle">+181</text>
 <text x="720" y="258" font-size="10.5" fill="#97A5AF" text-anchor="middle">2×24</text>
 <text x="720" y="274" font-size="9.5" fill="#6C7A85" text-anchor="middle">23</text>
-<text x="64" y="258" font-size="9.5" fill="#6C7A85" text-anchor="end">rounds×games</text>
-<text x="64" y="274" font-size="9.5" fill="#6C7A85" text-anchor="end">boundaries</text>
+<text x="110" y="258" font-size="9.5" fill="#6C7A85" text-anchor="end">rounds × games</text>
+<text x="110" y="274" font-size="9.5" fill="#6C7A85" text-anchor="end">boundaries</text>
 </svg>

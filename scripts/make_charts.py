@@ -62,32 +62,55 @@ def esc(s):
     return s.replace('&', '&amp;').replace('<', '&lt;')
 
 
-def chart_models(rows, p):
-    """Dot-and-whisker against the two references. Zero is the reference itself.
+def spread(items, gap=13.0):
+    """Push labels apart so ties do not stack.
 
-    The two reference labels sit at different heights, and on opposite sides of
-    their own lines. Centred under each at the same height they collided: the
-    lines are fifty pixels apart and the words are three times that.
+    Three models end games 2+ on exactly 0.61 and two open on 0.67. Drawn at the
+    value they land on, those labels sit on top of each other and the chart reads
+    as though two models were missing. Positions move; the dot each one belongs
+    to does not, so a leader line is drawn where a label had to travel.
     """
-    W, ML, MT, RH = 760, 168, 62, 34
-    H = MT + RH * len(rows) + 30
-    lo, hi = -580, 120
-    x = lambda v: ML + (v - lo) / (hi - lo) * (W - ML - 28)
+    order = sorted(range(len(items)), key=lambda i: items[i])
+    out = list(items)
+    for k in range(1, len(order)):
+        a, b = order[k - 1], order[k]
+        if out[b] - out[a] < gap:
+            out[b] = out[a] + gap
+    return out
+
+
+def chart_models(rows, p):
+    """Dot-and-whisker against the two references, with an axis under it.
+
+    Labelling the reference lines in place kept failing: the two lines are fifty
+    pixels apart, their names are three times that, and moving one to the right
+    of its line ran it off the canvas. They are a legend now, which cannot
+    collide with anything, and the scale they are on finally has ticks.
+    """
+    W, ML, MR, TOP, RH = 760, 176, 92, 84, 34
+    H = TOP + RH * len(rows) + 52
+    lo, hi = -520, 60
+    x = lambda v: ML + (v - lo) / (hi - lo) * (W - ML - MR)
+    base = TOP + RH * len(rows) + 6
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">',
          f'<rect width="{W}" height="{H}" fill="{p["bg"]}"/>',
-         f'<text x="8" y="18" font-size="12" fill="{p["dim"]}">'
+         f'<text x="8" y="18" font-size="12" fill="{p["ink"]}">'
+         f'Every model against the rule it loses to</text>',
+         f'<text x="8" y="34" font-size="11" fill="{p["dim"]}">'
          f'Whole matches, paired on the same seeds. Bars are one standard error.</text>']
-    top = MT - 26
-    for v, lab, col, anchor, dx, dy in (
-            (0, 'the hand-written rule', p['live'], 'start', 7, 0),
-            (-62, 'quote sheet only', p['faint'], 'end', -7, 14)):
-        o.append(f'<line x1="{x(v):.0f}" y1="{top+dy}" x2="{x(v):.0f}" y2="{H-16}" '
+    # legend, on its own row, where nothing can reach it
+    for i, (lab, col) in enumerate((('the hand-written rule, 996', p['live']),
+                                    ('quote sheet only, 934', p['faint']))):
+        lx = 8 + i * 250
+        o.append(f'<line x1="{lx}" y1="{TOP-30}" x2="{lx+18}" y2="{TOP-30}" '
+                 f'stroke="{col}" stroke-width="1.4" stroke-dasharray="3 3"/>')
+        o.append(f'<text x="{lx+24}" y="{TOP-26}" font-size="10.5" fill="{col}">{lab}</text>')
+    for v, col in ((0, p['live']), (-62, p['faint'])):
+        o.append(f'<line x1="{x(v):.0f}" y1="{TOP-14}" x2="{x(v):.0f}" y2="{base}" '
                  f'stroke="{col}" stroke-width="1" stroke-dasharray="3 3"/>')
-        o.append(f'<text x="{x(v)+dx:.0f}" y="{top+dy+4}" font-size="10.5" fill="{col}" '
-                 f'text-anchor="{anchor}">{lab}</text>')
     for i, r in enumerate(rows):
-        y = MT + i * RH + 12
+        y = TOP + i * RH + 10
         col = p['loss'] if r['rule'] + r['rule_se'] < 0 else p['ink']
         o.append(f'<text x="{ML-14}" y="{y+4}" font-size="12" fill="{p["ink"]}" '
                  f'text-anchor="end">{esc(r["name"])}</text>')
@@ -100,43 +123,63 @@ def chart_models(rows, p):
             o.append(f'<line x1="{e:.0f}" y1="{y-4}" x2="{e:.0f}" y2="{y+4}" '
                      f'stroke="{col}" stroke-width="1.6"/>')
         o.append(f'<circle cx="{x(r["rule"]):.0f}" cy="{y}" r="4" fill="{col}"/>')
-        # the value sits past the right whisker, never above the bar
-        o.append(f'<text x="{b+9:.0f}" y="{y+4}" font-size="10.5" fill="{col}">'
-                 f'{r["rule"]:+.0f}</text>')
+        # values live in the right margin, in a column, clear of the plot
+        o.append(f'<text x="{W-10}" y="{y+4}" font-size="11" fill="{col}" '
+                 f'text-anchor="end">{r["rule"]:+.0f} \u00b1{r["rule_se"]:.0f}</text>')
+    o.append(f'<line x1="{ML}" y1="{base}" x2="{W-MR}" y2="{base}" '
+             f'stroke="{p["rule"]}" stroke-width="1"/>')
+    for v in range(-500, 61, 100):
+        o.append(f'<line x1="{x(v):.0f}" y1="{base}" x2="{x(v):.0f}" y2="{base+5}" '
+                 f'stroke="{p["rule"]}" stroke-width="1"/>')
+        o.append(f'<text x="{x(v):.0f}" y="{base+18}" font-size="10" fill="{p["faint"]}" '
+                 f'text-anchor="middle">{v}</text>')
+    o.append(f'<text x="{ML}" y="{base+36}" font-size="10" fill="{p["faint"]}">'
+             f'score, relative to the hand-written rule</text>')
     o.append('</svg>')
     return '\n'.join(o)
 
 
 def chart_slope(rows, p):
     """Opening pick before a ledger exists, and after."""
-    W, H, ML, MR, TOP, BOT = 720, 380, 210, 190, 52, 320
+    W, H, ML, MR, TOP, BOT = 780, 400, 214, 196, 58, 330
     y = lambda v: BOT - v * (BOT - TOP) / 1.0
+    rows = [r for r in rows if r.get('g1') is not None and r.get('gk') is not None]
     rows = rows + [dict(name='the hand-written rule', g1=0.52, gk=0.71)]
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">',
          f'<rect width="{W}" height="{H}" fill="{p["bg"]}"/>',
-         f'<text x="8" y="20" font-size="12" fill="{p["dim"]}">'
+         f'<text x="8" y="18" font-size="12" fill="{p["ink"]}">'
+         f'Which way each one moves when a ledger appears</text>',
+         f'<text x="8" y="34" font-size="11" fill="{p["dim"]}">'
          f'Opening pick of the first game, and of every game after it.</text>']
     o.append(f'<line x1="{ML}" y1="{y(0.333):.0f}" x2="{W-MR}" y2="{y(0.333):.0f}" '
              f'stroke="{p["rule"]}" stroke-dasharray="3 3"/>')
-    o.append(f'<text x="{W-MR+8}" y="{y(0.333)+4:.0f}" font-size="10" '
-             f'fill="{p["faint"]}">chance 0.33</text>')
-    for xx, lab in ((ML, 'game 1 — no history'), (W - MR, 'games 2+ — ledger carried')):
-        o.append(f'<text x="{xx}" y="{BOT+26}" font-size="11" fill="{p["dim"]}" '
+    o.append(f'<text x="{ML-12}" y="{y(0.333)+4:.0f}" font-size="10" '
+             f'fill="{p["faint"]}" text-anchor="end">chance 0.33</text>')
+    for xx, lab in ((ML, 'game 1 - no history'), (W - MR, 'games 2+ - ledger carried')):
+        o.append(f'<text x="{xx}" y="{BOT+30}" font-size="11" fill="{p["dim"]}" '
                  f'text-anchor="middle">{lab}</text>')
-    for r in rows:
-        if r.get('g1') is None or r.get('gk') is None:
-            continue
+    ly = spread([y(r['g1']) for r in rows])
+    ry = spread([y(r['gk']) for r in rows])
+    for r, a, b in zip(rows, ly, ry):
         up = r['gk'] > r['g1']
         col = p['live'] if up else p['loss']
+        big = abs(r['gk'] - r['g1']) > 0.15
         o.append(f'<line x1="{ML}" y1="{y(r["g1"]):.0f}" x2="{W-MR}" y2="{y(r["gk"]):.0f}" '
-                 f'stroke="{col}" stroke-width="{2.2 if abs(r["gk"]-r["g1"])>0.15 else 1.2}" '
-                 f'opacity="{0.95 if abs(r["gk"]-r["g1"])>0.15 else 0.55}"/>')
-        o.append(f'<circle cx="{ML}" cy="{y(r["g1"]):.0f}" r="3.4" fill="{col}"/>')
-        o.append(f'<circle cx="{W-MR}" cy="{y(r["gk"]):.0f}" r="3.4" fill="{col}"/>')
-        o.append(f'<text x="{ML-10}" y="{y(r["g1"])+4:.0f}" font-size="11" fill="{p["ink"]}" '
+                 f'stroke="{col}" stroke-width="{2.2 if big else 1.2}" '
+                 f'opacity="{0.95 if big else 0.5}"/>')
+        for cx, cy in ((ML, y(r['g1'])), (W - MR, y(r['gk']))):
+            o.append(f'<circle cx="{cx}" cy="{cy:.0f}" r="3.4" fill="{col}"/>')
+        # leaders, only where a label had to be moved off its dot
+        if abs(a - y(r['g1'])) > 1.5:
+            o.append(f'<line x1="{ML-6}" y1="{y(r["g1"]):.0f}" x2="{ML-12}" y2="{a:.0f}" '
+                     f'stroke="{p["rule"]}" stroke-width="0.8"/>')
+        if abs(b - y(r['gk'])) > 1.5:
+            o.append(f'<line x1="{W-MR+6}" y1="{y(r["gk"]):.0f}" x2="{W-MR+12}" y2="{b:.0f}" '
+                     f'stroke="{p["rule"]}" stroke-width="0.8"/>')
+        o.append(f'<text x="{ML-16}" y="{a+4:.0f}" font-size="11" fill="{p["ink"]}" '
                  f'text-anchor="end">{esc(r["name"])}  {r["g1"]:.2f}</text>')
-        o.append(f'<text x="{W-MR+10}" y="{y(r["gk"])+4:.0f}" font-size="11" fill="{col}">'
+        o.append(f'<text x="{W-MR+16}" y="{b+4:.0f}" font-size="11" fill="{col}">'
                  f'{r["gk"]:.2f}  {r["gk"]-r["g1"]:+.2f}</text>')
     o.append('</svg>')
     return '\n'.join(o)
@@ -150,7 +193,7 @@ def chart_shape(p):
     labels it was sitting on.
     """
     b4 = json.load(open('data/shape4.json'))
-    W, H, ML, TOP, BOT = 760, 320, 74, 62, 236
+    W, H, ML, TOP, BOT = 760, 330, 132, 62, 236
     xs = [r['games'] - 1 for r in b4]
     vals4 = [r['on'] - r['off'] for r in b4]
     hi = 200
@@ -178,9 +221,9 @@ def chart_shape(p):
                  f'fill="{p["dim"]}" text-anchor="middle">{r["rounds"]}\u00d7{r["games"]}</text>')
         o.append(f'<text x="{x(g):.0f}" y="{BOT+38:.0f}" font-size="9.5" '
                  f'fill="{p["faint"]}" text-anchor="middle">{g}</text>')
-    o.append(f'<text x="{ML-10}" y="{BOT+22:.0f}" font-size="9.5" fill="{p["faint"]}" '
-             f'text-anchor="end">rounds\u00d7games</text>')
-    o.append(f'<text x="{ML-10}" y="{BOT+38:.0f}" font-size="9.5" fill="{p["faint"]}" '
+    o.append(f'<text x="{ML-22}" y="{BOT+22:.0f}" font-size="9.5" fill="{p["faint"]}" '
+             f'text-anchor="end">rounds \u00d7 games</text>')
+    o.append(f'<text x="{ML-22}" y="{BOT+38:.0f}" font-size="9.5" fill="{p["faint"]}" '
              f'text-anchor="end">boundaries</text>')
     o.append('</svg>')
     return '\n'.join(o)
@@ -195,3 +238,46 @@ print(f"{len(rows)}개 모델 · docs/ 에 SVG 6개")
 for r in rows:
     print(f"  {r['name']:<20}{r['rule']:>7.0f}±{r['rule_se']:<4.0f}"
           f"  {r['g1']:.2f}→{r['gk']:.2f}")
+
+
+def audit(path):
+    """Every label, checked against the canvas and against every other label.
+
+    Three rounds of "the labels overlap" were caught by eye and fixed by eye,
+    which is how the fourth got through. Text width is approximated from the
+    character count and the font size — crude, and enough to catch a collision
+    that a reader would notice.
+    """
+    import re
+    s = pathlib.Path(path).read_text()
+    W, H = map(int, re.search(r'viewBox="0 0 (\d+) (\d+)"', s).groups())
+    box = []
+    for m in re.finditer(r'<text\b([^>]*)>([^<]*)</text>', s):
+        a, txt = m.group(1), m.group(2)
+        num = lambda k, d: float(re.search(rf'{k}="([-\d.]+)"', a).group(1)) \
+            if re.search(rf'{k}="([-\d.]+)"', a) else d
+        anc = re.search(r'text-anchor="(\w+)"', a)
+        anc = anc.group(1) if anc else 'start'
+        x, y, fs = num(r'\bx', 0), num(r'\by', 0), num('font-size', 11)
+        w = len(txt) * fs * 0.6
+        left = x if anc == 'start' else (x - w if anc == 'end' else x - w / 2)
+        box.append((left, left + w, y - fs * 0.8, y + fs * 0.25, txt))
+    off = [b for b in box if b[0] < 0 or b[1] > W or b[2] < 0 or b[3] > H]
+    hit = [(a[4], b[4]) for i, a in enumerate(box) for b in box[i + 1:]
+           if a[0] < b[1] and b[0] < a[1] and a[2] < b[3] and b[2] < a[3]]
+    return off, hit
+
+
+bad = False
+for f in sorted(OUT.glob('*.svg')):
+    off, hit = audit(f)
+    if off or hit:
+        bad = True
+        print(f"  {f.name}: {len(off)} off-canvas, {len(hit)} overlapping")
+        for t in off[:3]:
+            print(f"     off:     {t[4]!r}")
+        for a, b in hit[:4]:
+            print(f"     overlap: {a!r} / {b!r}")
+if bad:
+    raise SystemExit("labels collide")
+print("  labels: all clear")
