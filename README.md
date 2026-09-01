@@ -1,3 +1,5 @@
+**English** · [한국어](README.ko.md) · [中文](README.zh.md)
+
 # nego-eval
 
 A negotiation environment where an agent **chooses** its counterparty and **meets it again**.
@@ -155,9 +157,6 @@ same seeds. Zero is the hand-written rule; every model sits to the left of it.
   <source media="(prefers-color-scheme: dark)" srcset="docs/models.dark.svg">
   <img alt="Each model against the hand-written rule, one standard error" src="docs/models.light.svg">
 </picture>
-
-And the models, playing whole matches, paired against those references on the
-same seeds:
 
 | Model | n | Score | vs the rule | vs quote sheet only |
 |---|---|---|---|---|
