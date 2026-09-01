@@ -14,3 +14,4 @@ __pycache__/
 # deliberately; scratch output is not.
 sim_*.log
 *.partial.json
+.venv-vf/
