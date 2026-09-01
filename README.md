@@ -70,7 +70,12 @@ Language-model buyers need a key; nothing else does.
 cp .env.example .env && $EDITOR .env
 python scripts/run_probe4.py             # one move per frozen position
 python scripts/run_fullplay4.py "[('deepseek/deepseek-chat', 12)]" on
+python scripts/run_fullplay4.py "[('deepseek/deepseek-chat', 12)]" off 910012
+python scripts/analyse_paired4.py        # models against references, same seeds
 ```
+
+The third argument is the first seed, so an arm continues where an earlier one
+stopped rather than replaying matches already paid for.
 
 ---
 
@@ -85,6 +90,24 @@ At `L = 110`, four games of twelve rounds, premium 120:
 | hand-written, reads the record | 996 | 38% |
 | hand-written, quote sheet only | 934 | 0% |
 | tabular Q-learning, shaped reward | 898 | — |
+
+And the models, playing whole matches, paired against those references on the
+same seeds:
+
+| Model | n | Score | vs the rule | vs quote sheet only |
+|---|---|---|---|---|
+| gpt-5.6-terra | 12 | 958 | −127 ±68 | +6 ±75 |
+| gpt-5.6-sol | 10 | 897 | −153 ±75 | −27 ±96 |
+| claude-fable-5 | 10 | 876 | −174 ±63 | −48 ±82 |
+| gemini-3.7-flash | 24 | 762 | −118 ±35 | −66 ±34 |
+| qwen3.8-max | 8 | 786 | −251 ±101 | −190 ±105 |
+| claude-haiku-4.5 | 12 | 663 | −421 ±72 | −288 ±79 |
+| deepseek-chat | 12 | 610 | −474 ±87 | −342 ±91 |
+
+Pairing matters more than it looks. Match-level spread is two to six hundred, and
+one early seed was worth +530 to a policy that consults nothing at all — so a
+model's mean against a reference mean computed on other seeds would mostly
+measure which boards were drawn.
 
 The surplus denominator is `1099 − 934 = 165`: what reading the record is worth
 when read perfectly. Total profit is a poor scale for this environment because
@@ -138,7 +161,7 @@ transcript.
 ## What is known so far
 
 Measured on this board unless noted. See `notes/note.html` for the full
-write-up, including four figures that earlier revisions got wrong.
+write-up, including five figures that earlier revisions got wrong.
 
 **Carrying the record is worth the gap between how long a relationship takes to
 build and how soon it is cut off.** Holding total rounds at 48 and moving only
@@ -150,9 +173,10 @@ restarts a relationship that never gets far enough to pay.
 withholding it.** A tabular policy trained without carry-over, given a carried
 ledger at test time, picks the right opening 0.14 of the time against a chance
 rate of 0.33 — a third of its lookups land in states training never visited and
-the rest carry a median of 178 visits against 55,161. The same shape appears in
-language models: every model tested picks *worse* after the ledger arrives than
-before it, and appending a pre-computed ratio to the ledger cost one model 0.15.
+the rest carry a median of 178 visits against 55,161. The same shape shows up
+twice more: appending a pre-computed ratio to the ledger cost one model 0.15 and
+collapsed its use of the column it had been reading, and six of the seven models
+below choose worse once a ledger exists than before there was one.
 
 **Subtracting the non-relational baseline from the reward is worth +49** to an
 otherwise identical learner — the control variate removes the 85% of the signal
