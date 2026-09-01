@@ -244,14 +244,14 @@ footer a { color: var(--dim); }
 <div class="wrap">
 
 <header>
-  <p class="kicker">Research note 05 · rev 6 · 2026-08-31</p>
+  <p class="kicker">Research note 05 · rev 7 · 2026-09-01</p>
   <h1>The Residual</h1>
   <p class="standfirst">
-    Four boards. The third passed every condition on a written checklist and
-    measured almost nothing — because satisfying the checklist had quietly removed
-    the thing being measured. What the fourth shows:
-    <strong>remembering a counterparty is worth the gap between how long a
-    relationship takes to build and how soon it is interrupted.</strong>
+    Four boards, three of them withdrawn. On the one that works, remembering a
+    counterparty is worth the gap between how long a relationship takes to build
+    and how soon it is cut off — and of seven language models given that memory,
+    <strong>six choose worse with it than without</strong>. Every one of them
+    loses to twenty lines of arithmetic.
   </p>
 
   <div class="grid-strip">
@@ -610,7 +610,106 @@ footer a { color: var(--dim); }
   reading.
 </p>
 
-<h2><span class="num">08</span>What this does not show</h2>
+<h2><span class="num">08</span>Seven models play it, and six get worse when the record arrives</h2>
+
+<p>
+  Frozen positions measure reading. These are whole matches — four games of
+  twelve rounds, the ledger carried across them — against the same seeds, the
+  same cast and the same price sequence the references face, so the comparison is
+  paired and the board cancels.
+</p>
+
+<div class="scroll">
+<table>
+  <caption>Full matches on board 4 · paired against the same seeds</caption>
+  <thead><tr><th>Model</th><th>n</th><th>Score</th><th>vs quote sheet only</th><th>vs the hand-written rule</th></tr></thead>
+  <tbody>
+    <tr><td>gpt-5.6-terra</td><td>12</td><td>958</td><td>+6 ±75</td><td class="neg">−127 ±68</td></tr>
+    <tr><td>gpt-5.6-sol</td><td>10</td><td>897</td><td>−27 ±96</td><td class="neg">−153 ±75</td></tr>
+    <tr><td>claude-fable-5</td><td>10</td><td>876</td><td>−48 ±82</td><td class="neg">−174 ±63</td></tr>
+    <tr><td>gemini-3.7-flash</td><td>24</td><td>762</td><td>−66 ±34</td><td class="neg">−118 ±35</td></tr>
+    <tr><td>qwen3.8-max</td><td>8</td><td>786</td><td>−190 ±105</td><td class="neg">−251 ±101</td></tr>
+    <tr><td>claude-haiku-4.5</td><td>12</td><td>663</td><td class="neg">−288 ±79</td><td class="neg">−421 ±72</td></tr>
+    <tr><td>deepseek-chat</td><td>12</td><td>610</td><td class="neg">−342 ±91</td><td class="neg">−474 ±87</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  Against a policy that ignores the record entirely, only the bottom two are
+  clearly worse. "Frontier models score below the null" is <em>not</em> supported
+  — fable-5 at −48 ±82 and gpt-5.6-sol at −27 ±96 are inside noise, and an
+  earlier draft of this section claimed otherwise from raw means.
+</p>
+
+<p class="pull">
+  What every model does lose to, by at least two standard errors and usually far
+  more, is twenty lines of arithmetic — and that rule is itself 103 short of the
+  optimum.
+</p>
+
+<h3>The record makes six of them worse</h3>
+
+<div class="scroll">
+<table>
+  <caption>Opening pick before and after the ledger exists · chance is 0.33</caption>
+  <thead><tr><th>Model</th><th>Seconds per match</th><th>Game 1 (no history)</th><th>Games 2+ (ledger carried)</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr class="mark"><td>qwen3.8-max</td><td class="neg">4,301</td><td class="pos">0.88</td><td class="neg">0.29</td><td class="neg">−0.58</td></tr>
+    <tr><td>claude-fable-5</td><td>971</td><td>0.70</td><td>0.47</td><td class="neg">−0.23</td></tr>
+    <tr><td>claude-haiku-4.5</td><td>249</td><td>0.58</td><td>0.44</td><td class="neg">−0.14</td></tr>
+    <tr><td>gpt-5.6-sol</td><td>1,031</td><td>0.60</td><td>0.53</td><td class="neg">−0.07</td></tr>
+    <tr><td>gpt-5.6-terra</td><td>349</td><td>0.67</td><td>0.61</td><td class="neg">−0.06</td></tr>
+    <tr><td>deepseek-chat</td><td>146</td><td>0.67</td><td>0.61</td><td class="neg">−0.06</td></tr>
+    <tr class="mark"><td>gemini-3.7-flash</td><td>453</td><td class="neg">0.29</td><td>0.61</td><td class="pos">+0.32</td></tr>
+    <tr><td>the hand-written rule</td><td>—</td><td>0.52</td><td>0.71</td><td class="pos">+0.19</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+  The two ends are the finding. <strong>qwen3.8-max opens at 0.88 with no history
+  — the best of anything measured, the quote-sheet arithmetic done well — and
+  falls to 0.29 once a ledger exists</strong>, below the 0.33 of chance, having
+  spent twenty-nine times deepseek's wall clock to do it. Every model makes the
+  same seventy decisions a match; only the thinking varies.
+</p>
+
+<p>
+  gemini-3.7-flash runs the other way: worst of all at the opening move, best
+  improvement once there is something to read. It is the only model of seven that
+  the record helps.
+</p>
+
+<p>
+  This is the third independent instance of the same shape. A tabular policy
+  trained without carry-over drops to 0.14 when handed one. Appending a
+  pre-computed ratio to the ledger cost haiku 0.15 and collapsed its use of the
+  published rate. And here, six of seven models choose worse after the record
+  arrives than before it.
+</p>
+
+<h3>Scale does not predict it, and neither does deliberation</h3>
+
+<p>
+  A flash-tier model is the only one that improves. The two top-tier models
+  measured — fable-5 and qwen3.8-max — sit mid-table and last. Against the
+  hand-written rule the ordering is −118 for the flash model against −174 and
+  −251 for them, and qwen3.8-max reached its −251 by spending an hour a match.
+</p>
+
+<h3>Whether a model earns anything from carrying the ledger is unresolved</h3>
+
+<p>
+  gemini-3.7-flash was run in both conditions on the same seeds. Across 35 pairs
+  the difference is <strong>+40 ±35</strong>, against the +64 the environment
+  offers a policy that uses it perfectly — consistent with both, and separated
+  from neither. At sixteen pairs the same measurement read +88 ±43 and looked
+  significant; it was not, and the estimate came back down as the sample doubled.
+  Roughly 43 pairs would settle it.
+</p>
+
+<h2><span class="num">09</span>What this does not show</h2>
 
 <div class="caveat">
   <h3>Four numbers in this note have already been wrong</h3>
@@ -650,7 +749,7 @@ footer a { color: var(--dim); }
   </p>
 </div>
 
-<h2><span class="num">09</span>What it is for</h2>
+<h2><span class="num">10</span>What it is for</h2>
 
 <p>
   A verifiable reward with no judge in it, a finite action set of twelve, a

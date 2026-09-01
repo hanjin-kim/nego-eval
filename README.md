@@ -158,10 +158,29 @@ before it, and appending a pre-computed ratio to the ledger cost one model 0.15.
 otherwise identical learner — the control variate removes the 85% of the signal
 that is already solved.
 
-**Models are separated by roughly 400 points, and the ordering is stable** across
-two boards with entirely different answer structures. It does not track model
-scale: a flash-tier model leads, and three models from one family spanning
-generations and sizes scored 0.48 / 0.47 / 0.46 on the same probe.
+**Seven language models play whole matches, and six of them choose worse once
+the ledger arrives than before it.** The opening pick of games 2+ against the
+opening pick of game 1: qwen3.8-max goes 0.88 → 0.29, below the 0.33 of chance,
+having spent an hour a match to do it; claude-fable-5 0.70 → 0.47; three others
+fall a little. Only gemini-3.7-flash improves, 0.29 → 0.61, and it is the worst
+of the seven when there is no history to read. The hand-written rule goes
+0.52 → 0.71.
+
+**Every model loses to that rule**, by 118 to 474 paired on the same seeds, at
+two standard errors or better. Against the weaker reference — a policy that
+ignores the record entirely — only the bottom two are clearly behind, so "frontier
+models score below the null" is *not* what this shows.
+
+**Scale does not predict any of it.** A flash-tier model is the only one the
+record helps; the two top-tier models measured sit mid-table and last. Three
+models from one family spanning generations and sizes scored 0.48 / 0.47 / 0.46
+on the same probe.
+
+**Whether a model earns anything from carrying the ledger is still open.** One
+model was run in both conditions on 35 shared seeds: +40 ±35, against the +64 the
+environment offers a policy that uses it perfectly. Consistent with both,
+separated from neither. At sixteen pairs the same measurement read +88 ±43 and
+looked settled; it was not.
 
 ---
 
