@@ -53,6 +53,63 @@ reward is arithmetic — **no judge model anywhere in the loop.**
 
 ---
 
+## What it is an analogy for
+
+Every mechanic answers to something a buyer does, and it is worth being explicit
+about which ones, because a board game that resembles nothing is a puzzle rather
+than an environment.
+
+| In the game | In procurement |
+|---|---|
+| a published delivery rate, and a higher price for a better one | on-time-delivery figures, quality certifications, SLA tiers — disclosed, and you pay for them |
+| the loss when a delivery fails | the consequential loss: a stopped line, expedited freight, a sale that did not happen, rework |
+| two integers that must sum to the loss | somebody bears it. Contracts are usually silent on consequential damages, and silence puts it on the buyer |
+| three exchanges over the split | the call after the incident — a credit note, a free replacement, splitting the freight |
+| impasse: the buyer bears it all, and the pair stops trading | no agreement, so you eat it, and you stop putting that supplier on the next RFQ |
+| how much of a loss it absorbs at arm's length | not in the catalogue. Found out by having a shipment ruined |
+| how much further it goes for a regular | the unwritten difference between a new account and a ten-year one |
+| the ledger carried across games | a purchase history surviving a fiscal year, a contract renewal, or the buyer changing desks |
+| prices that jitter each round | spot movement. Staying with your supplier costs you the difference some weeks, which is what makes staying a decision |
+
+The asymmetry in the middle of the table is the point, and it is not invented
+here. What a supplier discloses is priced into what it charges; what it does once
+something has gone wrong is neither disclosed nor contractible, and is learned
+only by having it happen. That gap is what
+[Brown, Falk & Fehr](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-0262.2004.00511.x)
+put in a laboratory and what Macchiavello and Morjaria measure in a real supply
+chain: relationships form there because nothing else enforces the part of the
+bargain a contract cannot reach.
+
+### For an agent, "no carry-over" is not hypothetical
+
+The manipulation has a second reading that needs no supply chain at all. A fresh
+context window is a buyer with no history. So is a new session, a summarised
+transcript that dropped the ledger, a tool call that returns only the current
+quote. The condition this environment toggles is one that agent systems are in by
+default, and the measurement is what it costs.
+
+### Where the analogy breaks
+
+Stated because a reader will find these anyway, and should find them here first.
+
+- **Three sellers, not a market.** No entry, no exit, no competition between
+  buyers for a good supplier's attention.
+- **One product, one unit a round.** No baskets, no lead times, no quality
+  grades, no minimum order quantities.
+- **Failure is exogenous and its rate is published.** In reality neither holds:
+  reliability responds to how a supplier is treated, and nobody publishes it
+  honestly.
+- **Solvency is switched off.** Real suppliers squeezed below cost cut corners
+  and then disappear. That mechanism was in an earlier board and is off here for
+  a measurement reason given below; it is a real omission.
+- **No courts, no insurance, no Incoterms.** Consequential loss often *is*
+  allocated in advance in real contracts. This board is the case where it was
+  not.
+- **The horizon is known.** The agent is told how many rounds remain, which
+  sharpens endgame behaviour in a way an open-ended relationship does not.
+
+---
+
 ## Quick start
 
 ```bash
