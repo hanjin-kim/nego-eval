@@ -92,6 +92,14 @@ At `L = 110`, four games of twelve rounds, premium 120:
 | tabular Q-learning, shaped reward | 898 | — |
 
 And the models, playing whole matches, paired against those references on the
+same seeds. Zero is the hand-written rule; every model sits to the left of it.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/models.dark.svg">
+  <img alt="Each model against the hand-written rule, one standard error" src="docs/models.light.svg">
+</picture>
+
+And the models, playing whole matches, paired against those references on the
 same seeds:
 
 | Model | n | Score | vs the rule | vs quote sheet only |
@@ -169,6 +177,11 @@ where the boundaries fall, its value rises monotonically from +61 at four games
 to +181 at twenty-four. With memory the score is flat; without it, each game
 restarts a relationship that never gets far enough to pay.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/shape.dark.svg">
+  <img alt="What carrying the ledger is worth as boundaries multiply" src="docs/shape.light.svg">
+</picture>
+
 **Handing a record to an agent that was not built around one is worse than
 withholding it.** A tabular policy trained without carry-over, given a carried
 ledger at test time, picks the right opening 0.14 of the time against a chance
@@ -189,6 +202,11 @@ having spent an hour a match to do it; claude-fable-5 0.70 → 0.47; three other
 fall a little. Only gemini-3.7-flash improves, 0.29 → 0.61, and it is the worst
 of the seven when there is no history to read. The hand-written rule goes
 0.52 → 0.71.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/ledger.dark.svg">
+  <img alt="Opening pick before and after the ledger exists" src="docs/ledger.light.svg">
+</picture>
 
 **Every model loses to that rule**, by 118 to 474 paired on the same seeds, at
 two standard errors or better. Against the weaker reference — a policy that

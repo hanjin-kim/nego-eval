@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+<rect width="720" height="380" fill="#0E1317"/>
+<text x="8" y="20" font-size="12" fill="#97A5AF">Opening pick of the first game, and of every game after it.</text>
+<line x1="210" y1="231" x2="530" y2="231" stroke="#2A353D" stroke-dasharray="3 3"/>
+<text x="538" y="235" font-size="10" fill="#6C7A85">chance 0.33</text>
+<text x="210" y="346" font-size="11" fill="#97A5AF" text-anchor="middle">game 1 — no history</text>
+<text x="530" y="346" font-size="11" fill="#97A5AF" text-anchor="middle">games 2+ — ledger carried</text>
+<line x1="210" y1="242" x2="530" y2="156" stroke="#46B8B0" stroke-width="2.2" opacity="0.95"/>
+<circle cx="210" cy="242" r="3.4" fill="#46B8B0"/>
+<circle cx="530" cy="156" r="3.4" fill="#46B8B0"/>
+<text x="200" y="246" font-size="11" fill="#E4EAEF" text-anchor="end">gemini-3.7-flash  0.29</text>
+<text x="540" y="160" font-size="11" fill="#46B8B0">0.61  +0.32</text>
+<line x1="210" y1="141" x2="530" y2="156" stroke="#E08074" stroke-width="1.2" opacity="0.55"/>
+<circle cx="210" cy="141" r="3.4" fill="#E08074"/>
+<circle cx="530" cy="156" r="3.4" fill="#E08074"/>
+<text x="200" y="145" font-size="11" fill="#E4EAEF" text-anchor="end">gpt-5.6-terra  0.67</text>
+<text x="540" y="160" font-size="11" fill="#E08074">0.61  -0.06</text>
+<line x1="210" y1="159" x2="530" y2="177" stroke="#E08074" stroke-width="1.2" opacity="0.55"/>
+<circle cx="210" cy="159" r="3.4" fill="#E08074"/>
+<circle cx="530" cy="177" r="3.4" fill="#E08074"/>
+<text x="200" y="163" font-size="11" fill="#E4EAEF" text-anchor="end">gpt-5.6-sol  0.60</text>
+<text x="540" y="181" font-size="11" fill="#E08074">0.53  -0.07</text>
+<line x1="210" y1="132" x2="530" y2="195" stroke="#E08074" stroke-width="2.2" opacity="0.95"/>
+<circle cx="210" cy="132" r="3.4" fill="#E08074"/>
+<circle cx="530" cy="195" r="3.4" fill="#E08074"/>
+<text x="200" y="136" font-size="11" fill="#E4EAEF" text-anchor="end">claude-fable-5  0.70</text>
+<text x="540" y="199" font-size="11" fill="#E08074">0.47  -0.23</text>
+<line x1="210" y1="86" x2="530" y2="242" stroke="#E08074" stroke-width="2.2" opacity="0.95"/>
+<circle cx="210" cy="86" r="3.4" fill="#E08074"/>
+<circle cx="530" cy="242" r="3.4" fill="#E08074"/>
+<text x="200" y="90" font-size="11" fill="#E4EAEF" text-anchor="end">qwen3.8-max  0.88</text>
+<text x="540" y="246" font-size="11" fill="#E08074">0.29  -0.58</text>
+<line x1="210" y1="164" x2="530" y2="201" stroke="#E08074" stroke-width="1.2" opacity="0.55"/>
+<circle cx="210" cy="164" r="3.4" fill="#E08074"/>
+<circle cx="530" cy="201" r="3.4" fill="#E08074"/>
+<text x="200" y="168" font-size="11" fill="#E4EAEF" text-anchor="end">claude-haiku-4.5  0.58</text>
+<text x="540" y="205" font-size="11" fill="#E08074">0.44  -0.14</text>
+<line x1="210" y1="141" x2="530" y2="156" stroke="#E08074" stroke-width="1.2" opacity="0.55"/>
+<circle cx="210" cy="141" r="3.4" fill="#E08074"/>
+<circle cx="530" cy="156" r="3.4" fill="#E08074"/>
+<text x="200" y="145" font-size="11" fill="#E4EAEF" text-anchor="end">deepseek-chat  0.67</text>
+<text x="540" y="160" font-size="11" fill="#E08074">0.61  -0.06</text>
+<line x1="210" y1="181" x2="530" y2="130" stroke="#46B8B0" stroke-width="2.2" opacity="0.95"/>
+<circle cx="210" cy="181" r="3.4" fill="#46B8B0"/>
+<circle cx="530" cy="130" r="3.4" fill="#46B8B0"/>
+<text x="200" y="185" font-size="11" fill="#E4EAEF" text-anchor="end">the hand-written rule  0.52</text>
+<text x="540" y="134" font-size="11" fill="#46B8B0">0.71  +0.19</text>
+</svg>
