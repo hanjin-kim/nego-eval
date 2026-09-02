@@ -254,9 +254,17 @@ probe offers the candidate: the expected-value comparison is not free. Qwen3-8B
 with reasoning gets the opening pick right 0.75-0.88 of the time on a problem
 with no history in it and three printed pairs to compare.
 
-Which raises a question about what this board measures. It was built for
-memory, roughly 85% of total profit comes from quote-sheet arithmetic, and the
-place the models lose is the arithmetic.
+That is a claim about the models, not about the board. The 85% was known and
+is the reason the readme reports surplus against the quote-sheet rule rather
+than total profit — the arithmetic is already netted out of the scale, and the
+model table's columns are "vs the rule" and "vs quote sheet only" rather than a
+share of the 165. An earlier draft of this section read the split as though it
+were a discovery about what the benchmark measures. It is a design decision the
+benchmark already made, and that reading is withdrawn.
+
+What the probe does add is about this deployment: the model these runs trained
+had no way to do the arithmetic at all, which is why its -574 says nothing
+about the relational margin.
 
 ## Cost
 
