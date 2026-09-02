@@ -96,13 +96,21 @@ class Roll:
         self.d = Driver(seed, **preset)
         self.answers: list[dict] = []
         self.firsts: list[str] = []
+        self.unparsed = 0
+        self.round_of: list[int] = []     # answer index -> index into rewards()
+        self._game, self._t = -1, 0
         for a in replay or []:
             self._record(a)
 
     def _record(self, answer: dict) -> None:
         p = self.d.pending
-        if p is not None and p.kind == 'choose' and p.data['t'] == 0:
-            self.firsts.append(str(answer.get('seller', '')).strip())
+        if p is not None and p.kind == 'choose':
+            if p.data['t'] == 0:
+                self._game += 1
+                self.firsts.append(str(answer.get('seller', '')).strip())
+            self._t = p.data['t']
+        # a bargain belongs to the round of the pick that opened it
+        self.round_of.append(max(self._game, 0) * self.d.rounds + self._t)
         self.answers.append(answer)
         self.d.step(answer)
 
@@ -120,7 +128,9 @@ def play_all(trainer, rolls: list[Roll], cap: int = 4000) -> None:
             return
         _, completions, _ = generate(trainer, [r.d.pending.text for r in live])
         for r, c in zip(live, completions):
-            r._record(_parse_json(tok.decode(c, skip_special_tokens=True)))
+            answer = _parse_json(tok.decode(c, skip_special_tokens=True))
+            r.unparsed += not answer
+            r._record(answer)
     raise RuntimeError('rollouts did not terminate inside the step cap')
 
 
@@ -151,12 +161,66 @@ def evaluate(trainer, preset: dict, n: int, start: int = 900_000,
                 gk.append(sum(int(f == key) for f in r.firsts[1:]) / (len(r.firsts) - 1))
     return dict(
         surplus=st.mean(surp), n=len(surp),
+        unparsed=sum(r.unparsed for r in rolls) / max(sum(len(r.answers) for r in rolls), 1),
         se=st.stdev(surp) / len(surp) ** 0.5 if len(surp) > 1 else 0.0,
         g1=st.mean(g1) if g1 else float('nan'),
         gk=st.mean(gk) if gk else float('nan'))
 
 
-def make_rollout(preset: dict, log=print):
+def window_reward(roll: 'Roll', cut: int, horizon: int) -> float:
+    """The dense residual over the rounds a decision can still reach.
+
+    A branch's whole-match total is the return-to-go up to a constant the group
+    mean removes, which is correct and still nearly useless: the decision being
+    scored is worth 10-50 and the thirty-odd that follow it carry a match SD of
+    200-650, so one sample says almost nothing. Truncating the horizon trades
+    the credit that arrives late for a variance a group of eight can actually
+    resolve.
+
+    `horizon <= 0` restores the whole-match total, so the two are one flag apart
+    and a run that changes it changes nothing else.
+    """
+    if horizon <= 0:
+        return roll.d.reward()
+    per = roll.d.rewards()
+    start = roll.round_of[cut]
+    return sum(per[start:start + horizon])
+
+
+def curve_callback(trainer, preset: dict, n: int, every: int, path: str):
+    """Re-measure the eval seeds every `every` steps.
+
+    Two points cannot show a trend, and the per-step training reward cannot
+    either: each step draws different boards, and board variance (a match-level
+    SD of 200-650) swamps whatever the policy is doing. Only the same seeds,
+    re-measured, say whether the thing is improving.
+    """
+    import json
+
+    from transformers import TrainerCallback
+
+    class Curve(TrainerCallback):
+        rows: list[dict] = []
+
+        def on_step_end(self, args, state, control, **kw):
+            if every <= 0 or state.global_step % every:
+                return
+            # the engine syncs at the start of a rollout, so it is holding the
+            # policy from before this step until told otherwise
+            trainer.vllm_generation.sync_weights()
+            out = evaluate(trainer, preset, n)
+            out['step'] = state.global_step
+            self.rows.append(out)
+            json.dump(self.rows, open(path, 'w'), indent=1)
+            print(f"  [평가] step {state.global_step:>3}"
+                  f"  잉여 {out['surplus']:+7.0f} ± {out['se']:.0f}"
+                  f"  g1 {out['g1']:.2f}  gk {out['gk']:.2f}"
+                  f"  미파싱 {out['unparsed']:.1%}", flush=True)
+
+    return Curve()
+
+
+def make_rollout(preset: dict, horizon: int = 0, log=print):
     """The `rollout_func` TRL calls once per generation batch.
 
     Rows are grouped by board rather than assumed: TRL hands over the batch it
@@ -191,11 +255,14 @@ def make_rollout(preset: dict, log=print):
                          [_parse_json(tok.decode(c, skip_special_tokens=True))])
                     for s, c in zip(seeds, completion_ids)]
         play_all(trainer, branches)
-        rewards = [b.d.reward() for b in branches]
+        rewards = [window_reward(b, cut, horizon)
+                   for b, cut in zip(branches, [cuts[s] for s in seeds])]
 
-        log(f"  step {trainer.state.global_step}  rows {len(seeds)}"
-            f"  boards {len(uniq)}  reward {sum(rewards) / len(rewards):+.0f}",
-            flush=True)
+        turns = sum(len(b.answers) for b in branches)
+        bad = sum(b.unparsed for b in branches)
+        log(f"  step {trainer.state.global_step:>3}  rows {len(seeds)}"
+            f"  boards {len(uniq)}  reward {sum(rewards) / len(rewards):+7.0f}"
+            f"  미파싱 {bad / max(turns, 1):.1%}", flush=True)
         return dict(prompt_ids=prompt_ids, completion_ids=completion_ids,
                     logprobs=logprobs, rollout_reward=rewards)
 

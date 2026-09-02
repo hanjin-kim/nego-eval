@@ -7,7 +7,7 @@ wrong index would corrupt the importance ratio without raising anything.
 """
 import pytest
 
-from grpo import Roll, _sampled_logprobs
+from grpo import Roll, _sampled_logprobs, window_reward
 from nego_eval.rl.vf_env import Driver
 
 PRESET = dict(rounds=2, games=2)
@@ -80,3 +80,48 @@ def test_sampled_logprob_falls_back_to_the_first_entry():
 def test_flat_logprobs_pass_through():
     got = _sampled_logprobs(completion_ids=[[11, 22]], logprobs=[[-0.5, -2.0]], token_ids=None)
     assert got == [[-0.5, -2.0]]
+
+
+def test_every_answer_maps_to_a_round():
+    _, answers, _ = _record()
+    r = Roll(SEED, PRESET, answers)
+    assert len(r.round_of) == len(answers)
+    assert r.round_of[0] == 0
+    assert r.round_of == sorted(r.round_of)
+    assert max(r.round_of) == PRESET['rounds'] * PRESET['games'] - 1
+
+
+def test_a_bargain_is_credited_to_the_round_that_opened_it():
+    """Only a pick carries `t`, so a settlement inherits the round above it."""
+    d = Driver(SEED, **PRESET)
+    r = Roll(SEED, PRESET)
+    kinds = []
+    while not r.d.done:
+        kinds.append(r.d.pending.kind)
+        r._record(_scripted(r.d.pending))
+    for i, kind in enumerate(kinds):
+        if kind == 'bargain':
+            assert r.round_of[i] == r.round_of[i - 1]
+
+
+def test_no_horizon_is_the_whole_match():
+    _, answers, reward = _record()
+    r = Roll(SEED, PRESET, answers)
+    assert window_reward(r, 0, 0) == reward
+    assert window_reward(r, 0, -1) == reward
+
+
+def test_a_horizon_past_the_end_is_the_whole_match():
+    """The dense residuals sum to the terminal one, so a wide window is it."""
+    _, answers, reward = _record()
+    r = Roll(SEED, PRESET, answers)
+    wide = PRESET['rounds'] * PRESET['games'] + 5
+    assert window_reward(r, 0, wide) == pytest.approx(reward)
+
+
+def test_a_narrow_window_is_a_strict_slice():
+    _, answers, _ = _record()
+    r = Roll(SEED, PRESET, answers)
+    per = r.d.rewards()
+    assert window_reward(r, 0, 1) == pytest.approx(per[0])
+    assert window_reward(r, 0, 2) == pytest.approx(sum(per[:2]))

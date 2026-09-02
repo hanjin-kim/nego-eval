@@ -21,6 +21,11 @@ ap.add_argument('--iters', type=int, default=120)
 ap.add_argument('--eval-n', type=int, default=96)
 ap.add_argument('--boards', type=int, default=1024, help='training seeds to draw from')
 ap.add_argument('--out', default='deploy/out')
+ap.add_argument('--eval-every', type=int, default=15)
+ap.add_argument('--curve-n', type=int, default=48)
+ap.add_argument('--horizon', type=int, default=0,
+                help='rounds of dense residual to credit a decision with; '
+                     '0 is the whole-match total')
 a = ap.parse_args()
 os.makedirs(a.out, exist_ok=True)
 
@@ -29,19 +34,23 @@ from datasets import Dataset
 from peft import LoraConfig
 from trl import GRPOConfig, GRPOTrainer
 
-from grpo import evaluate, make_rollout, reward_from_rollout
+from grpo import curve_callback, evaluate, make_rollout, reward_from_rollout
 from nego_eval.rl.vf_env import EVAL, TRAIN
 
 GEN = 8                                  # branches per frozen prefix
 cfg = GRPOConfig(
     output_dir=f"{a.out}/run",
     max_steps=a.iters,
-    learning_rate=5e-6,                  # LoRA; 1e-5 halved entropy in one step
+    learning_rate=1e-5,                  # LoRA, not a full fine-tune
     num_generations=GEN,
     per_device_train_batch_size=GEN,
     gradient_accumulation_steps=GEN,     # 64 branches, 8 boards, per step
     max_completion_length=64,
-    temperature=0.9,
+    temperature=1.2,                     # exploration, not the eval setting:
+                                         # at 0.9 a quarter to a half of the groups
+                                         # came back with every branch scoring the
+                                         # same, and a group with no spread
+                                         # contributes no gradient at all
     bf16=True,
     gradient_checkpointing=True,
     use_vllm=True,
@@ -58,10 +67,12 @@ trainer = GRPOTrainer(
     reward_funcs=reward_from_rollout,
     args=cfg,
     train_dataset=rows,
-    rollout_func=make_rollout(TRAIN),
+    rollout_func=make_rollout(TRAIN, a.horizon),
     peft_config=LoraConfig(r=16, lora_alpha=32, lora_dropout=0.0,
                            target_modules='all-linear', task_type='CAUSAL_LM'),
 )
+trainer.add_callback(curve_callback(trainer, EVAL, a.curve_n, a.eval_every,
+                                    f"{a.out}/curve.json"))
 
 
 def measure(tag):
