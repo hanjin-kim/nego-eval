@@ -57,7 +57,7 @@ second would be selective, so both are here.
 | learning rate | 5e-6 | 1e-5 | 1e-5 |
 | reward horizon | whole match | whole match | 8 rounds |
 | evaluation | before, after | + every 15 steps | + every 15 steps |
-| outcome | stopped at step 41 | verdict failed, 2 of 3 | — |
+| outcome | stopped at step 41 | verdict failed, 2 of 3 | stopped at step 45 |
 
 Run 3 differs from run 2 in the horizon and nothing else.
 
@@ -94,6 +94,55 @@ once.
 
 So run 2 is not just a flat control. It is a weak replication of the pathology
 that motivated the dense reward in the first place, which is what run 3 tests.
+
+### Run 3, stopped early
+
+The prediction was that the eight-round horizon would move the surplus by more
+than +40, which run 2 had excluded for itself. It moved it by -74.6 +/- 4.6
+over thirty steps — sixteen sigma the other way, on a fit whose residuals are
+under four points against values near seven hundred. Extrapolated over the full
+hundred and twenty that is about -300. The run was stopped at step 45 because a
+conclusion at sixteen sigma does not need five more evaluations.
+
+| step | surplus | g1 | gk |
+|---|---|---|---|
+| 15 | -692 +/- 73 | 0.25 | 0.38 |
+| 30 | -734 +/- 80 | 0.19 | 0.28 |
+| 45 | -767 +/- 80 | 0.08 | 0.35 |
+
+g1 fell 0.25 to 0.08 — the opening move, with no history behind it, collapsing
+while the run went down. Run 2 showed the same two numbers moving the same way
+and much more weakly. Truncating the horizon did not fix that; it sharpened it.
+
+**The prediction is refuted and the diagnosis with it.** The signal-to-noise
+argument was sound as arithmetic — a group of eight resolves 0.85 sigma better
+than 0.44 — and it was the wrong thing to be fixing. Reward shaping selects
+among the variation a policy already produces. This policy scores 0.44 on the
+opening pick against a 0.53 bar for naming one seller every time, so it is not
+producing decisions to select among; it is answering from a name preference,
+and both reward shapes did nothing but harden that preference. The g1 collapse
+is what hardening looks like.
+
+So the binding constraint was never the horizon and never the temperature. It
+was that thinking had been switched off to fit a 64-token budget, which left
+the model unable to do the board's arithmetic at all, and switching it back on
+costs seventy times the tokens. Nothing about the environment or the method is
+implicated. The substrate was wrong, and it was wrong from run 1.
+
+### What a real attempt would need
+
+- A model that plays without a reasoning pass, so the handicap disappears
+  rather than being paid for. Anything at or above the published table's floor
+  would do; the point is to start inside the range where the relational margin
+  is reachable.
+- `scripts/noise_taxes_relationship.py` puts that threshold at about 0.80 pick
+  accuracy. Above it the relational margin holds at 102-115; below it the
+  margin itself starts to go, 80 at 0.70 and 60 at 0.50. A model under the
+  threshold cannot reach the thing being trained for, whatever the reward.
+- Per-round logging of the pick and of whether the offer was taken or
+  countered. Without it a score cannot be split between the two channels, which
+  is the open question left here and the reason the published rows cannot be
+  read as being about the record.
 
 ### What run 3 has to do, written before it ran
 
