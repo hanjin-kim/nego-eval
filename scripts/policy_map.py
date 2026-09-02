@@ -30,6 +30,14 @@ def _sticky(pos):
     return h[0].seller if h else _cheapest(pos)
 
 
+def _evbest(pos):
+    """What the null picks: expected value on the posted delivery rate."""
+    def ev(q):
+        r = q.rate if q.rate is not None else 0.70
+        return r * (150 - q.price) - (1 - r) * 110
+    return max(pos.data['quotes'], key=ev).seller
+
+
 def _random(pos, rng):
     return rng.choice(list(pos.legal))
 
@@ -46,13 +54,21 @@ def _half(pos):
     return {'accept': False, 'ask': want}
 
 
+def _null(pos):
+    """What the null does: hold out for the whole loss, concede at the buzzer."""
+    if pos.data['offer'] >= pos.data['loss'] or pos.data['r'] == pos.data['max_rounds']:
+        return {'accept': True, 'ask': pos.data['offer']}
+    return {'accept': False, 'ask': pos.data['loss']}
+
+
 def _greedy(pos):
     """Never settle for less than the whole loss. A plausible failure mode."""
     return {'accept': False, 'ask': pos.data['loss']}
 
 
-PICKS = {'cheapest': _cheapest, 'sticky': _sticky, 'random': _random}
-SETTLES = {'accept': _accept, 'half': _half, 'greedy': _greedy}
+PICKS = {'evbest': _evbest, 'cheapest': _cheapest,
+         'sticky': _sticky, 'random': _random}
+SETTLES = {'null': _null, 'half': _half, 'accept': _accept, 'greedy': _greedy}
 
 
 def score(pick, settle, n, start, preset, seed=0):
@@ -89,3 +105,16 @@ if __name__ == '__main__':
     rows.sort(reverse=True)
     print(f"\n  best  {rows[0][1]}/{rows[0][2]}  {rows[0][0]:+.0f}")
     print(f"  worst {rows[-1][1]}/{rows[-1][2]}  {rows[-1][0]:+.0f}")
+
+    # The null is evbest/null and scores 0 by construction. Splitting its lead
+    # says which of the two decisions an optimiser has to fix first.
+    at = {(pn, sn): m for m, pn, sn, _ in rows}
+    print("\n  널의 우위를 채널로 쪼개면:")
+    for hold, label in (('null', '합의를 널로 고정, 고르기만 바꿈'),
+                        ('accept', '합의는 수용, 고르기만 바꿈')):
+        d = at[('evbest', hold)] - at[('cheapest', hold)]
+        print(f"    {label:<34}{d:+8.0f}")
+    for hold, label in (('evbest', '고르기를 널로 고정, 합의만 바꿈'),
+                        ('cheapest', '고르기는 최저가, 합의만 바꿈')):
+        d = at[(hold, 'null')] - at[(hold, 'accept')]
+        print(f"    {label:<34}{d:+8.0f}")
