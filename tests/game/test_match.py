@@ -200,3 +200,38 @@ def test_a_stranger_can_still_concede():
         for x in cast4(seed, loss=LOSS)[0]():
             if x.floor > 0:
                 assert x.respond(LOSS, LOSS, 1, [], remaining=12, cooloff=3) > 0
+
+
+def test_the_record_does_not_determine_what_a_seller_will_concede():
+    """A known limit, pinned so it is a decision rather than a surprise.
+
+    A seller's concession tracks this buyer's share of the last `loyalty_window`
+    rounds. The record shows lifetime counts. Two histories with byte-identical
+    ledgers therefore differ in what the seller will pay, and an agent cannot
+    tell them apart from the position it is given.
+
+    Every agent measured on this board faced the same gap, so the published
+    comparison holds. A board built fresh should state the recent window; doing
+    it here would invalidate every figure already reported. If someone closes
+    this — one line in the ledger — this test should fail, and the numbers should
+    be re-measured before it is deleted.
+    """
+    from nego_eval.sim.agents import LLMBuyer
+    from nego_eval.sim.world import Outcome
+
+    def rounds(names):
+        return [Outcome(t=i, seller=n, price=100, failed=False, loss=0,
+                        buyer_share=0, seller_share=0, buyer_profit=40,
+                        seller_profit=26) for i, n in enumerate(names)]
+
+    early, late = rounds(['A'] * 8 + ['B'] * 8), rounds(['B'] * 8 + ['A'] * 8)
+    led = LLMBuyer()._ledger
+    counts = lambda h: sorted(l for l in led(h).splitlines() if not l.startswith('last'))
+    assert counts(early) == counts(late)
+
+    s = ScriptedSeller('A', 98, cost=28, reliability=0.8, care_bonus=0.0,
+                       health_couples=False, share=0.2, floor=0.5,
+                       floor_care=0.4, seed=0)
+    a = s.respond(LOSS, LOSS, 1, early, remaining=12, cooloff=3)
+    b = s.respond(LOSS, LOSS, 1, late, remaining=12, cooloff=3)
+    assert a != b, (a, b)

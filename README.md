@@ -117,6 +117,13 @@ Stated because a reader will find these anyway, and should find them here first.
 - **No courts, no insurance, no Incoterms.** Consequential loss often *is*
   allocated in advance in real contracts. This board is the case where it was
   not.
+- **The record is not a sufficient statistic.** How much a seller concedes
+  depends on the buyer's share of the *last eight* rounds; the record shows
+  lifetime counts. Two histories with identical ledgers can differ by 33 in what
+  a seller will pay on a loss of 110. Every agent measured here faced the same
+  gap, so the comparison holds — but an agent is being asked to build a
+  relationship whose mechanism it can only partly see. One line stating the
+  recent window would close it, at the cost of re-measuring everything.
 - **The horizon is known.** The agent is told how many rounds remain, which
   sharpens endgame behaviour in a way an open-ended relationship does not.
 

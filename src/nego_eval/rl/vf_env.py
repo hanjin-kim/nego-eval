@@ -22,6 +22,23 @@ later cannot teach the one decision that has no history behind it. Paid out roun
 by round — the same total, the same control variate — the same learner reaches
 −44. Every round of the baseline is played anyway, so the dense form is free.
 
+**The position is not a sufficient statistic, and that is a known limit.** How
+much a seller will concede depends on this buyer's share of the *last eight*
+rounds; the record shows lifetime counts. Two histories with identical ledgers —
+eight rounds with A then eight with B, or the reverse — differ by 33 in what A
+will pay on a loss of 110, and nothing in the prompt separates them. An agent is
+asked to build a relationship whose mechanism it can only partly see.
+
+Leaving the transcript in would recover part of it, since an agent could read its
+own recent picks back out. That is not why the transcript was cut, and it is not
+a good reason to keep it: a buyer knows who it has been buying from without
+consulting a log. The clean fix is one more line in the record — "of your last
+eight rounds: C x5, A x2, B x1" — and it is not applied here because every
+published figure was measured without it, and re-measuring seven models is not
+free. The environment is partially observable in this specific way, every agent
+measured on it faced the same, and the comparison is sound; a board built fresh
+should include the line.
+
 **The episode is short on purpose.** Cost here is sequential depth: nothing
 inside a match parallelises, and forty-eight rounds is about seventy calls in a
 row. Four games of six rounds is thirty-five, and the effect it has to preserve
