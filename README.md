@@ -195,6 +195,29 @@ paired, −1.3 sigma — but the misstatement about the price flips which seller
 maximises expected value on 7 of 48 boards, so the table should be re-measured
 before it is leaned on.
 
+**A deficit here does not say what it is made of.** A score is one number and
+three things move it: how reliably the buyer picks the expected-value best
+seller, how it settles a failure, and what the relationship earns it. Two very
+different accounts fit gemini's −66 equally well.
+
+| | picking | settling | relationship | total |
+|---|---|---|---|---|
+| one story | 0.91 accuracy, −71 | like the null, 0 | 0 | −66 |
+| another | perfect, 0 | takes what is offered, −194 | **+128** | −66 |
+
+Under the second, the model is *gaining* from the relationship and losing more
+than that elsewhere. The score cannot tell them apart, and it does not even fix
+the sign of the relational term. The three figures come from
+`scripts/accuracy_to_profit.py`, `scripts/policy_map.py` and
+`scripts/noise_taxes_relationship.py`, all replayed on the same board.
+
+So these rows should not be read as measuring how well a model uses the record.
+They measure a sum. Splitting it needs the pick and the settlement logged every
+round — the model's choice, the expected-value best at that moment, and whether
+the offer was taken or countered — which leaves the relationship as a residual
+with a sign. `run_fullplay4.py` keeps only per-seed profit and discards the
+rounds, so it cannot be recovered from `data/`; it has to be re-measured.
+
 Pairing matters more than it looks. Match-level spread is two to six hundred, and
 one early seed was worth +530 to a policy that consults nothing at all — so a
 model's mean against a reference mean computed on other seeds would mostly
