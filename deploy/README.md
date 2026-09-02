@@ -51,12 +51,15 @@ after the numbers are known.
 There were two, and they are two experiments rather than one. Reporting only the
 second would be selective, so both are here.
 
-| | run 1 | run 2 |
-|---|---|---|
-| rollout temperature | 0.9 | 1.2 |
-| learning rate | 5e-6 | 1e-5 |
-| evaluation | before, after | before, after, and every 15 steps |
-| outcome | stopped at step 41 | — |
+| | run 1 | run 2 | run 3 |
+|---|---|---|---|
+| rollout temperature | 0.9 | 1.2 | 1.2 |
+| learning rate | 5e-6 | 1e-5 | 1e-5 |
+| reward horizon | whole match | whole match | 8 rounds |
+| evaluation | before, after | + every 15 steps | + every 15 steps |
+| outcome | stopped at step 41 | surplus -5.2 +/- 39.0 | — |
+
+Run 3 differs from run 2 in the horizon and nothing else.
 
 Run 1 was stopped rather than finished. Two things came out of it, both worth
 keeping:
@@ -71,6 +74,28 @@ keeping:
   match-level SD is 200-650, so board variance swamps the policy. Only the same
   seeds, re-measured, can show a trend — which is why run 2 has a curve and run 1
   did not.
+
+### What run 3 has to do, written before it ran
+
+Run 2 is a control, and a control is only worth the hour if it makes the next
+run refutable. Over steps 15-75 it moved the surplus by -5.2 +/- 39.0, fitted
+on the scatter of the points around a line rather than on the per-point error
+bars, which are the spread across boards and cancel because every point is
+measured on the same boards.
+
+So run 2 rules out movement larger than roughly forty. `scripts/reward_snr.py`
+puts the eight-round horizon at three times the per-group signal of the
+whole-match one, 1.31 sigma against 0.43. If the signal-to-noise of the reward
+is what was binding, run 3 should move the surplus by more than +40 over the
+same span, which run 2 has already excluded for itself.
+
+If run 3 also lands inside +/- 40, then the ratio was not the binding
+constraint and the next thing to suspect is the model: Qwen3-8B with thinking
+disabled sits at -574, below every model in the published table, and the
+handicap was introduced by this deployment rather than by the board.
+
+This prediction is separate from the verdict in `scripts/verdict.py`, which is
+unchanged and still requires all three of its numbers.
 
 ### The gap that made a second run necessary
 
