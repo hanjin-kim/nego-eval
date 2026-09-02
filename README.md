@@ -309,16 +309,65 @@ looked settled; it was not.
 
 ---
 
+## Training on it
+
+The board is packaged as a `verifiers` environment in `src/nego_eval/rl/`, and
+`deploy/` holds what it takes to run GRPO against it on one rented H100. Three
+runs happened. None of them improved anything, and the useful part is why.
+
+**A row is a turn, not a match.** The environment hands the model `[system] +
+the current position` and nothing else. Flattening a match into one training
+sequence would let round 2 attend to round 1's text, which at inference it
+cannot see — training a model to lean on information it will not have is the
+failure this board exists to measure. So the rollout freezes a prefix and
+branches `num_generations` ways from one cut point. The prefix is shared inside
+a group, so GRPO's group mean removes its contribution exactly, and the
+whole-match total is the return-to-go up to that constant.
+
+**Run 2 moved nothing, and the shape of the nothing was predicted.** Eight
+evaluation points on fixed seeds fit a trend of −29.8 ± 24.4. The verdict in
+`scripts/verdict.py`, written before any of it ran, failed two of three: `g1`
+fell 0.375 to 0.323 while `gk − g1` rose 0.080 to 0.128 — the opening move with
+no history behind it got worse while the ledger appeared to start helping. That
+is the terminal-reward signature the tabular study recorded, and whole-match
+reward is terminal reward.
+
+**The reason is a ratio.** `scripts/reward_snr.py` freezes a prefix, takes each
+legal seller, and plays the tail out. Best minus worst, in tail standard
+deviations: 0.44 on the whole match, 0.85 over eight rounds, 4.75 over two. A
+group of eight has a mean standard error of 0.35 SD, so the whole-match reward
+offers about 1.2 sigma per group. Eight rounds is the shortest window that
+still spans a game boundary, which is where carry-over lives.
+
+**The model was not playing the board.** Thinking was turned off to fit a
+64-token budget. On the opening pick — no history, the answer a pure function
+of the quote sheet — Qwen3-8B scores 0.44 with thinking off against a bar of
+0.53, because naming one seller every time already scores that. With reasoning
+it scores 0.75–0.88, and its spread of picks matches the answer key's rather
+than a name preference. So the runs were optimising a model with no way to do
+the board's arithmetic, which is where `scripts/policy_map.py` had placed it
+independently: on top of random-pick-and-accept-everything.
+
+Turning it back on is not free. One decision with reasoning costs upward of
+four thousand tokens against a rollout of thirty-five decisions, which puts
+GRPO with thinking on outside a rented-hour budget rather than merely dearer.
+That trade is not resolved here.
+
+`deploy/README.md` carries all three runs, what changed between them, and the
+prediction each was measured against.
+
 ## Layout
 
 ```
 src/nego_eval/
   sim/       world, bargaining, agents, the learned baseline, the LLM client
   game/      the board, the denomination grid, the match runner, the contract
+  rl/        the board as a verifiers environment, for training on
 scripts/     every measurement in the write-up, one file each
 data/        the numbers those scripts produced
-tests/       34 invariants — 16 on the settlement rules, 18 on the game
+tests/       66 invariants, including the prompt against the rules it describes
 notes/       the write-up
+deploy/      running GRPO against it on a rented card
 ```
 
 Each module's docstring says what went wrong before it looked like that. That is
