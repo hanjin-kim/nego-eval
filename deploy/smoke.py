@@ -20,6 +20,11 @@ url = f"http://127.0.0.1:{a.port}/v1/chat/completions"
 def ask(text):
     r = httpx.post(url, json={
         'model': a.model, 'temperature': 0.7, 'max_tokens': 64,
+        # Reasoning off. Qwen3 opens with <think> and does not finish inside 512
+        # tokens on this prompt, so every reply came back truncated mid-thought
+        # with no JSON in it — 31 of 31 unparsed on the first real rollout.
+        # Harmless where the server does not know the flag.
+        'chat_template_kwargs': {'enable_thinking': False},
         'messages': [{'role': 'system', 'content': SYSTEM},
                      {'role': 'user', 'content': text}]}, timeout=60)
     r.raise_for_status()
