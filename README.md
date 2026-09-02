@@ -397,6 +397,32 @@ Each module's docstring says what went wrong before it looked like that. That is
 deliberate: most of the design here is scar tissue, and the scars are the part
 worth reading.
 
+## What would move this forward
+
+Two questions are open, and neither is open for want of effort.
+
+**Splitting a score into its channels.** The model table reports a sum — picking
+arithmetic, settlement, and whatever the relationship earned — and one number
+cannot separate them, so those rows cannot be read as measuring how well a model
+uses the record. Separating them needs the pick and the settlement logged every
+round: the model's choice, the expected-value best seller at that moment, and
+whether the offer was taken or countered. That is a re-run of the seven models,
+about 850 calls each for twelve matches, and the cost is dominated by reasoning
+tokens rather than by call count. `run_fullplay4.py` keeps only per-seed profit,
+so it cannot be recovered from `data/`.
+
+**Training something that can play it.** The board is packaged for RLVR in
+`src/nego_eval/rl/` and three GRPO runs are recorded in `deploy/`. None
+improved anything, for a reason no reward shape reaches: the models with the
+pick accuracy — all above 0.9 implied — are the ones whose weights are closed,
+and the ones that can be fine-tuned score at or below what naming one seller
+every time would score. Reasoning is what buys the arithmetic, and leaving it on
+costs about seventy times the tokens.
+
+If you have inference credits, access to open weights that clear roughly 0.80
+pick accuracy on `scripts/thinking_probe.py`, or you want to use the board for
+something else, open an issue. The commit log has an address if that is easier.
+
 ---
 
 ## License
