@@ -298,11 +298,44 @@ def load_environment(n_train: int = 2000, n_eval: int = 200, preset: str = 'trai
 
     import verifiers as vf
     from datasets import Dataset
+    from verifiers.legacy.utils.message_utils import (concat_messages,
+                                                      maybe_normalize_messages)
 
     shape = EVAL if preset == 'eval' else TRAIN
 
     class NegoEnv(vf.MultiTurnEnv):
-        def setup_state(self, state):
+        """Each turn is scored on its own position, not on the transcript.
+
+        The default rollout hands the model everything said so far. Here that is
+        pure repetition: a prompt already carries the whole ledger and the whole
+        quote sheet, so by the last turn of a training match the context is about
+        4,400 tokens of which nearly all is restated. Measured over a rollout it
+        is 73,000 tokens processed against 8,900 — eight times the compute for
+        the same information, and nineteen times on the evaluation preset.
+
+        It is also cleaner. With the transcript attached, a model can answer from
+        what it said three turns ago rather than from the record, and "I picked B
+        before" is exactly the shortcut this environment exists to distinguish
+        from reading a ledger. Cut, every decision is taken on the position, which
+        is the condition the frozen probe measures under.
+
+        The docstring on the method being overridden invites this: "override for
+        rollouts with non-linear message sequences."
+        """
+
+        async def get_prompt_messages(self, state):
+            if not state["trajectory"]:
+                return state["prompt"]
+            last = state["trajectory"][-1]
+            seen = concat_messages([last["prompt"], last["completion"]])
+            reply = await self.env_response(seen, state)
+            reply = maybe_normalize_messages(reply, field_name="env_response")
+            head = [m for m in state["prompt"] if _role(m) == "system"]
+            return concat_messages([head, reply])
+
+        # awaited by the base rollout, so all three hooks are coroutines even
+        # though nothing in them blocks
+        async def setup_state(self, state):
             info = state['input'].info
             info = _json.loads(info) if isinstance(info, str) else info
             state['task'] = dict(state.get('task') or {})
@@ -310,11 +343,11 @@ def load_environment(n_train: int = 2000, n_eval: int = 200, preset: str = 'trai
                                              info['games'])
             return state
 
-        def is_completed(self, state, **kw):
+        async def is_completed(self, state, **kw):
             d = state['task'].get('driver')
             return d is None or d.done
 
-        def env_response(self, messages, state, **kw):
+        async def env_response(self, messages, state, **kw):
             d = state['task']['driver']
             last = messages[-1] if messages else None
             answer = self.parser.parse_answer(messages) if self.parser else None
@@ -323,7 +356,8 @@ def load_environment(n_train: int = 2000, n_eval: int = 200, preset: str = 'trai
             d.step(answer)
             if d.done:
                 return []
-            return [{'role': 'user', 'content': d.pending.text}]
+            # typed, not a raw dict: the library revalidates dicts on every turn
+            return [vf.UserMessage(role='user', content=d.pending.text)]
 
     @vf.reward
     def surplus(state, **kw) -> float:
@@ -354,6 +388,10 @@ def load_environment(n_train: int = 2000, n_eval: int = 200, preset: str = 'trai
         max_turns=shape['rounds'] * shape['games'] * 4 + 4,
         **kwargs,
     )
+
+
+def _role(m) -> str:
+    return m.get('role') if isinstance(m, dict) else getattr(m, 'role', '')
 
 
 def _parse_json(text: str) -> dict:
