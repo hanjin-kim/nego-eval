@@ -84,15 +84,47 @@ bars, which are the spread across boards and cancel because every point is
 measured on the same boards.
 
 So run 2 rules out movement larger than roughly forty. `scripts/reward_snr.py`
-puts the eight-round horizon at three times the per-group signal of the
-whole-match one, 1.31 sigma against 0.43. If the signal-to-noise of the reward
-is what was binding, run 3 should move the surplus by more than +40 over the
-same span, which run 2 has already excluded for itself.
+puts the eight-round horizon above the whole-match one, 0.85 against 0.44 on
+the ratio of averages. If the signal-to-noise of the reward is what was
+binding, run 3 should move the surplus by more than +40 over the same span,
+which run 2 has already excluded for itself.
+
+An earlier reading of the same script said three times rather than twice. That
+was a mean of per-board ratios, which overweights boards whose tail spread
+happens to be small; the ratio of averages is what an optimiser actually sees
+across a batch, and it is the more conservative of the two. The +40 line comes
+from run 2's exclusion rather than from the ratio, so it stands — but a
+doubling is a thinner reed than a tripling, and if run 3 lands just outside the
+interval that is weak evidence rather than a demonstration.
 
 If run 3 also lands inside +/- 40, then the ratio was not the binding
 constraint and the next thing to suspect is the model: Qwen3-8B with thinking
 disabled sits at -574, below every model in the published table, and the
 handicap was introduced by this deployment rather than by the board.
+
+Those two suspects are not independent, and the same script says how much they
+overlap. Sweeping how often the tail plays at random, with the branched
+decision held fixed:
+
+| tail random | effect | tail SD | whole match | 8 rounds |
+|---|---|---|---|---|
+| 1.0 (where the model sits) | 64 | 148 | 0.44 | 0.85 |
+| 0.4 | 60 | 124 | 0.49 | 0.98 |
+| 0.2 | 64 | 93 | 0.69 | 1.42 |
+| 0.0 (the null's own play) | 65 | 0 | — | — |
+
+The decision is worth the same 60-65 whichever policy follows it. What changes
+is the spread it has to be seen through, and that spread is manufactured by the
+policy's own play over the thirty-odd turns after the branch. A weak policy
+makes its own credit assignment hard, which is a genuine chicken and egg.
+
+The size of it is the surprise. Going from a fully random tail to a
+sixty-percent-competent one buys almost nothing, 0.44 to 0.49; the tail has to
+be past eighty percent before it matters. At the level this model is actually
+at, the horizon is doing more than the baseline is. The baseline is the larger
+problem for what the run can conclude — `surplus > 0` is out of reach and 85%
+of the gap is quote-sheet competence rather than the relational margin the
+board measures — and the smaller one for whether it can learn at all.
 
 This prediction is separate from the verdict in `scripts/verdict.py`, which is
 unchanged and still requires all three of its numbers.

@@ -18,13 +18,25 @@ import sys
 sys.path.insert(0, 'src'); sys.path.insert(0, 'deploy')
 
 from grpo import Roll, window_reward
+from policy_map import _evbest, _null
 from nego_eval.rl.vf_env import TRAIN, Driver
 
 
+EPS = 1.0     # probability the tail plays at random; rebound from the CLI
+
+
 def _tail(pos, rng):
+    """The policy that plays the turns after the branched one.
+
+    `EPS = 1` is random-pick-and-accept, which is where policy_map.py puts the
+    trained model. `EPS = 0` is the null's own play. Everything in between is
+    the question the sweep asks: how competent does the tail have to be before
+    the decision under it becomes visible.
+    """
+    noisy = rng.random() < EPS
     if pos.kind == 'choose':
-        return {'seller': rng.choice(list(pos.legal))}
-    return {'accept': True, 'ask': pos.data['offer']}
+        return {'seller': rng.choice(list(pos.legal)) if noisy else _evbest(pos)}
+    return ({'accept': True, 'ask': pos.data['offer']} if noisy else _null(pos))
 
 
 def _prefix(seed, preset, cut, rng):
@@ -65,37 +77,57 @@ def sample(seed, preset, cut, pre, action, reps, base_seed=7):
     return out
 
 
-if __name__ == '__main__':
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--seeds', type=int, default=24)
-    ap.add_argument('--reps', type=int, default=40)
-    ap.add_argument('--cut', type=int, default=4)
-    a = ap.parse_args()
-
-    tot = {h: [] for h in HORIZONS}
+def measure(seeds, reps, cut):
+    """Effect and tail SD per horizon, averaged over boards."""
+    acc = {h: {'eff': [], 'sd': []} for h in HORIZONS}
     used = 0
-    for s in range(a.seeds):
-        seed = 500_000 + s
-        pre, legal = _first_choose(seed, TRAIN, a.cut)
+    for i in range(seeds):
+        seed = 500_000 + i
+        pre, legal = _first_choose(seed, TRAIN, cut)
         if pre is None:
             continue
         used += 1
         per = {h: {'m': [], 's': []} for h in HORIZONS}
         for name in legal:
-            got = sample(seed, TRAIN, len(pre), pre, {'seller': name}, a.reps)
+            got = sample(seed, TRAIN, len(pre), pre, {'seller': name}, reps)
             for h in HORIZONS:
                 per[h]['m'].append(st.mean(got[h]))
                 per[h]['s'].append(st.stdev(got[h]))
         for h in HORIZONS:
-            sd = st.mean(per[h]['s'])
-            tot[h].append((max(per[h]['m']) - min(per[h]['m'])) / sd if sd else 0.0)
+            acc[h]['eff'].append(max(per[h]['m']) - min(per[h]['m']))
+            acc[h]['sd'].append(st.mean(per[h]['s']))
+    return used, {h: (st.mean(v['eff']), st.mean(v['sd'])) for h, v in acc.items()}
 
-    print(f"  TRAIN preset, {used} boards, {a.reps} random tails per action.")
-    print("  How far apart the best and worst seller are, in tail standard"
-          " deviations.\n")
-    print(f"  {'horizon':<12}{'effect/SD':>11}")
-    base = st.mean(tot[0])
-    for h in HORIZONS:
-        v = st.mean(tot[h])
-        tag = '  (전체 매치)' if h == 0 else f'  x{v / base:.1f}'
-        print(f"  {(str(h) + ' rounds') if h else 'whole match':<12}{v:>11.3f}{tag}")
+
+def _ratio(eff, sd):
+    return f"{eff / sd:>8.2f}" if sd > 1e-9 else "       -"
+
+
+if __name__ == '__main__':
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--seeds', type=int, default=24)
+    ap.add_argument('--reps', type=int, default=40)
+    ap.add_argument('--cut', type=int, default=4)
+    ap.add_argument('--eps', type=float, nargs='*',
+                    default=[1.0, 0.7, 0.4, 0.2, 0.0],
+                    help='how often the tail plays at random; 1 is the model, '
+                         '0 is the null')
+    a = ap.parse_args()
+
+    print(f"  TRAIN preset, {a.reps} tails per action, cut at the first pick"
+          f" from turn {a.cut}.")
+    print("  Best minus worst seller, and the tail spread it has to be seen"
+          " through.\n")
+    print(f"  {'tail random':<14}{'horizon':<14}{'effect':>9}{'tail SD':>10}"
+          f"{'effect/SD':>10}")
+    for eps in a.eps:
+        globals()['EPS'] = eps
+        used, got = measure(a.seeds, a.reps, a.cut)
+        for h in (0, 8):
+            eff, sd = got[h]
+            label = 'whole match' if h == 0 else '8 rounds'
+            head = f"{eps:.1f}" if h == 0 else ''
+            print(f"  {head:<14}{label:<14}{eff:>9.0f}{sd:>10.0f}"
+                  f"{_ratio(eff, sd)}")
+        print()
+    print(f"  ({used} boards)")
