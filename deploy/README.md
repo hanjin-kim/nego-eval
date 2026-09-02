@@ -131,10 +131,17 @@ implicated. The substrate was wrong, and it was wrong from run 1.
 
 ### What a real attempt would need
 
-- A model that plays without a reasoning pass, so the handicap disappears
-  rather than being paid for. Anything at or above the published table's floor
-  would do; the point is to start inside the range where the relational margin
-  is reachable.
+- A model that both plays the board and can be trained, which is the part
+  nothing here has. Turning thinking off cost Qwen3-8B the arithmetic, but
+  "use a model that never had a reasoning pass" does not follow from that and
+  is not supported by anything measured. The table argues the other way:
+  haiku-4.5 and deepseek-chat sit at implied pick accuracies at or below
+  chance, so small models failing this arithmetic is already in the data.
+
+  The bind is that the models with the accuracy — terra, sol, fable, gemini,
+  all above 0.9 implied — are the ones whose weights are not available, and
+  the ones that can be fine-tuned are the ones that cannot play. No reward
+  shape crosses that, and runs 1 to 3 are three demonstrations of trying.
 - `scripts/noise_taxes_relationship.py` puts that threshold at about 0.80 pick
   accuracy. Above it the relational margin holds at 102-115; below it the
   margin itself starts to go, 80 at 0.70 and 60 at 0.50. A model under the
