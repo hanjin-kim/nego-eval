@@ -209,6 +209,55 @@ rollout is thirty-five decisions. That is seventy times the tokens the current
 setup uses, which puts GRPO with thinking on outside this budget rather than
 merely more expensive. The trade is real and it is not resolved here.
 
+### The published prompt contradicts the board, and it did not matter
+
+`LLMBuyer.SYSTEM`, which produced every model row in the readme, says two
+things the shipped rules do not support:
+
+- "you pay the price and a share of a loss" — `world.py` charges only the
+  share, with a comment saying so explicitly: no delivery, no price. Believing
+  the sentence inflates the cost of failure by the price, and on 7 of 48 eval
+  boards (15%) that flips which seller maximises expected value.
+- "Sellers do not publish their failure rates" — the very next message reads
+  `A=90 (published delivery rate 0.60), B=120 (0.80), C=110 (0.90)`.
+
+The second looked like it might explain the headline, because the hand-written
+rule uses nothing except those printed rates, so a sentence telling models to
+disregard them would hand the rule its win. Tested on the pod: same model, same
+32 boards, thinking on, the two system prompts against the seller the null
+takes.
+
+| | accuracy |
+|---|---|
+| thinking + the published prompt | 0.88 |
+| thinking + the corrected prompt | 0.75 |
+
+Paired, 24/32 against 28/32, three boards won against seven lost, -1.3 sigma.
+The contradictory prompt did not hurt; it scored higher inside the noise. The
+hypothesis is not supported and is withdrawn.
+
+The noise is worth stating because it bounds what was ruled out. The same
+thinking condition scored 0.78 in one probe and 0.88 in the next — same model,
+same boards, same settings, different samples at temperature 0.7. At n = 32
+nothing smaller than about 0.15 is visible here.
+
+Two limits. This is one model, one decision, and only the opening pick, so the
+prompt could still matter for the loss-split reasoning or for other models. And
+the arithmetic above stands on its own: the prompt does misstate the rules, and
+the fix belongs in the code whether or not it moved this number.
+
+**What the model table actually looks like.** The scores against the rule run
+-118 to -474 in a clean ordering by model strength. A defective sentence every
+model received equally would take a uniform bite; a spread that tracks
+capability is the signature of something the stronger models do better. The
+probe offers the candidate: the expected-value comparison is not free. Qwen3-8B
+with reasoning gets the opening pick right 0.75-0.88 of the time on a problem
+with no history in it and three printed pairs to compare.
+
+Which raises a question about what this board measures. It was built for
+memory, roughly 85% of total profit comes from quote-sheet arithmetic, and the
+place the models lose is the arithmetic.
+
 ## Cost
 
 Roughly 3,300 tokens processed per training rollout after the context cut. At

@@ -1,0 +1,1322 @@
+{
+ "summary": {
+  "plain": {
+   "accuracy": 0.4375,
+   "of_answered": 0.4375,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 15,
+   "picks": {
+    "C": 21,
+    "B": 3,
+    "A": 8
+   }
+  },
+  "parity": {
+   "accuracy": 0.5625,
+   "of_answered": 0.5625,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 45.875,
+   "picks": {
+    "C": 22,
+    "A": 7,
+    "B": 3
+   }
+  },
+  "think": {
+   "accuracy": 0.875,
+   "of_answered": 0.875,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 18429.90625,
+   "picks": {
+    "C": 15,
+    "A": 11,
+    "B": 6
+   }
+  },
+  "t_pub": {
+   "accuracy": 0.875,
+   "of_answered": 0.875,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 20271.6875,
+   "picks": {
+    "C": 16,
+    "A": 12,
+    "B": 4
+   }
+  },
+  "t_fix": {
+   "accuracy": 0.75,
+   "of_answered": 0.75,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 17585.4375,
+   "picks": {
+    "C": 15,
+    "A": 10,
+    "B": 7
+   }
+  },
+  "n": 32,
+  "both": 0.375,
+  "answer_key": {
+   "C": 17,
+   "A": 10,
+   "B": 5
+  },
+  "always_one_name": 0.53125
+ },
+ "rows": [
+  {
+   "seed": 900000,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 10827
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 20176
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15564
+   }
+  },
+  {
+   "seed": 900001,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 22353
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 22691
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 12816
+   }
+  },
+  {
+   "seed": 900002,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17785
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 19906
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 10340
+   }
+  },
+  {
+   "seed": 900003,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 22871
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 20246
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 26269
+   }
+  },
+  {
+   "seed": 900004,
+   "want": "C",
+   "plain": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 50
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 21789
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 24738
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 23114
+   }
+  },
+  {
+   "seed": 900005,
+   "want": "B",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 59
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12164
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 18773
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 22138
+   }
+  },
+  {
+   "seed": 900006,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 22494
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17898
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19447
+   }
+  },
+  {
+   "seed": 900007,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 47
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12160
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18033
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 10131
+   }
+  },
+  {
+   "seed": 900008,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 49
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 22614
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 24556
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 11991
+   }
+  },
+  {
+   "seed": 900009,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 49
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17604
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16221
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 11240
+   }
+  },
+  {
+   "seed": 900010,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 14359
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18496
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18286
+   }
+  },
+  {
+   "seed": 900011,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18092
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13091
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 11745
+   }
+  },
+  {
+   "seed": 900012,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 23010
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17962
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 28468
+   }
+  },
+  {
+   "seed": 900013,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 37
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18854
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19957
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13869
+   }
+  },
+  {
+   "seed": 900014,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 12560
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 23048
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 20136
+   }
+  },
+  {
+   "seed": 900015,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13009
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 14948
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 11200
+   }
+  },
+  {
+   "seed": 900016,
+   "want": "A",
+   "plain": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 27385
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 34360
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 17928
+   }
+  },
+  {
+   "seed": 900017,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13222
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 23133
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12863
+   }
+  },
+  {
+   "seed": 900018,
+   "want": "B",
+   "plain": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15852
+   },
+   "t_pub": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18764
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16019
+   }
+  },
+  {
+   "seed": 900019,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 49
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 29379
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15647
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 11721
+   }
+  },
+  {
+   "seed": 900020,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 28646
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 19732
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15487
+   }
+  },
+  {
+   "seed": 900021,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18658
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19625
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16832
+   }
+  },
+  {
+   "seed": 900022,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19964
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17610
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 30304
+   }
+  },
+  {
+   "seed": 900023,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 20587
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17678
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 28743
+   }
+  },
+  {
+   "seed": 900024,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15633
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17106
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12361
+   }
+  },
+  {
+   "seed": 900025,
+   "want": "B",
+   "plain": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19192
+   },
+   "t_pub": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16344
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 25291
+   }
+  },
+  {
+   "seed": 900026,
+   "want": "B",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 49
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15664
+   },
+   "t_pub": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18716
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 11974
+   }
+  },
+  {
+   "seed": 900027,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 21498
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 27164
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15403
+   }
+  },
+  {
+   "seed": 900028,
+   "want": "B",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15818
+   },
+   "t_pub": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 20774
+   },
+   "t_fix": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12513
+   }
+  },
+  {
+   "seed": 900029,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16907
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 27391
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19878
+   }
+  },
+  {
+   "seed": 900030,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 14944
+   },
+   "t_pub": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 25005
+   },
+   "t_fix": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 33054
+   }
+  },
+  {
+   "seed": 900031,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 47
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13863
+   },
+   "t_pub": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18905
+   },
+   "t_fix": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15609
+   }
+  }
+ ]
+}
