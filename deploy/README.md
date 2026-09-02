@@ -57,7 +57,7 @@ second would be selective, so both are here.
 | learning rate | 5e-6 | 1e-5 | 1e-5 |
 | reward horizon | whole match | whole match | 8 rounds |
 | evaluation | before, after | + every 15 steps | + every 15 steps |
-| outcome | stopped at step 41 | surplus -5.2 +/- 39.0 | — |
+| outcome | stopped at step 41 | verdict failed, 2 of 3 | — |
 
 Run 3 differs from run 2 in the horizon and nothing else.
 
@@ -74,6 +74,26 @@ keeping:
   match-level SD is 200-650, so board variance swamps the policy. Only the same
   seeds, re-measured, can show a trend — which is why run 2 has a curve and run 1
   did not.
+
+### Run 2, finished
+
+Verdict: failed. `surplus > 0` at -618, `g1` down 0.052 against a tolerance of
+0.05, `gk - g1` up to +0.13 and passing. Over 96 paired seeds the surplus went
+-573.5 to -618.1 and the eight-point curve fits a trend of -29.8 +/- 24.4, so
+nothing improved and the point estimate is mildly the other way.
+
+The shape of it is the part worth keeping. g1, the opening move with no history
+behind it, fell; gk - g1, the gain once the ledger arrives, rose. That is the
+signature `verdict.py` was written against, from the tabular study: terminal
+reward took the opening move from 0.70 to 0.14 while lifting the second-game
+figure, which passes a naive "the ledger helps now" test while the surplus sits
+underwater. Whole-match reward is terminal reward, and the pre-registered
+criterion caught the failure it was written to catch — far weaker here, 0.375
+to 0.323 rather than 0.70 to 0.14, but the same direction on both numbers at
+once.
+
+So run 2 is not just a flat control. It is a weak replication of the pathology
+that motivated the dense reward in the first place, which is what run 3 tests.
 
 ### What run 3 has to do, written before it ran
 
