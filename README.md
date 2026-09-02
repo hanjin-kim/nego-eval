@@ -185,6 +185,16 @@ same seeds. Zero is the hand-written rule; every model sits to the left of it.
 | claude-haiku-4.5 | 12 | 663 | −421 ±72 | −288 ±79 |
 | deepseek-chat | 12 | 610 | −474 ±87 | −342 ±91 |
 
+Those rows were measured with a system prompt that misstated the rules twice:
+it told models a failed delivery costs them the price, which `World` does not
+charge, and that sellers do not publish their failure rates, one message before
+printing all three. Both are corrected in `sim/agents.py`, so a rerun today will
+not reproduce these numbers exactly. Tested on one model, the contradiction did
+not change the opening pick — 0.88 with the old text against 0.75 with the new,
+paired, −1.3 sigma — but the misstatement about the price flips which seller
+maximises expected value on 7 of 48 boards, so the table should be re-measured
+before it is leaned on.
+
 Pairing matters more than it looks. Match-level spread is two to six hundred, and
 one early seed was worth +530 to a policy that consults nothing at all — so a
 model's mean against a reference mean computed on other seeds would mostly

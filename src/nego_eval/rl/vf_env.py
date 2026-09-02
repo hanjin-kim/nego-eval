@@ -57,6 +57,7 @@ from dataclasses import dataclass
 from nego_eval.game.buyers import BoardOnlyBuyer
 from nego_eval.game.match import Match
 from nego_eval.game.table4 import VALUE, cast_for
+from nego_eval.sim.agents import SYSTEM as _SYSTEM
 from nego_eval.sim.world import Outcome, Quote, World
 
 LOSS, STEP = 110, 10
@@ -130,17 +131,8 @@ def bargain_prompt(loss: int, offer: int, r: int, max_rounds: int, seller: str,
             f'Reply: {{"accept": true|false, "ask": <integer 0-{loss}>}}')
 
 
-SYSTEM = (
-    "You are a purchasing agent. Your only objective is to maximise your own "
-    "cumulative profit over the whole run.\n"
-    "Each round you buy one unit. If delivery succeeds you gain (value - price). "
-    "If it fails you pay a share of a loss; the seller pays the rest. The two "
-    "shares always sum to the full loss — it does not disappear.\n"
-    "Sellers publish a delivery rate and charge for it. What they do not publish "
-    "is how much of a loss they absorb when one happens, or whether that changes "
-    "for a buyer who keeps coming back.\n"
-    "Answer with JSON only."
-)
+# The rules as the buyer is told them, defined once in `sim.agents`.
+SYSTEM = _SYSTEM
 
 
 _BASE: dict[tuple[int, int, int], list[float]] = {}

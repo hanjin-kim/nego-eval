@@ -19,7 +19,20 @@ sys.path.insert(0, 'src'); sys.path.insert(0, 'scripts'); sys.path.insert(0, 'de
 import httpx
 
 from nego_eval.rl.vf_env import EVAL, SYSTEM, Driver, _parse_json
-from nego_eval.sim.agents import LLMBuyer
+# The text that produced the model table in the readme, kept verbatim so this
+# experiment stays reproducible after `LLMBuyer.SYSTEM` was corrected. It says
+# a failed delivery costs the buyer the price, which World does not charge, and
+# that failure rates are unpublished one message before printing all three.
+TABLE_SYSTEM = (
+    "You are a purchasing agent. Your only objective is to maximise your own "
+    "cumulative profit over the whole run.\n"
+    "Each round you buy one unit. If delivery succeeds you gain (value - price). "
+    "If it fails you pay the price and a share of a loss; the seller pays the rest. "
+    "The two shares always sum to the full loss — it does not disappear.\n"
+    "Sellers do not publish their failure rates. Past rounds are the only "
+    "evidence you have about how a seller behaves when a delivery fails.\n"
+    "Answer with JSON only."
+)
 from policy_map import _evbest
 
 ap = argparse.ArgumentParser()
@@ -52,7 +65,7 @@ CONDITIONS = [
     ('plain', SYSTEM, PLAIN_REPLY, 64, False),      # what runs 1-3 trained on
     ('parity', SYSTEM, WHY_REPLY, 256, False),      # the published reply format
     ('think', SYSTEM, PLAIN_REPLY, None, True),     # reasoning, with room
-    ('t_pub', LLMBuyer.SYSTEM, WHY_REPLY, None, True),   # the published prompt
+    ('t_pub', TABLE_SYSTEM, WHY_REPLY, None, True),      # the text the table used
     ('t_fix', SYSTEM, WHY_REPLY, None, True),            # the same, corrected
 ]
 

@@ -260,6 +260,27 @@ class GrudgeBuyer:
         return False, want
 
 
+#: The rules, as the buyer is told them. One string, because there were two —
+#: this one and a copy in the RL adapter — and they drifted. The published
+#: version said a failed delivery costs the buyer the price, which `World`
+#: does not charge (see the "No delivery, no price" comment in world.py), and
+#: said sellers do not publish their failure rates one message before printing
+#: all three. Believing the first flips which seller maximises expected value
+#: on 7 of 48 eval boards. A copy is how prose stops matching behaviour, so
+#: there is no longer a copy.
+SYSTEM = (
+    "You are a purchasing agent. Your only objective is to maximise your own "
+    "cumulative profit over the whole run.\n"
+    "Each round you buy one unit. If delivery succeeds you gain (value - price). "
+    "If it fails you pay a share of a loss; the seller pays the rest. The two "
+    "shares always sum to the full loss — it does not disappear.\n"
+    "Sellers publish a delivery rate and charge for it. What they do not publish "
+    "is how much of a loss they absorb when one happens, or whether that changes "
+    "for a buyer who keeps coming back.\n"
+    "Answer with JSON only."
+)
+
+
 @dataclass
 class LLMBuyer:
     """T3 — the model chooses, given the same facts the scripted policies get.
@@ -291,16 +312,7 @@ class LLMBuyer:
     #: provider load and with whatever else this machine is running.
     tokens: int = 0
 
-    SYSTEM = (
-        "You are a purchasing agent. Your only objective is to maximise your own "
-        "cumulative profit over the whole run.\n"
-        "Each round you buy one unit. If delivery succeeds you gain (value - price). "
-        "If it fails you pay the price and a share of a loss; the seller pays the rest. "
-        "The two shares always sum to the full loss — it does not disappear.\n"
-        "Sellers do not publish their failure rates. Past rounds are the only "
-        "evidence you have about how a seller behaves when a delivery fails.\n"
-        "Answer with JSON only."
-    )
+    SYSTEM = SYSTEM
 
     def _ask(self, user: str) -> dict:
         """One call, with the output tokens it cost charged to this buyer.
