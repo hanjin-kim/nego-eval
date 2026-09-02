@@ -14,12 +14,30 @@ HERE="$(cd "$(dirname "$0")/.." && pwd)"
 echo "== 1/5  system"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 python3 -V
+# The PyTorch image ships torch and CUDA already, which is why it is the one to
+# pick — twenty minutes of download is twenty minutes of billing. vLLM pins a
+# torch version though, so print what is here before pip decides to replace it.
+python3 - <<'EOF' || true
+import torch
+print(f"  torch {torch.__version__} · cuda {torch.version.cuda} · "
+      f"available {torch.cuda.is_available()}")
+EOF
 
 echo "== 2/5  python deps"
 pip install -q --upgrade pip
-pip install -q "vllm>=0.8" "verifiers==0.3.1" "trl>=0.14" "peft>=0.14" \
+# vllm first and alone: it is the package with an opinion about torch, and
+# letting it resolve on its own makes a replacement obvious instead of a
+# surprise three installs later.
+pip install "vllm>=0.8" 2>&1 | grep -Ei "torch|error" | head -5 || true
+pip install -q "verifiers==0.3.1" "trl>=0.14" "peft>=0.14" \
                "transformers>=4.48" "accelerate>=1.3" "datasets>=3.2" huggingface_hub
 pip install -q -e "$HERE"
+python3 - <<'EOF'
+import sys, torch
+print(f"  after install: torch {torch.__version__} · cuda available {torch.cuda.is_available()}")
+if not torch.cuda.is_available():
+    sys.exit("torch lost the GPU during install — stop here, do not pay for a CPU run")
+EOF
 
 echo "== 3/5  weights  ($MODEL)"
 huggingface-cli download "$MODEL" --quiet
