@@ -8,6 +8,11 @@
 set -euo pipefail
 
 MODEL="${MODEL:-Qwen/Qwen3-8B}"
+# Pinned, not floated. vllm 0.28.0 requires torch==2.13.0 exactly — an equality,
+# not a range — so a newer vllm appearing next week would quietly pull a
+# different torch, and if the pod image ships 2.13 that is a two-gigabyte
+# download nobody asked for. Raise this deliberately, having checked the pin.
+VLLM="${VLLM:-0.28.0}"
 PORT="${PORT:-8000}"
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
 
@@ -27,8 +32,10 @@ echo "== 2/5  python deps"
 pip install -q --upgrade pip
 # vllm first and alone: it is the package with an opinion about torch, and
 # letting it resolve on its own makes a replacement obvious instead of a
-# surprise three installs later.
-pip install "vllm>=0.8" 2>&1 | grep -Ei "torch|error" | head -5 || true
+# surprise three installs later. If the image already carries the torch it
+# wants, this is a small install; if not, it is the big one, and better here
+# than halfway through.
+pip install "vllm==$VLLM" 2>&1 | grep -Ei "torch|error" | head -5 || true
 pip install -q "verifiers==0.3.1" "trl>=0.14" "peft>=0.14" \
                "transformers>=4.48" "accelerate>=1.3" "datasets>=3.2" huggingface_hub
 pip install -q -e "$HERE"
