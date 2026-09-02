@@ -122,3 +122,57 @@ def test_dense_rewards_are_zero_round_by_round_for_the_baseline():
 def test_there_is_one_reward_per_round():
     d = drive(EVBuyer(), 0)
     assert len(d.rewards()) == TRAIN['rounds'] * TRAIN['games']
+
+
+def test_the_adapter_shows_the_same_record_as_the_scored_buyer():
+    """A trained model must be solving the task the table was measured on.
+
+    The adapter re-typed the ledger once and it drifted — the `promises made`
+    column and the `last round` line went missing, which is who was traded with a
+    moment ago and how it went. Nothing would have caught that, and the trained
+    model would simply not have been comparable to the seven already measured.
+    """
+    from nego_eval.rl.vf_env import _ledger
+    from nego_eval.sim.agents import LLMBuyer
+    from nego_eval.sim.world import World
+    for seed in range(4):
+        make = cast_for(seed, loss=LOSS)[0]
+        h = World(buyer=EVBuyer(), sellers=make(), value=VALUE, loss=LOSS,
+                  rounds=12, seed=seed, step=STEP).run()
+        assert _ledger(h) == LLMBuyer()._ledger(h), seed
+
+
+def test_a_bargain_position_stands_on_its_own():
+    """Every exchange after the first must state the ones before it.
+
+    Scoring a turn on its position rather than the transcript is what makes the
+    context flat, and it takes away the only place the earlier offers lived.
+    Without them a seller holding at twenty reads exactly like one that has come
+    up to twenty from zero, and sellers here do move in both directions.
+    """
+    for seed in range(12):
+        d = Driver(seed, **TRAIN)
+        n = 0
+        while not d.done and n < 4000:
+            p = d.pending
+            if p.kind == 'bargain' and p.data['r'] >= 2:
+                assert 'So far this negotiation:' in p.text, (seed, p.text)
+                assert p.text.count('offered to pay') >= 2, (seed, p.text)
+                return
+            d.step({'seller': (p.legal or ('A',))[0], 'accept': False, 'ask': LOSS})
+            n += 1
+    raise AssertionError('no second exchange was reached in twelve matches')
+
+
+def test_the_exchange_log_resets_between_negotiations():
+    """Two failures in one match must not share a transcript."""
+    d = Driver(5, **TRAIN)
+    firsts, n = [], 0
+    while not d.done and n < 4000:
+        p = d.pending
+        if p.kind == 'bargain' and p.data['r'] == 1:
+            firsts.append(p.text.count('offered to pay'))
+        d.step({'seller': (p.legal or ('A',))[0], 'accept': True, 'ask': 0})
+        n += 1
+    assert firsts, 'no bargain happened'
+    assert all(c == 1 for c in firsts), firsts

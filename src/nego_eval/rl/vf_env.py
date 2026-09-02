@@ -64,22 +64,16 @@ class Position:
 
 
 def _ledger(history: list[Outcome]) -> str:
-    if not history:
-        return "No rounds yet."
-    agg: dict[str, dict] = {}
-    for o in history:
-        a = agg.setdefault(o.seller, {"n": 0, "fail": 0, "paid": 0, "loss": 0})
-        a["n"] += 1
-        if o.failed:
-            a["fail"] += 1
-            a["paid"] += o.seller_share
-            a["loss"] += o.loss
-    rows = []
-    for k, a in sorted(agg.items()):
-        share = f"{a['paid']}/{a['loss']}" if a["loss"] else "-"
-        rows.append(f"{k}: bought {a['n']}, failed {a['fail']}, "
-                    f"seller paid {share} of losses")
-    return "\n".join(rows)
+    """The record, rendered exactly as the scored buyer renders it.
+
+    Re-typed here once and it drifted: the adapter's version dropped the
+    `promises made` column and the `last round` line, which is who was traded
+    with a moment ago and how it went. A model trained on that prompt would have
+    been solving a different task from the seven in the table, and nothing would
+    have flagged it. So it delegates.
+    """
+    from nego_eval.sim.agents import LLMBuyer
+    return LLMBuyer()._ledger(history)
 
 
 def choose_prompt(quotes: list[Quote], t: int, remaining: int,
@@ -96,10 +90,25 @@ def choose_prompt(quotes: list[Quote], t: int, remaining: int,
 
 
 def bargain_prompt(loss: int, offer: int, r: int, max_rounds: int, seller: str,
-                   history: list[Outcome], terms: str) -> str:
+                   history: list[Outcome], terms: str,
+                   exchanges: list[str] | None = None) -> str:
+    """One exchange of a bargain, with the exchanges before it spelled out.
+
+    Only the standing offer used to appear here, on the assumption that the
+    transcript carried the rest. Scoring each turn on its own position took the
+    transcript away, and with it any way to tell a seller that has moved from one
+    that has not — twenty against twenty reads the same as zero against twenty,
+    and a seller in this game does sometimes retreat. The exchanges are stated
+    because the position has to be self-contained, not because the model needs
+    reminding.
+    """
+    so_far = ""
+    if exchanges:
+        so_far = "So far this negotiation:\n" + "\n".join(exchanges) + "\n\n"
     return (f"Delivery from {seller} failed. The loss is {loss}.\n"
             f"Exchange {r} of {max_rounds}. {seller} offers to pay {offer}; "
-            f"the remaining {loss - offer} would fall on you.\n\n{terms}\n\n"
+            f"the remaining {loss - offer} would fall on you.\n\n"
+            f"{so_far}{terms}\n\n"
             f"Your record:\n{_ledger(history)}\n\n"
             f'Reply: {{"accept": true|false, "ask": <integer 0-{loss}>}}')
 
@@ -183,6 +192,7 @@ class Driver:
         self.make, self.best = cast_for(seed, loss=LOSS)[:2]
         self.profit = 0.0
         self.per_round: list[float] = []
+        self._exchanges: list[str] = []
         self.done = False
         self.pending: Position | None = None
         self._ask_q: "queue.Queue" = queue.Queue(1)
@@ -208,9 +218,14 @@ class Driver:
             return pick if pick in legal else min(quotes, key=lambda q: q.price).seller
 
         def bargain(self, loss, offer, r, max_rounds, seller_name, history, terms):
+            if r == 1:
+                self.o._exchanges = []
+            ex = self.o._exchanges
+            ex.append(f"  {seller_name} offered to pay {offer}")
             got = self.o._request(Position(
                 'bargain',
-                bargain_prompt(loss, offer, r, max_rounds, seller_name, history, terms),
+                bargain_prompt(loss, offer, r, max_rounds, seller_name, history,
+                               terms, list(ex)),
                 None,
                 dict(loss=loss, offer=offer, r=r, max_rounds=max_rounds,
                      seller=seller_name, history=list(history), terms=terms)))
@@ -221,6 +236,7 @@ class Driver:
             acc = got.get('accept')
             if acc is None:
                 acc = ask <= offer
+            ex.append(f"  you {'accepted' if acc else f'asked for {ask}'}")
             return bool(acc), ask
 
     def _request(self, pos: Position) -> dict:
