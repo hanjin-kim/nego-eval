@@ -7,6 +7,13 @@
 last line before starting anything long: it reports seconds per rollout, and 512
 of them per iteration is the whole cost model.
 
+## The image
+
+`ubuntu_22_cuda_12`, or whatever plain CUDA image the provider offers. Not a
+PyTorch one: those stop at torch 2.4, vllm 0.28 pins 2.13 exactly, so pip
+replaces it regardless and the preinstalled copy is a download thrown away. Some
+providers do not offer the PyTorch images at all.
+
 ## What is decided here rather than in advance
 
 **Which trainer.** `prime-rl` and TRL's `GRPOTrainer` both take a `verifiers`

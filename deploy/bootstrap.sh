@@ -19,9 +19,10 @@ HERE="$(cd "$(dirname "$0")/.." && pwd)"
 echo "== 1/5  system"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 python3 -V
-# The PyTorch image ships torch and CUDA already, which is why it is the one to
-# pick — twenty minutes of download is twenty minutes of billing. vLLM pins a
-# torch version though, so print what is here before pip decides to replace it.
+# Take the plain CUDA image, not a PyTorch one. The PyTorch images stop at torch
+# 2.4 and vllm 0.28 requires 2.13 exactly, so whichever is chosen pip replaces it
+# — the PyTorch image saves a download that is then thrown away, and on some
+# providers it is not offered at all. Print what is here before pip decides.
 python3 - <<'EOF' || true
 import torch
 print(f"  torch {torch.__version__} · cuda {torch.version.cuda} · "
