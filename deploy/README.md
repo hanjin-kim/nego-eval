@@ -171,6 +171,44 @@ seeing results; that is legitimate for fixing an optimiser but it is exactly the
 move that turns into a garden of forking paths if the runs are not all reported.
 Any claim from run 2 names run 2.
 
+## The model was not doing the task
+
+Asked whether the -574 was caused by turning thinking off. It was.
+`scripts/thinking_probe.py` asks only the opening pick, where there is no
+history and the answer is a pure function of the quote sheet, and scores it
+against the seller the null takes. 32 boards, and the bar is not one in three:
+the EV-best seller is not uniform, so naming the same seller every time already
+scores 0.53.
+
+| | accuracy | picks | key |
+|---|---|---|---|
+| name only, 64 tokens, no thinking | 0.44 | C 21, A 9, B 2 | C 17, A 10, B 5 |
+| plus a `why` clause, 256 tokens | 0.56 | C 24, A 5, B 3 | |
+| thinking, 16k tokens | **0.78** | C 13, A 11, B 8 | |
+
+The distribution decides the reading, not the accuracy. `name only` is below a
+constant answer. `with why` clears 0.53 by three points while picking C on 75%
+of boards against a key that is C on 53% — it is riding the name preference,
+not computing. Only the thinking condition discriminates: its spread is close
+to the key's, and it clears the bar by 25 points.
+
+So the policy that runs 1 to 3 were optimising was not a weak player at the
+board. It was a model with no way to do the arithmetic the board is scored on,
+answering from a name preference — which is exactly where `policy_map.py`
+placed it independently, on top of random-pick-and-accept.
+
+That is a handicap this deployment introduced. Thinking was turned off to fit a
+64-token budget; every model in the published table was called with its own
+default and had its reasoning tokens counted rather than capped. Comparisons
+made in this file between -574 and the published range of +6 to -342 were not
+like for like, and they are withdrawn.
+
+**Why the runs did not simply switch it back on.** The thinking condition
+spends 17,102 characters on one decision, upward of four thousand tokens. A
+rollout is thirty-five decisions. That is seventy times the tokens the current
+setup uses, which puts GRPO with thinking on outside this budget rather than
+merely more expensive. The trade is real and it is not resolved here.
+
 ## Cost
 
 Roughly 3,300 tokens processed per training rollout after the context cut. At

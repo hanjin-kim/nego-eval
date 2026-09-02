@@ -1,0 +1,850 @@
+{
+ "summary": {
+  "plain": {
+   "accuracy": 0.4375,
+   "of_answered": 0.4375,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 15,
+   "picks": {
+    "C": 21,
+    "A": 9,
+    "B": 2
+   }
+  },
+  "parity": {
+   "accuracy": 0.5625,
+   "of_answered": 0.5625,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 45.3125,
+   "picks": {
+    "C": 24,
+    "A": 5,
+    "B": 3
+   }
+  },
+  "think": {
+   "accuracy": 0.78125,
+   "of_answered": 0.78125,
+   "parsed": 1,
+   "truncated": 0,
+   "chars": 17102.1875,
+   "picks": {
+    "C": 13,
+    "A": 11,
+    "B": 8
+   }
+  },
+  "n": 32,
+  "both": 0.40625,
+  "answer_key": {
+   "C": 17,
+   "A": 10,
+   "B": 5
+  },
+  "always_one_name": 0.53125
+ },
+ "rows": [
+  {
+   "seed": 900000,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16379
+   }
+  },
+  {
+   "seed": 900001,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12218
+   }
+  },
+  {
+   "seed": 900002,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12002
+   }
+  },
+  {
+   "seed": 900003,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 11329
+   }
+  },
+  {
+   "seed": 900004,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18137
+   }
+  },
+  {
+   "seed": 900005,
+   "want": "B",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 50
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18246
+   }
+  },
+  {
+   "seed": 900006,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 13005
+   }
+  },
+  {
+   "seed": 900007,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 14395
+   }
+  },
+  {
+   "seed": 900008,
+   "want": "C",
+   "plain": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 54
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 10565
+   }
+  },
+  {
+   "seed": 900009,
+   "want": "A",
+   "plain": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 49
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 23973
+   }
+  },
+  {
+   "seed": 900010,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 25846
+   }
+  },
+  {
+   "seed": 900011,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 23002
+   }
+  },
+  {
+   "seed": 900012,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 21178
+   }
+  },
+  {
+   "seed": 900013,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 37
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16183
+   }
+  },
+  {
+   "seed": 900014,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 7925
+   }
+  },
+  {
+   "seed": 900015,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13886
+   }
+  },
+  {
+   "seed": 900016,
+   "want": "A",
+   "plain": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 16925
+   }
+  },
+  {
+   "seed": 900017,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 22478
+   }
+  },
+  {
+   "seed": 900018,
+   "want": "B",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 21706
+   }
+  },
+  {
+   "seed": 900019,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 49
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18442
+   }
+  },
+  {
+   "seed": 900020,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 13723
+   }
+  },
+  {
+   "seed": 900021,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 21407
+   }
+  },
+  {
+   "seed": 900022,
+   "want": "C",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 12828
+   }
+  },
+  {
+   "seed": 900023,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 48
+   },
+   "think": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 10846
+   }
+  },
+  {
+   "seed": 900024,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17995
+   }
+  },
+  {
+   "seed": 900025,
+   "want": "B",
+   "plain": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 19395
+   }
+  },
+  {
+   "seed": 900026,
+   "want": "B",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18875
+   }
+  },
+  {
+   "seed": 900027,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "B",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 10572
+   }
+  },
+  {
+   "seed": 900028,
+   "want": "B",
+   "plain": {
+    "pick": "A",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 46
+   },
+   "think": {
+    "pick": "B",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 21731
+   }
+  },
+  {
+   "seed": 900029,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 26507
+   }
+  },
+  {
+   "seed": 900030,
+   "want": "A",
+   "plain": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 0,
+    "ok": true,
+    "truncated": false,
+    "chars": 38
+   },
+   "think": {
+    "pick": "A",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 17261
+   }
+  },
+  {
+   "seed": 900031,
+   "want": "C",
+   "plain": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 15
+   },
+   "parity": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 47
+   },
+   "think": {
+    "pick": "C",
+    "hit": 1,
+    "ok": true,
+    "truncated": false,
+    "chars": 18310
+   }
+  }
+ ]
+}
