@@ -39,11 +39,23 @@ pip install "vllm==$VLLM" 2>&1 | grep -Ei "torch|error" | head -5 || true
 pip install -q "verifiers==0.3.1" "trl>=0.14" "peft>=0.14" \
                "transformers>=4.48" "accelerate>=1.3" "datasets>=3.2" huggingface_hub
 pip install -q -e "$HERE"
+# A real multiply on the card, not is_available(). The image list tops out at
+# torch 2.4 while vllm wants 2.13, so pip replaces torch and brings its own CUDA
+# runtime with it — the only thing that can still be wrong is the host driver,
+# which is a property of the machine and cannot be chosen from the console.
+# is_available() has been known to return True and then fault on first use.
 python3 - <<'EOF'
 import sys, torch
 print(f"  after install: torch {torch.__version__} · cuda available {torch.cuda.is_available()}")
 if not torch.cuda.is_available():
-    sys.exit("torch lost the GPU during install — stop here, do not pay for a CPU run")
+    sys.exit("torch lost the GPU during install — stop, do not pay for a CPU run")
+try:
+    x = torch.randn(1024, 1024, device="cuda")
+    torch.cuda.synchronize()
+    print(f"  matmul on device ok · {torch.cuda.get_device_name(0)}")
+except Exception as e:
+    sys.exit(f"the card is visible but will not compute ({e}) — likely a host "
+             f"driver too old for this torch. Terminate the pod.")
 EOF
 
 echo "== 3/5  weights  ($MODEL)"
