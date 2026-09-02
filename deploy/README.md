@@ -43,6 +43,57 @@ study showed how easily one of them can be bought with another: terminal reward
 made the ledger appear to start helping while the surplus sat at -134 and the
 opening move collapsed from 0.70 to 0.14.
 
+## Runs, in the order they happened
+
+Written while the second one was still going, so the record is not assembled
+after the numbers are known.
+
+There were two, and they are two experiments rather than one. Reporting only the
+second would be selective, so both are here.
+
+| | run 1 | run 2 |
+|---|---|---|
+| rollout temperature | 0.9 | 1.2 |
+| learning rate | 5e-6 | 1e-5 |
+| evaluation | before, after | before, after, and every 15 steps |
+| outcome | stopped at step 41 | — |
+
+Run 1 was stopped rather than finished. Two things came out of it, both worth
+keeping:
+
+- `frac_reward_zero_std` sat between 0.25 and 0.5, meaning a quarter to a half
+  of the groups came back with every branch scoring identically. A group with no
+  spread contributes no gradient, so that fraction of the compute was buying
+  nothing. That is what the temperature change addresses, and it is a measured
+  fault in the optimiser's input rather than a search for a better number.
+- The per-step training reward bounced between -170 and -364 with no visible
+  trend. It could not have shown one: every step draws different boards and the
+  match-level SD is 200-650, so board variance swamps the policy. Only the same
+  seeds, re-measured, can show a trend — which is why run 2 has a curve and run 1
+  did not.
+
+### The gap that made a second run necessary
+
+The harness was built to adjudicate a finished run and not to diagnose one in
+progress. `verdict.py` is a pre-registered pass/fail gate, which is the right
+instrument for deciding whether to believe a result and the wrong one for
+deciding whether the thing is learning. There was no learning curve, no
+gradient-signal diagnostic, and no exploration measure, so the first honest
+question asked of the run — is it improving? — had nothing to answer it.
+
+The assumption behind that omission was that the tabular study had already
+settled whether this environment trains, leaving the GPU run to confirm it at
+scale. A tabular learner and an 8B model are far enough apart that it had not.
+
+### What did not change between the runs
+
+The three verdict criteria, their thresholds, the evaluation preset, and the
+evaluation seeds (900,000 upward, disjoint from the training seeds 0-1023).
+Temperature and learning rate are training-side knobs and were turned after
+seeing results; that is legitimate for fixing an optimiser but it is exactly the
+move that turns into a garden of forking paths if the runs are not all reported.
+Any claim from run 2 names run 2.
+
 ## Cost
 
 Roughly 3,300 tokens processed per training rollout after the context cut. At
