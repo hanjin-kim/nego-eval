@@ -16,7 +16,17 @@ Here it is the variable, and it is one bit.
 | [Cattle Trade](https://arxiv.org/html/2605.14537v1) | yes | no |
 | [M3-Bench](https://arxiv.org/pdf/2601.08462) | fixed dyad | within game |
 | [RLVR negotiation](https://arxiv.org/abs/2604.09855) | one seller | no |
+| [TERMS-Bench](https://arxiv.org/abs/2605.13909) | assigned | within one negotiation |
 | **nego-eval** | **yes** | **yes** |
+
+TERMS-Bench is worth reading next to the numbers below. It diagnoses thirteen
+frontier agents inside a single bilateral negotiation and finds that they
+**saturate deal rate while diverging in surplus extraction** — an aggregate
+outcome hiding the differences that matter. The same thing happens here one level
+up: total profit puts four models within noise of each other, and the share of
+the relational surplus they capture spreads them from 25% to below zero. Its
+counterpart is assigned and its horizon is one negotiation; the divergence it
+finds inside a deal is the divergence this board looks for between them.
 
 ---
 
