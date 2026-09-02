@@ -218,6 +218,21 @@ the offer was taken or countered — which leaves the relationship as a residual
 with a sign. `run_fullplay4.py` keeps only per-seed profit and discards the
 rounds, so it cannot be recovered from `data/`; it has to be re-measured.
 
+**What is forced, though, is that the information was not the limit.** Every
+choose prompt prints the delivery rate beside each price, and the 934 reference
+consults nothing else — no record, no memory, three expected values and a
+maximum. Six of seven models see that same sheet *plus* a ledger and score below
+it. However the split between picking and settling turns out, the shortfall is
+in executing on visible numbers rather than in access to them, so arithmetic
+reliability across the fifty-odd comparisons a match asks for is an axis this
+board is sensitive to, and one worth reporting apart from any claim about the
+record.
+
+For two rows that much is already pinned. Picking at chance costs about 276
+(`scripts/accuracy_to_profit.py`); haiku-4.5 at −288 and deepseek-chat at −342
+are further down than picking at chance would put them, so the settlement has to
+be leaking as well. Nothing similar is pinned for the rest.
+
 Pairing matters more than it looks. Match-level spread is two to six hundred, and
 one early seed was worth +530 to a policy that consults nothing at all — so a
 model's mean against a reference mean computed on other seeds would mostly
